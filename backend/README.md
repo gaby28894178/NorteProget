@@ -266,4 +266,4 @@ Consultar los documentos del proyecto:
 
 ## 📝 Licencia
 
-Proyecto privado - NorteProget © 2024
+Proyecto privado - NorteProget © 2026
