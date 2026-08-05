@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+body {
+  background-color: #F3EFE7; /* Off-white de NORTE */
+  color: #1C1B19;            /* Negro cálido de NORTE */
+}
