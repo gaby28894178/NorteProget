@@ -1,0 +1,362 @@
+
+/* ========================================
+   CHECKOUT — NORTE
+   ======================================== */
+
+.checkout-page {
+  min-height: 75vh;
+  padding: 5rem 0;
+  background: var(--color-secondary);
+}
+
+/* ========================================
+   ENCABEZADO
+   ======================================== */
+
+.checkout__header {
+  margin-bottom: 3rem;
+}
+
+.checkout__header p {
+  margin: 0 0 0.7rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+}
+
+.checkout__header h1 {
+  margin: 0 0 0.8rem;
+
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+
+  line-height: 1.1;
+}
+
+.checkout__header span {
+  color: var(--color-text-secondary);
+
+  font-size: 1rem;
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+   ======================================== */
+
+.checkout {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+.checkout__grid {
+  display: grid;
+
+  grid-template-columns: 0.8fr 1.2fr;
+
+  gap: 2rem;
+
+  align-items: start;
+}
+
+/* ========================================
+   TARJETA DEL PRODUCTO
+   ======================================== */
+
+.checkout__product {
+  overflow: hidden;
+
+  background: var(--color-white);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.checkout__product-image {
+  width: 100%;
+  height: 280px;
+
+  overflow: hidden;
+
+  background: var(--color-secondary);
+}
+
+.checkout__product-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.checkout__product-info {
+  padding: 1.8rem;
+}
+
+.checkout__product-info > span {
+  display: block;
+
+  margin-bottom: 0.5rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.checkout__product-info h2 {
+  margin: 0 0 0.8rem;
+
+  font-size: 1.5rem;
+}
+
+.checkout__product-info p {
+  margin-bottom: 1.5rem;
+
+  color: var(--color-text-secondary);
+
+  line-height: 1.6;
+}
+
+.checkout__product-info > strong {
+  display: block;
+
+  font-size: 1.3rem;
+}
+
+/* ========================================
+   TOTAL
+   ======================================== */
+
+.checkout__total {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.checkout__total span {
+  font-weight: 600;
+}
+
+.checkout__total strong {
+  font-size: 1.4rem;
+}
+
+/* ========================================
+   FORMULARIO
+   ======================================== */
+
+.checkout__form-container {
+  padding: 2rem;
+
+  background: var(--color-white);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.checkout__form-container h2 {
+  margin: 0 0 2rem;
+
+  font-size: 1.4rem;
+}
+
+.checkout__form {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1.3rem;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 0.9rem 1rem;
+
+  background: var(--color-white);
+
+  color: var(--color-text);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+
+  outline: none;
+
+  transition: var(--transition-fast);
+}
+
+.form-group input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.form-group input:focus {
+  border-color: var(--color-accent);
+
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   BOTÓN CONTINUAR
+   ======================================== */
+
+.checkout__button {
+  grid-column: 1 / -1;
+
+  margin-top: 0.5rem;
+
+  width: 100%;
+
+  padding: 1rem;
+
+  background: var(--color-primary);
+
+  color: var(--color-white);
+
+  border: none;
+
+  border-radius: var(--radius-sm);
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: var(--transition-normal);
+}
+
+.checkout__button:hover {
+  background: var(--color-accent);
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   VOLVER
+   ======================================== */
+
+.checkout__back {
+  display: inline-block;
+
+  margin-top: 1.5rem;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.9rem;
+
+  transition: var(--transition-fast);
+}
+
+.checkout__back:hover {
+  color: var(--color-accent);
+}
+
+/* ========================================
+   PRODUCTO NO ENCONTRADO
+   ======================================== */
+
+.checkout-message {
+  padding: 5rem 0;
+
+  text-align: center;
+}
+
+.checkout-message h1 {
+  margin-bottom: 1.5rem;
+}
+
+.checkout-message a {
+  color: var(--color-accent);
+
+  font-weight: 600;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 900px) {
+  .checkout__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout__product {
+    max-width: 650px;
+
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkout-page {
+    padding: 3rem 0;
+  }
+
+  .checkout__header {
+    margin-bottom: 2rem;
+  }
+
+  .checkout__form-container {
+    padding: 1.4rem;
+  }
+
+  .checkout__form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group--full {
+    grid-column: auto;
+  }
+
+  .checkout__button {
+    grid-column: auto;
+  }
+
+  .checkout__product-image {
+    height: 230px;
+  }
+}
+
