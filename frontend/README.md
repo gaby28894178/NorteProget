@@ -11,58 +11,53 @@
 ```
 frontend/
 ├── public/
-│   ├── index.html
 │   ├── favicon.ico
-│   └── assets/
-│       └── images/
+│   ├── favicon.svg
+│   └── icons.svg
 ├── src/
 │   ├── api/
-│   │   ├── axiosConfig.js       # Configuración base de Axios
-│   │   ├── authApi.js           # Llamadas API de autenticación
-│   │   └── userApi.js           # Llamadas API de usuarios
+│   │   ├── axiosConfig.js       # Configuración base de Axios + interceptor JWT
+│   │   ├── categoryApi.js       # Llamadas API de categorías (mock + backend)
+│   │   └── .gitkeep
+│   ├── assets/
+│   │   └── vite.svg
 │   ├── components/
-│   │   ├── common/
-│   │   │   ├── Navbar.jsx       # Barra de navegación
-│   │   │   ├── Footer.jsx       # Pie de página
-│   │   │   ├── Loader.jsx       # Spinner de carga
-│   │   │   └── Button.jsx       # Botón reutilizable
-│   │   ├── auth/
-│   │   │   ├── LoginForm.jsx    # Formulario de login
-│   │   │   └── RegisterForm.jsx # Formulario de registro
-│   │   └── layout/
-│   │       ├── MainLayout.jsx   # Layout principal
-│   │       └── AuthLayout.jsx   # Layout de autenticación
+│   │   ├── admin/
+│   │   │   ├── CategoryForm.jsx   # Formulario de alta/edición de categoría
+│   │   │   └── CategoryTable.jsx  # Tabla de categorías
+│   │   └── .gitkeep
 │   ├── context/
-│   │   └── AuthContext.jsx      # Contexto de autenticación
+│   │   └── .gitkeep              # (reservado para estado global / Auth)
 │   ├── hooks/
-│   │   ├── useAuth.js           # Hook de autenticación
-│   │   └── useFetch.js          # Hook para peticiones
+│   │   ├── useCategories.js      # Lógica de CRUD de categorías + notificaciones
+│   │   └── .gitkeep
+│   ├── layouts/
+│   │   ├── AdminLayout.jsx       # Layout del panel admin (sidebar + topbar)
+│   │   └── PublicLayout.jsx      # Layout de la tienda pública
 │   ├── pages/
-│   │   ├── Home.jsx             # Página principal
-│   │   ├── Login.jsx            # Página de login
-│   │   ├── Register.jsx         # Página de registro
-│   │   ├── Dashboard.jsx        # Panel de control
-│   │   ├── Profile.jsx          # Perfil de usuario
-│   │   └── NotFound.jsx         # Página 404
-│   ├── router/
-│   │   ├── AppRouter.jsx        # Router principal
-│   │   └── PrivateRoute.jsx     # Rutas protegidas
+│   │   ├── admin/
+│   │   │   ├── AdminCategoriesPage.jsx   # Página de gestión de categorías
+│   │   │   └── .gitkeep
+│   │   └── public/
+│   │       └── .gitkeep          # (reservado para páginas de la tienda)
+│   ├── routes/
+│   │   └── AppRouter.jsx         # Configuración de rutas públicas y admin
 │   ├── styles/
-│   │   ├── globals.css          # Estilos globales
-│   │   └── variables.css        # Variables CSS
+│   │   └── .gitkeep
 │   ├── utils/
-│   │   ├── constants.js         # Constantes de la app
-│   │   └── helpers.js           # Funciones auxiliares
-│   ├── App.jsx                  # Componente raíz
-│   └── main.jsx                 # Punto de entrada
-├── .env                         # Variables de entorno (NO subir a Git)
-├── .env.example                 # Ejemplo de variables
+│   │   ├── slugUtils.js          # Generación y validación de slugs
+│   │   └── .gitkeep
+│   ├── App.css
+│   ├── App.jsx                   # Componente raíz + ToastContainer
+│   ├── index.css                 # Estilos globales / Tailwind
+│   └── main.jsx                  # Punto de entrada
+├── .env.example                  # Ejemplo de variables de entorno
 ├── .gitignore
 ├── index.html
 ├── package.json
-├── vite.config.js               # Configuración de Vite
-├── tailwind.config.js           # Configuración de Tailwind
-├── postcss.config.js            # Configuración de PostCSS
+├── vite.config.js                # Configuración de Vite
+├── tailwind.config.js            # Configuración de Tailwind (paleta NORTE)
+├── postcss.config.js             # Configuración de PostCSS
 └── README.md
 ```
 
@@ -72,16 +67,26 @@ frontend/
 
 | Tecnología | Versión | Uso |
 |------------|---------|-----|
-| **React** | 18.x | Librería UI (SPA) |
-| **Vite** | 5.x | Bundler / Dev Server |
-| **React Router DOM** | 6.x | Enrutamiento SPA |
-| **Axios** | 1.x | Cliente HTTP para API |
-| **Tailwind CSS** | 3.x | Framework de estilos |
-| **React Hook Form** | 7.x | Manejo de formularios |
-| **React Toastify** | 9.x | Notificaciones |
-| **React Icons** | 4.x | Iconos |
-| **jwt-decode** | 4.x | Decodificar tokens JWT |
-| **Zustand** o **Context API** | - | Manejo de estado global |
+| **React** | 19.2 | Librería UI (SPA) |
+| **Vite** | 8.2 | Bundler / Dev Server |
+| **React Router DOM** | 7.18 | Enrutamiento SPA |
+| **Axios** | 1.19 | Cliente HTTP para API |
+| **Tailwind CSS** | 4.3 | Framework de estilos |
+| **React Hook Form** | 7.84 | Manejo de formularios |
+| **React Toastify** | 11.1 | Notificaciones |
+| **React Icons** | 5.7 | Iconos |
+| **jwt-decode** | 4.0 | Decodificar tokens JWT |
+
+**Dependencias de Desarrollo:**
+
+| Tecnología | Versión | Uso |
+|------------|---------|-----|
+| **ESLint** | 10.8 | Linting (config plana) |
+| **@vitejs/plugin-react** | 6.0 | Plugin de React para Vite |
+| **@tailwindcss/postcss** | 4.3 | Plugin PostCSS de Tailwind v4 |
+| **PostCSS** | 8.5 | Procesador de CSS |
+| **autoprefixer** | 10.5 | Prefijos CSS de navegadores |
+| **@types/react / @types/react-dom** | 19.2 | Tipos de TypeScript para React |
 
 ---
 
@@ -89,8 +94,8 @@ frontend/
 
 ### Prerrequisitos
 
-- Node.js >= 18
-- npm o yarn
+- Node.js >= 20.19 (recomendado 22.x)
+- npm (incluido con Node.js)
 
 ### Pasos
 
@@ -121,6 +126,9 @@ npm run dev
 # API Backend URL
 VITE_API_URL=http://localhost:3001/api
 
+# Usar datos mock en memoria mientras no exista el backend real
+VITE_USE_MOCK=true
+
 # App
 VITE_APP_NAME=NorteProget
 ```
@@ -136,12 +144,11 @@ npm create vite@latest frontend -- --template react
 # Dependencias principales
 npm install react-router-dom axios react-hook-form react-toastify react-icons jwt-decode
 
-# Tailwind CSS
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+# Tailwind CSS v4 (se usa el plugin PostCSS @tailwindcss/postcss)
+npm install -D tailwindcss @tailwindcss/postcss postcss autoprefixer
 
 # Dependencias de desarrollo
-npm install -D eslint prettier eslint-plugin-react
+npm install -D eslint @eslint/js globals eslint-plugin-react-hooks eslint-plugin-react-refresh @vitejs/plugin-react
 ```
 
 ---
@@ -154,7 +161,7 @@ npm install -D eslint prettier eslint-plugin-react
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext .js,.jsx"
+    "lint": "eslint ."
   }
 }
 ```
