@@ -1,5 +1,4 @@
 
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { CartProvider } from "./context/CartContext";
@@ -19,7 +18,6 @@ function App() {
       <AuthProvider>
         <CartProvider>
           <Routes>
-
             <Route
               path="/"
               element={<Home />}
@@ -54,7 +52,6 @@ function App() {
               path="/confirmacion"
               element={<Confirmacion />}
             />
-
           </Routes>
         </CartProvider>
       </AuthProvider>

@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "norte-asignado-frontend",
+=======
+  "name": "frontend",
+>>>>>>> origin/develop
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^1.19.0",
+<<<<<<< HEAD
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
@@ -21,10 +26,32 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
+=======
+    "jwt-decode": "^4.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.84.0",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^7.18.2",
+    "react-toastify": "^11.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "autoprefixer": "^10.5.4",
+>>>>>>> origin/develop
     "eslint": "^10.8.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.7.0",
+<<<<<<< HEAD
+=======
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3",
+>>>>>>> origin/develop
     "vite": "^8.2.0"
   }
 }
