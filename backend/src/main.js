@@ -28,5 +28,5 @@ await connectDatabase();
 
 // Iniciar servidor
 app.listen(env.port, () => {
-  console.log(`Servidor ejecutándose en el puerto ${env.port}`);
+  console.log(`Servidor ejecutándose en el puerto http://localhost:${env.port}`);
 });
