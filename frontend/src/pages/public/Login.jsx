@@ -1,15 +1,10 @@
-
 import { useState } from "react";
-import {
-  useLocation,
-  useNavigate,
-  Link,
-} from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import "./Login.css";
 const Login = () => {
   const { login } = useAuth();
@@ -25,8 +20,7 @@ const Login = () => {
 
   const [error, setError] = useState("");
 
-  const from =
-    location.state?.from || "/";
+  const from = location.state?.from || "/";
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,9 +37,7 @@ const Login = () => {
     setError("");
 
     if (!formData.email || !formData.password) {
-      setError(
-        "Completá todos los campos."
-      );
+      setError("Completá todos los campos.");
 
       return;
     }
@@ -66,37 +58,20 @@ const Login = () => {
       <Navbar />
 
       <main className="login-page">
-
         <section className="login-container">
-
           <div className="login-header">
-
             <p>BIENVENIDO A NORTE</p>
 
             <h1>Iniciar sesión</h1>
 
-            <span>
-              Ingresá para continuar con tu compra.
-            </span>
-
+            <span>Ingresá para continuar con tu compra.</span>
           </div>
 
-          <form
-            className="login-form"
-            onSubmit={handleSubmit}
-          >
-
-            {error && (
-              <div className="login-error">
-                {error}
-              </div>
-            )}
+          <form className="login-form" onSubmit={handleSubmit}>
+            {error && <div className="login-error">{error}</div>}
 
             <div className="login-field">
-
-              <label htmlFor="email">
-                Email
-              </label>
+              <label htmlFor="email">Email</label>
 
               <input
                 type="email"
@@ -107,14 +82,10 @@ const Login = () => {
                 placeholder="tu@email.com"
                 required
               />
-
             </div>
 
             <div className="login-field">
-
-              <label htmlFor="password">
-                Contraseña
-              </label>
+              <label htmlFor="password">Contraseña</label>
 
               <input
                 type="password"
@@ -125,27 +96,17 @@ const Login = () => {
                 placeholder="Ingresá tu contraseña"
                 required
               />
-
             </div>
 
-            <button
-              type="submit"
-              className="login-button"
-            >
+            <button type="submit" className="login-button">
               Iniciar sesión
             </button>
-
           </form>
 
-          <Link
-            to="/catalogo"
-            className="login-back"
-          >
+          <Link to="/catalogo" className="login-back">
             Volver al catálogo
           </Link>
-
         </section>
-
       </main>
 
       <Footer />
@@ -154,4 +115,3 @@ const Login = () => {
 };
 
 export default Login;
-

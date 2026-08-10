@@ -1,20 +1,16 @@
-
-
 import { Link, useParams } from "react-router-dom";
 
-import products from "../data/products";
+import products from "../../data/products";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 import "./Producto.css";
 
 const Producto = () => {
   const { id } = useParams();
 
-  const product = products.find(
-    (product) => product.id === Number(id)
-  );
+  const product = products.find((product) => product.id === Number(id));
 
   if (!product) {
     return (
@@ -24,10 +20,7 @@ const Producto = () => {
         <main className="producto-page container">
           <h1>Producto no encontrado</h1>
 
-          <Link
-            to="/catalogo"
-            className="producto-page__back"
-          >
+          <Link to="/catalogo" className="producto-page__back">
             Volver al catálogo
           </Link>
         </main>
@@ -42,45 +35,31 @@ const Producto = () => {
       <Navbar />
 
       <main className="producto-page">
-
         <section className="producto-detail container">
-
           {/* IMAGEN */}
 
           <div className="producto-detail__image">
-
-            <img
-              src={product.image}
-              alt={product.name}
-            />
-
+            <img src={product.image} alt={product.name} />
           </div>
 
           {/* INFORMACIÓN */}
 
           <div className="producto-detail__info">
-
             <span className="producto-detail__category">
               {product.category}
             </span>
 
-            <h1>
-              {product.name}
-            </h1>
+            <h1>{product.name}</h1>
 
             <p className="producto-detail__description">
               {product.description}
             </p>
 
             <div className="producto-detail__price">
-              $
-              {product.price.toLocaleString(
-                "es-AR"
-              )}
+              ${product.price.toLocaleString("es-AR")}
             </div>
 
             <div className="producto-detail__actions">
-
               <Link
                 to={`/checkout?producto=${product.id}`}
                 className="producto-detail__buy"
@@ -88,19 +67,12 @@ const Producto = () => {
                 Comprar ahora
               </Link>
 
-              <Link
-                to="/catalogo"
-                className="producto-detail__back"
-              >
+              <Link to="/catalogo" className="producto-detail__back">
                 Volver al catálogo
               </Link>
-
             </div>
-
           </div>
-
         </section>
-
       </main>
 
       <Footer />
@@ -109,4 +81,3 @@ const Producto = () => {
 };
 
 export default Producto;
-
