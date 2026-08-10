@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Carga la paleta definida en tailwind.config.js (config JS legacy de v4) */
+@config "../tailwind.config.js";
+
 body {
   background-color: #F3EFE7; /* Off-white de NORTE */
   color: #1C1B19;            /* Negro cálido de NORTE */
