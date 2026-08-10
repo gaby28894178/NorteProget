@@ -1,3 +1,4 @@
+@import "tailwindcss";
 
 :root {
   --text: #6b6375;
@@ -31,10 +32,12 @@
 /* Carga la paleta definida en tailwind.config.js (config JS legacy de v4) */
 @config "../tailwind.config.js";
 
-body {
-  margin: 0;
-  background-color: #f3efe7;
-  color: #1c1b19;
+@layer base {
+  body {
+    margin: 0;
+    background-color: #f3efe7;
+    color: #1c1b19;
+  }
 }
 
 #root {
@@ -45,24 +48,28 @@ body {
   box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+/* Estas reglas van en @layer components para que las utilidades de Tailwind
+   (text-2xl, font-bold, etc.) puedan sobreescribirlas (por ejemplo en el admin). */
+@layer components {
+  h1,
+  h2 {
+    font-family: var(--heading);
+    font-weight: 500;
+    color: var(--text-h);
+  }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-}
+  h1 {
+    font-size: 56px;
+    letter-spacing: -1.68px;
+    margin: 32px 0;
+  }
 
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
+  h2 {
+    font-size: 24px;
+    line-height: 118%;
+    letter-spacing: -0.24px;
+    margin: 0 0 8px;
+  }
 }
 
 p {
@@ -82,13 +89,15 @@ code,
     font-size: 16px;
   }
 
-  h1 {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+  @layer components {
+    h1 {
+      font-size: 36px;
+      margin: 20px 0;
+    }
 
-  h2 {
-    font-size: 20px;
+    h2 {
+      font-size: 20px;
+    }
   }
 }
 

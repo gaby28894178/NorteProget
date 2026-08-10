@@ -9,13 +9,15 @@ import {
   LuX,
 } from "react-icons/lu";
 
+import "./admin.css";
+
 export default function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const closeSidebar = () => setIsSidebarOpen(false);
 
   return (
-    <div className="flex min-h-screen bg-norte-bg">
+    <div className="admin-root flex min-h-screen bg-norte-bg">
       {/* Overlay para el drawer en móvil */}
       <div
         className={`fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity lg:hidden ${
@@ -31,7 +33,9 @@ export default function AdminLayout() {
         }`}
       >
         <div className="flex items-center justify-between border-b border-white/10 pb-2">
-          <h2 className="text-xl font-bold">NORTE Admin</h2>
+          <h2 className="bg-norte-mustard text-xl font-bold p-1 rounded-sm">
+            NORTE Admin
+          </h2>
           <button
             onClick={closeSidebar}
             className="lg:hidden text-norte-mustard hover:text-white"

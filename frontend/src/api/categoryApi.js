@@ -1,5 +1,6 @@
 import axiosInstance from "./axiosConfig";
-
+import { generateSlug } from "../utils/slugUtils";
+import initialCategories from "../data/categories.json";
 // Usa datos mock en memoria mientras no exista el backend real.
 const USE_MOCK =
   import.meta.env.VITE_USE_MOCK === "true" || !import.meta.env.VITE_API_URL;
@@ -9,48 +10,25 @@ const generateId = () =>
 
 const pickCategoryFields = (data) => ({
   name: data.name,
-  slug: data.slug,
+  slug: data.slug || generateSlug(data.name),
   is_active: data.is_active ?? true,
 });
 
 const extractList = (data) =>
   Array.isArray(data) ? data : (data?.data ?? data?.rows ?? []);
 
-// MockData para pruebas de Categorias
-let mockCategories = [
-  {
-    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-    name: "Remeras y Musculosas",
-    slug: "remeras-y-musculosas",
-    is_active: true,
-    created_at: "2026-08-01T10:00:00.000Z",
-    updated_at: "2026-08-01T10:00:00.000Z",
-  },
-  {
-    id: "c9bf9e57-1685-4c89-bafb-ff5af830be8a",
-    name: "Buzos y Camperas",
-    slug: "buzos-y-camperas",
-    is_active: true,
-    created_at: "2026-08-01T10:00:00.000Z",
-    updated_at: "2026-08-01T10:00:00.000Z",
-  },
-  {
-    id: "3b8829f0-293e-4b2a-a92d-94d3fd4d6123",
-    name: "Pantalones y Jeans",
-    slug: "pantalones-y-jeans",
-    is_active: true,
-    created_at: "2026-08-01T10:00:00.000Z",
-    updated_at: "2026-08-01T10:00:00.000Z",
-  },
-  {
-    id: "e2a9b311-8201-4435-bc44-1296d11e8a45",
-    name: "Accesorios de Diseño",
-    slug: "accesorios-de-diseno",
-    is_active: true,
-    created_at: "2026-08-01T10:00:00.000Z",
-    updated_at: "2026-08-01T10:00:00.000Z",
-  },
-];
+// Inicializamos mockCategories a partir del archivo en /data
+// Mantiene el estado en memoria para permitir altas/bajas/modificaciones en local.
+let mockCategories = Array.isArray(initialCategories)
+  ? initialCategories.map((cat, idx) => ({
+      id: cat.id ?? `cat-${idx + 1}`,
+      name: cat.name || cat.categoria || cat,
+      slug: cat.slug || generateSlug(cat.name || cat.categoria || cat),
+      is_active: cat.is_active ?? true,
+      created_at: cat.created_at || new Date().toISOString(),
+      updated_at: cat.updated_at || new Date().toISOString(),
+    }))
+  : [];
 
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -85,8 +63,12 @@ export const updateCategory = async (id, categoryData) => {
     const updatedAt = new Date().toISOString();
     let updatedCategory = null;
     mockCategories = mockCategories.map((cat) => {
-      if (cat.id !== id) return cat;
-      updatedCategory = { ...cat, ...pickCategoryFields(categoryData), updated_at: updatedAt };
+      if (String(cat.id) !== String(id)) return cat;
+      updatedCategory = {
+        ...cat,
+        ...pickCategoryFields(categoryData),
+        updated_at: updatedAt,
+      };
       return updatedCategory;
     });
     return updatedCategory;
@@ -98,7 +80,9 @@ export const updateCategory = async (id, categoryData) => {
 export const deleteCategory = async (id) => {
   if (USE_MOCK) {
     await delay();
-    mockCategories = mockCategories.filter((cat) => cat.id !== id);
+    mockCategories = mockCategories.filter(
+      (cat) => String(cat.id) !== String(id),
+    );
     return { success: true };
   }
   const { data } = await axiosInstance.delete(`/categories/${id}`);
