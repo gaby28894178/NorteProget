@@ -1,0 +1,31 @@
+/* Aísla el panel admin de los estilos globales de la plantilla (index.css / globals.css)
+   que llegan por el merge y rompen el diseño del admin.
+   Este archivo es específico del admin y no afecta a las páginas públicas. */
+
+.admin-root {
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #1c1b19;
+}
+
+/* La plantilla limita #root a 1126px centrados; el admin debe ocupar todo el ancho. */
+#root:has(.admin-root) {
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+
+/* Neutraliza el margin/fuente que la plantilla fuerza en títulos, sin pisar
+   las utilidades de Tailwind (text-2xl, font-bold, text-norte-dark, etc.). */
+.admin-root h1,
+.admin-root h2,
+.admin-root h3,
+.admin-root h4,
+.admin-root h5,
+.admin-root h6 {
+  margin: 0;
+  font-family: inherit;
+}

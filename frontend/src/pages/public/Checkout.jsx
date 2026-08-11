@@ -1,17 +1,11 @@
-
 import { useState } from "react";
-import {
-  useSearchParams,
-  Link,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { useSearchParams, Link, Navigate, useNavigate } from "react-router-dom";
 
-import { useAuth } from "../context/AuthContext";
-import products from "../data/products";
+import { useAuth } from "../../context/AuthContext";
+import products from "../../data/products";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 import "./Checkout.css";
 
@@ -20,9 +14,7 @@ const Checkout = () => {
 
   const productoId = Number(searchParams.get("producto"));
 
-  const product = products.find(
-    (product) => product.id === productoId
-  );
+  const product = products.find((product) => product.id === productoId);
 
   const { isAuthenticated } = useAuth();
 
@@ -64,9 +56,7 @@ const Checkout = () => {
           <div className="checkout-message">
             <h1>Producto no encontrado</h1>
 
-            <Link to="/catalogo">
-              Volver al catálogo
-            </Link>
+            <Link to="/catalogo">Volver al catálogo</Link>
           </div>
         </main>
 
@@ -92,75 +82,44 @@ const Checkout = () => {
       <Navbar />
 
       <main className="checkout-page">
-
         <section className="checkout container">
-
           <div className="checkout__header">
             <p>FINALIZAR COMPRA</p>
 
             <h1>Datos de compra</h1>
 
-            <span>
-              Completá tus datos para continuar.
-            </span>
+            <span>Completá tus datos para continuar.</span>
           </div>
 
           <div className="checkout__grid">
-
             <aside className="checkout__product">
-
               <div className="checkout__product-image">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                />
+                <img src={product.image} alt={product.name} />
               </div>
 
               <div className="checkout__product-info">
-
-                <span>
-                  {product.category}
-                </span>
+                <span>{product.category}</span>
 
                 <h2>{product.name}</h2>
 
                 <p>{product.description}</p>
 
-                <strong>
-                  $
-                  {product.price.toLocaleString(
-                    "es-AR"
-                  )}
-                </strong>
+                <strong>${product.price.toLocaleString("es-AR")}</strong>
 
                 <div className="checkout__total">
                   <span>Total</span>
 
-                  <strong>
-                    $
-                    {product.price.toLocaleString(
-                      "es-AR"
-                    )}
-                  </strong>
+                  <strong>${product.price.toLocaleString("es-AR")}</strong>
                 </div>
-
               </div>
-
             </aside>
 
             <section className="checkout__form-container">
-
               <h2>Información del comprador</h2>
 
-              <form
-                className="checkout__form"
-                onSubmit={handleSubmit}
-              >
-
+              <form className="checkout__form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="nombre">
-                    Nombre
-                  </label>
+                  <label htmlFor="nombre">Nombre</label>
 
                   <input
                     type="text"
@@ -173,9 +132,7 @@ const Checkout = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="apellido">
-                    Apellido
-                  </label>
+                  <label htmlFor="apellido">Apellido</label>
 
                   <input
                     type="text"
@@ -188,9 +145,7 @@ const Checkout = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">
-                    Email
-                  </label>
+                  <label htmlFor="email">Email</label>
 
                   <input
                     type="email"
@@ -203,9 +158,7 @@ const Checkout = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="telefono">
-                    Teléfono
-                  </label>
+                  <label htmlFor="telefono">Teléfono</label>
 
                   <input
                     type="tel"
@@ -218,9 +171,7 @@ const Checkout = () => {
                 </div>
 
                 <div className="form-group form-group--full">
-                  <label htmlFor="direccion">
-                    Dirección
-                  </label>
+                  <label htmlFor="direccion">Dirección</label>
 
                   <input
                     type="text"
@@ -233,9 +184,7 @@ const Checkout = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="ciudad">
-                    Ciudad
-                  </label>
+                  <label htmlFor="ciudad">Ciudad</label>
 
                   <input
                     type="text"
@@ -248,9 +197,7 @@ const Checkout = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="codigoPostal">
-                    Código postal
-                  </label>
+                  <label htmlFor="codigoPostal">Código postal</label>
 
                   <input
                     type="text"
@@ -262,28 +209,17 @@ const Checkout = () => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="checkout__button"
-                >
+                <button type="submit" className="checkout__button">
                   Continuar con la compra
                 </button>
-
               </form>
 
-              <Link
-                to="/catalogo"
-                className="checkout__back"
-              >
+              <Link to="/catalogo" className="checkout__back">
                 Volver al catálogo
               </Link>
-
             </section>
-
           </div>
-
         </section>
-
       </main>
 
       <Footer />
@@ -292,4 +228,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
