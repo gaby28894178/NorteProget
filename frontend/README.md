@@ -55,6 +55,7 @@ frontend/
 ├── .gitignore
 ├── index.html
 ├── package.json
+├── vercel.json                   # Configuración de despliegue y reescritura de rutas en Vercel
 ├── vite.config.js                # Configuración de Vite
 ├── tailwind.config.js            # Configuración de Tailwind (paleta NORTE)
 ├── postcss.config.js             # Configuración de PostCSS
@@ -65,28 +66,28 @@ frontend/
 
 ## 🛠️ Stack Tecnológico
 
-| Tecnología | Versión | Uso |
-|------------|---------|-----|
-| **React** | 19.2 | Librería UI (SPA) |
-| **Vite** | 8.2 | Bundler / Dev Server |
-| **React Router DOM** | 7.18 | Enrutamiento SPA |
-| **Axios** | 1.19 | Cliente HTTP para API |
-| **Tailwind CSS** | 4.3 | Framework de estilos |
-| **React Hook Form** | 7.84 | Manejo de formularios |
-| **React Toastify** | 11.1 | Notificaciones |
-| **React Icons** | 5.7 | Iconos |
-| **jwt-decode** | 4.0 | Decodificar tokens JWT |
+| Tecnología           | Versión | Uso                    |
+| -------------------- | ------- | ---------------------- |
+| **React**            | 19.2    | Librería UI (SPA)      |
+| **Vite**             | 8.2     | Bundler / Dev Server   |
+| **React Router DOM** | 7.18    | Enrutamiento SPA       |
+| **Axios**            | 1.19    | Cliente HTTP para API  |
+| **Tailwind CSS**     | 4.3     | Framework de estilos   |
+| **React Hook Form**  | 7.84    | Manejo de formularios  |
+| **React Toastify**   | 11.1    | Notificaciones         |
+| **React Icons**      | 5.7     | Iconos                 |
+| **jwt-decode**       | 4.0     | Decodificar tokens JWT |
 
 **Dependencias de Desarrollo:**
 
-| Tecnología | Versión | Uso |
-|------------|---------|-----|
-| **ESLint** | 10.8 | Linting (config plana) |
-| **@vitejs/plugin-react** | 6.0 | Plugin de React para Vite |
-| **@tailwindcss/postcss** | 4.3 | Plugin PostCSS de Tailwind v4 |
-| **PostCSS** | 8.5 | Procesador de CSS |
-| **autoprefixer** | 10.5 | Prefijos CSS de navegadores |
-| **@types/react / @types/react-dom** | 19.2 | Tipos de TypeScript para React |
+| Tecnología                          | Versión | Uso                            |
+| ----------------------------------- | ------- | ------------------------------ |
+| **ESLint**                          | 10.8    | Linting (config plana)         |
+| **@vitejs/plugin-react**            | 6.0     | Plugin de React para Vite      |
+| **@tailwindcss/postcss**            | 4.3     | Plugin PostCSS de Tailwind v4  |
+| **PostCSS**                         | 8.5     | Procesador de CSS              |
+| **autoprefixer**                    | 10.5    | Prefijos CSS de navegadores    |
+| **@types/react / @types/react-dom** | 19.2    | Tipos de TypeScript para React |
 
 ---
 
@@ -325,16 +326,61 @@ npm install -D eslint @eslint/js globals eslint-plugin-react-hooks eslint-plugin
 
 ## 🎯 Componentes Principales
 
-| Componente | Tipo | Descripción |
-|------------|------|-------------|
-| `Navbar` | Layout | Barra de navegación superior |
-| `Footer` | Layout | Pie de página |
-| `LoginForm` | Auth | Formulario de inicio de sesión |
-| `RegisterForm` | Auth | Formulario de registro |
-| `PrivateRoute` | Router | Protección de rutas privadas |
-| `Loader` | UI | Indicador de carga |
-| `Button` | UI | Botón reutilizable |
-| `Card` | UI | Tarjeta de información |
+| Componente     | Tipo   | Descripción                    |
+| -------------- | ------ | ------------------------------ |
+| `Navbar`       | Layout | Barra de navegación superior   |
+| `Footer`       | Layout | Pie de página                  |
+| `LoginForm`    | Auth   | Formulario de inicio de sesión |
+| `RegisterForm` | Auth   | Formulario de registro         |
+| `PrivateRoute` | Router | Protección de rutas privadas   |
+| `Loader`       | UI     | Indicador de carga             |
+| `Button`       | UI     | Botón reutilizable             |
+| `Card`         | UI     | Tarjeta de información         |
+
+---
+
+## 🚀 Despliegue (Vercel)
+
+El frontend está configurado para desplegarse mediante **Vercel** desde la subcarpeta `frontend/`.
+
+### Configuración de Vercel (`vercel.json`)
+
+El proyecto cuenta con un archivo `vercel.json` en la raíz de `frontend/` para dirigir la compilación de Vite a la carpeta `dist` y solucionar el enrutamiento de la SPA:
+
+```json
+{
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+### Despliegue desde la Terminal (Vercel CLI)
+
+1. Instalar Vercel CLI globalmente:
+
+```bash
+  npm install -g vercel
+```
+
+2. Iniciar sesión:
+
+```bash
+  vercel login
+```
+
+3. Desplegar Preview (entorno de pruebas/desarrollo):
+
+```bash
+  cd frontend
+  vercel
+```
+
+4. Despliegue a Producción:
+
+```bash
+  cd frontend
+  vercel --prod
+```
 
 ---
 
@@ -342,15 +388,15 @@ npm install -D eslint @eslint/js globals eslint-plugin-react-hooks eslint-plugin
 
 ```
 GrupalPrincipal (producción)
-    │
-    ├── main (staging / pre-producción)
-    │     │
-    │     └── developers (desarrollo activo)
-    │           │
-    │           ├── feature/login-page
-    │           ├── feature/dashboard
-    │           ├── feature/navbar
-    │           └── fix/bug-name
+│
+├── main (staging / pre-producción)
+│ │
+│ └── developers (desarrollo activo)
+│ │
+│ ├── feature/login-page
+│ ├── feature/dashboard
+│ ├── feature/navbar
+│ └── fix/bug-name
 ```
 
 ---
@@ -367,6 +413,7 @@ GrupalPrincipal (producción)
 ## 📄 Documentación Adicional
 
 Consultar los documentos del proyecto:
+
 - `01-NORTE-Brief-del-Proyecto.docx` - Brief general
 - `03-NORTE-Guia-UI-UX.docx` - Guía UI/UX
 - `04-NORTE-Guia-Frontend.docx` - Guía específica Frontend
