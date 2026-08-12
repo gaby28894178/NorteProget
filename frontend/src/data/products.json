@@ -1,0 +1,484 @@
+[
+  {
+    "id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+    "category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "name": "Remera Norte",
+    "slug": "remera-norte",
+    "description": "Remera de algodón de excelente calidad.",
+    "current_price": 25000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-01T10:30:00.000Z",
+    "updated_at": "2026-08-01T10:30:00.000Z",
+    "variants": [
+      {
+        "id": "f743efef-289f-488c-869c-ee3616b5d15a",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-NEG-S",
+        "size": "S",
+        "color": "Negro",
+        "stock": 25,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "7fcbf8cb-a302-4187-8557-85b5cc1ed218",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-NEG-M",
+        "size": "M",
+        "color": "Negro",
+        "stock": 40,
+        "is_default": true,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "032681bf-08d8-4795-a9f9-a472c832b03e",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-NEG-L",
+        "size": "L",
+        "color": "Negro",
+        "stock": 15,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "13fb4d44-b05e-4e3d-9c9d-3e81d2ca7155",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "public_id": "norte/products/remera-norte/1",
+        "secure_url": "https://placehold.co/600x600?text=Remera",
+        "display_order": 1,
+        "created_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "805b8b5e-c2a9-4641-9baa-bd22afa00ca4",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "public_id": "norte/products/remera-norte/2",
+        "secure_url": "https://placehold.co/600x600?text=Remera+2",
+        "display_order": 2,
+        "created_at": "2026-08-01T10:30:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+    "category_id": "d1f3e5a2-4b6c-4f8e-9b7c-2d3e4f5a6b7c",
+    "name": "Campera Urbana",
+    "slug": "campera-urbana",
+    "description": "Campera cómoda y moderna para todos los días.",
+    "current_price": 65000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-01T11:00:00.000Z",
+    "updated_at": "2026-08-01T11:00:00.000Z",
+    "variants": [
+      {
+        "id": "4d3b636d-eb59-4a52-ad56-05beb6954474",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "sku": "CAM-URB-GRI-M",
+        "size": "M",
+        "color": "Gris",
+        "stock": 12,
+        "is_default": true,
+        "created_at": "2026-08-01T11:00:00.000Z",
+        "updated_at": "2026-08-01T11:00:00.000Z"
+      },
+      {
+        "id": "7053310f-1d59-4de3-996c-51b865a0c31a",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "sku": "CAM-URB-GRI-L",
+        "size": "L",
+        "color": "Gris",
+        "stock": 8,
+        "is_default": false,
+        "created_at": "2026-08-01T11:00:00.000Z",
+        "updated_at": "2026-08-01T11:00:00.000Z"
+      },
+      {
+        "id": "df4f9042-97a0-458f-bffc-4cc2426380e6",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "sku": "CAM-URB-GRI-XL",
+        "size": "XL",
+        "color": "Gris",
+        "stock": 5,
+        "is_default": false,
+        "created_at": "2026-08-01T11:00:00.000Z",
+        "updated_at": "2026-08-01T11:00:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "2296b952-0945-4e7e-92a1-2d2743ad2cf4",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "public_id": "norte/products/campera-urbana/1",
+        "secure_url": "https://placehold.co/600x600?text=Campera",
+        "display_order": 1,
+        "created_at": "2026-08-01T11:00:00.000Z"
+      },
+      {
+        "id": "682654b4-f11e-4c39-b0de-00d82120dca9",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "public_id": "norte/products/campera-urbana/2",
+        "secure_url": "https://placehold.co/600x600?text=Campera+2",
+        "display_order": 2,
+        "created_at": "2026-08-01T11:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+    "category_id": "3b8829f0-293e-4b2a-a92d-94d3fd4d6123",
+    "name": "Pantalón Cargo",
+    "slug": "pantalon-cargo",
+    "description": "Pantalón cargo de estilo urbano.",
+    "current_price": 48000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-01T11:30:00.000Z",
+    "updated_at": "2026-08-01T11:30:00.000Z",
+    "variants": [
+      {
+        "id": "cc9944f6-af91-4d6a-8f02-483ef62377e0",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "sku": "PAN-CAR-VER-38",
+        "size": "38",
+        "color": "Verde Militar",
+        "stock": 20,
+        "is_default": true,
+        "created_at": "2026-08-01T11:30:00.000Z",
+        "updated_at": "2026-08-01T11:30:00.000Z"
+      },
+      {
+        "id": "3f7db66c-f9f2-41cc-8f7d-f01db27d0033",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "sku": "PAN-CAR-VER-40",
+        "size": "40",
+        "color": "Verde Militar",
+        "stock": 18,
+        "is_default": false,
+        "created_at": "2026-08-01T11:30:00.000Z",
+        "updated_at": "2026-08-01T11:30:00.000Z"
+      },
+      {
+        "id": "aae1d5c2-12f4-4aa5-99e7-8ce4a0272cea",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "sku": "PAN-CAR-VER-42",
+        "size": "42",
+        "color": "Verde Militar",
+        "stock": 10,
+        "is_default": false,
+        "created_at": "2026-08-01T11:30:00.000Z",
+        "updated_at": "2026-08-01T11:30:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "7d83e0f6-a331-45ef-8edf-c9b821cf05cd",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "public_id": "norte/products/pantalon-cargo/1",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon",
+        "display_order": 1,
+        "created_at": "2026-08-01T11:30:00.000Z"
+      },
+      {
+        "id": "80ec1e18-00e4-4f8b-9d2e-a46b48107a3c",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "public_id": "norte/products/pantalon-cargo/2",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+2",
+        "display_order": 2,
+        "created_at": "2026-08-01T11:30:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+    "category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "name": "Remera Básica",
+    "slug": "remera-basica",
+    "description": "Remera básica para uso diario.",
+    "current_price": 22000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-02T09:00:00.000Z",
+    "updated_at": "2026-08-02T09:00:00.000Z",
+    "variants": [
+      {
+        "id": "95c53a84-a9ba-4875-a485-4105c4b4c2f2",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "sku": "REM-BAS-BLA-S",
+        "size": "S",
+        "color": "Blanco",
+        "stock": 30,
+        "is_default": false,
+        "created_at": "2026-08-02T09:00:00.000Z",
+        "updated_at": "2026-08-02T09:00:00.000Z"
+      },
+      {
+        "id": "14a44db8-05eb-4007-a204-ff5c6e679cf3",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "sku": "REM-BAS-BLA-M",
+        "size": "M",
+        "color": "Blanco",
+        "stock": 35,
+        "is_default": true,
+        "created_at": "2026-08-02T09:00:00.000Z",
+        "updated_at": "2026-08-02T09:00:00.000Z"
+      },
+      {
+        "id": "3baf70ae-3fe3-4365-aef4-c164fbd1f787",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "sku": "REM-BAS-BLA-L",
+        "size": "L",
+        "color": "Blanco",
+        "stock": 22,
+        "is_default": false,
+        "created_at": "2026-08-02T09:00:00.000Z",
+        "updated_at": "2026-08-02T09:00:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "d1c0c942-0752-4841-93b5-37d2462ef939",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "public_id": "norte/products/remera-basica/1",
+        "secure_url": "https://placehold.co/600x600?text=Remera+B",
+        "display_order": 1,
+        "created_at": "2026-08-02T09:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+    "category_id": "d1f3e5a2-4b6c-4f8e-9b7c-2d3e4f5a6b7c",
+    "name": "Campera Norte",
+    "slug": "campera-norte",
+    "description": "Campera de diseño moderno.",
+    "current_price": 72000,
+    "status": "UNPUBLISHED",
+    "created_at": "2026-08-02T10:00:00.000Z",
+    "updated_at": "2026-08-02T10:00:00.000Z",
+    "variants": [
+      {
+        "id": "7e5cae41-f482-4233-966f-fc2aa929f073",
+        "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+        "sku": "CAM-NOR-AZU-M",
+        "size": "M",
+        "color": "Azul Marino",
+        "stock": 6,
+        "is_default": true,
+        "created_at": "2026-08-02T10:00:00.000Z",
+        "updated_at": "2026-08-02T10:00:00.000Z"
+      },
+      {
+        "id": "3d1b4786-7bb3-4ddf-93ef-09b5d74ee66a",
+        "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+        "sku": "CAM-NOR-AZU-L",
+        "size": "L",
+        "color": "Azul Marino",
+        "stock": 4,
+        "is_default": false,
+        "created_at": "2026-08-02T10:00:00.000Z",
+        "updated_at": "2026-08-02T10:00:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "9df31d06-871e-4617-9ffa-6b6370f2fa3b",
+        "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+        "public_id": "norte/products/campera-norte/1",
+        "secure_url": "https://placehold.co/600x600?text=Campera+N",
+        "display_order": 1,
+        "created_at": "2026-08-02T10:00:00.000Z"
+      },
+      {
+        "id": "a76b10d0-11d1-4332-a2be-90cb85153026",
+        "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+        "public_id": "norte/products/campera-norte/2",
+        "secure_url": "https://placehold.co/600x600?text=Campera+N+2",
+        "display_order": 2,
+        "created_at": "2026-08-02T10:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+    "category_id": "3b8829f0-293e-4b2a-a92d-94d3fd4d6123",
+    "name": "Pantalón Clásico",
+    "slug": "pantalon-clasico",
+    "description": "Pantalón clásico y versátil.",
+    "current_price": 42000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-02T10:30:00.000Z",
+    "updated_at": "2026-08-02T10:30:00.000Z",
+    "variants": [
+      {
+        "id": "7eaee6ee-27da-40f7-af25-8f13ce37bbe9",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "sku": "PAN-CLA-NEG-36",
+        "size": "36",
+        "color": "Negro",
+        "stock": 14,
+        "is_default": false,
+        "created_at": "2026-08-02T10:30:00.000Z",
+        "updated_at": "2026-08-02T10:30:00.000Z"
+      },
+      {
+        "id": "7e0f4634-9c06-420b-81db-7ddd9e99c8ee",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "sku": "PAN-CLA-NEG-38",
+        "size": "38",
+        "color": "Negro",
+        "stock": 25,
+        "is_default": true,
+        "created_at": "2026-08-02T10:30:00.000Z",
+        "updated_at": "2026-08-02T10:30:00.000Z"
+      },
+      {
+        "id": "5f006122-e373-42cd-b98a-250d0c752d8c",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "sku": "PAN-CLA-NEG-40",
+        "size": "40",
+        "color": "Negro",
+        "stock": 12,
+        "is_default": false,
+        "created_at": "2026-08-02T10:30:00.000Z",
+        "updated_at": "2026-08-02T10:30:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "8f5e778a-acb4-4b64-a225-b013f3e9876b",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "public_id": "norte/products/pantalon-clasico/1",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+C",
+        "display_order": 1,
+        "created_at": "2026-08-02T10:30:00.000Z"
+      },
+      {
+        "id": "609fe7d2-57a7-4c10-95ce-889016527d81",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "public_id": "norte/products/pantalon-clasico/2",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+C+2",
+        "display_order": 2,
+        "created_at": "2026-08-02T10:30:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+    "category_id": "c9bf9e57-1685-4c89-bafb-ff5af830be8a",
+    "name": "Buzo Norte",
+    "slug": "buzo-norte",
+    "description": "Buzo de algodón con hoodie, ideal para el frío.",
+    "current_price": 58000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-03T09:00:00.000Z",
+    "updated_at": "2026-08-03T09:00:00.000Z",
+    "variants": [
+      {
+        "id": "94e1caeb-d0a0-42be-856b-cd3313cce8b7",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "sku": "BUZ-NOR-GRI-S",
+        "size": "S",
+        "color": "Gris Oxford",
+        "stock": 22,
+        "is_default": false,
+        "created_at": "2026-08-03T09:00:00.000Z",
+        "updated_at": "2026-08-03T09:00:00.000Z"
+      },
+      {
+        "id": "f1d50f6f-3524-4118-9e23-234554b29f94",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "sku": "BUZ-NOR-GRI-M",
+        "size": "M",
+        "color": "Gris Oxford",
+        "stock": 18,
+        "is_default": true,
+        "created_at": "2026-08-03T09:00:00.000Z",
+        "updated_at": "2026-08-03T09:00:00.000Z"
+      },
+      {
+        "id": "b5ae489b-0bd8-4b53-a6ff-a3136875c459",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "sku": "BUZ-NOR-GRI-L",
+        "size": "L",
+        "color": "Gris Oxford",
+        "stock": 11,
+        "is_default": false,
+        "created_at": "2026-08-03T09:00:00.000Z",
+        "updated_at": "2026-08-03T09:00:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "e36fbc3a-1158-4820-9e6c-7c49639ece0c",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "public_id": "norte/products/buzo-norte/1",
+        "secure_url": "https://placehold.co/600x600?text=Buzo",
+        "display_order": 1,
+        "created_at": "2026-08-03T09:00:00.000Z"
+      },
+      {
+        "id": "cd39b93a-6d4f-4273-92b4-62fe1160e948",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "public_id": "norte/products/buzo-norte/2",
+        "secure_url": "https://placehold.co/600x600?text=Buzo+2",
+        "display_order": 2,
+        "created_at": "2026-08-03T09:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+    "category_id": "e2a9b311-8201-4435-bc44-1296d11e8a45",
+    "name": "Gorra Norte",
+    "slug": "gorra-norte",
+    "description": "Gorra bordada con el logo de la marca.",
+    "current_price": 18000,
+    "status": "PUBLISHED",
+    "created_at": "2026-08-03T09:30:00.000Z",
+    "updated_at": "2026-08-03T09:30:00.000Z",
+    "variants": [
+      {
+        "id": "5899f76f-35a2-44de-bb1d-27be5ad1f995",
+        "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+        "sku": "ACC-GOR-NEG-UNI",
+        "size": "Única",
+        "color": "Negro",
+        "stock": 30,
+        "is_default": true,
+        "created_at": "2026-08-03T09:30:00.000Z",
+        "updated_at": "2026-08-03T09:30:00.000Z"
+      },
+      {
+        "id": "2729b6d6-4fa5-4ac0-8daf-b038d31547b3",
+        "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+        "sku": "ACC-GOR-BEI-UNI",
+        "size": "Única",
+        "color": "Beige",
+        "stock": 15,
+        "is_default": false,
+        "created_at": "2026-08-03T09:30:00.000Z",
+        "updated_at": "2026-08-03T09:30:00.000Z"
+      }
+    ],
+    "images": [
+      {
+        "id": "7408f959-2d48-4107-ad49-9ad2b2966a05",
+        "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+        "public_id": "norte/products/gorra-norte/1",
+        "secure_url": "https://placehold.co/600x600?text=Gorra",
+        "display_order": 1,
+        "created_at": "2026-08-03T09:30:00.000Z"
+      },
+      {
+        "id": "41be619a-d314-473b-896b-956644e3585d",
+        "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+        "public_id": "norte/products/gorra-norte/2",
+        "secure_url": "https://placehold.co/600x600?text=Gorra+2",
+        "display_order": 2,
+        "created_at": "2026-08-03T09:30:00.000Z"
+      }
+    ]
+  }
+]
