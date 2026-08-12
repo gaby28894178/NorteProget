@@ -3,8 +3,8 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../components/public/Navbar";
+import Footer from "../../components/public/Footer";
 import "./Login.css";
 const Login = () => {
   const { login } = useAuth();
