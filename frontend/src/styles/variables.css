@@ -12,6 +12,9 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
+  /* Utilidad */
+  --bg-transparent: transparent;
+
   /* =================================
      COLORES DE MARCA ADICIONALES
      ================================= */
