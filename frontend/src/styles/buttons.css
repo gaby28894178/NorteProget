@@ -1,0 +1,27 @@
+.btn-primary {
+    margin: 0 auto;
+    width: 82;
+    height: 48;
+    border-radius: 100px;
+    padding: 12px 20px;
+    gap: 10px;
+    opacity: 1;
+
+    color: var(--color-secondary);
+    background-color: var(--color-accent);
+}
+
+.btn-secondary {
+    width: 82;
+    height: 48;
+    top: 20px;
+    left: 20px;
+    opacity: 1;
+    border-color: var(--color-accent);
+    border-radius: 100px;
+    border-width: 2px;
+    padding: 12px 20px;
+
+    color: var(--color-accent);
+    background-color: var(--bg-transparent);
+}

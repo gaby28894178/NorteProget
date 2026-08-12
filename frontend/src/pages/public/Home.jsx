@@ -22,7 +22,7 @@ const Home = () => {
               experiencia de compra simple.
             </p>
 
-            <Link to="/catalogo" className="hero__button">
+            <Link to="/catalogo" className="btn-secondary">
               Ver catálogo
             </Link>
           </div>
