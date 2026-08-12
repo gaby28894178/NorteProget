@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./variables.css";
+@import './buttons.css';
 
 /* =================================
    TAILWIND THEME
