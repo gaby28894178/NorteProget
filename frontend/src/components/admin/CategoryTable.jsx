@@ -7,7 +7,6 @@ export const CategoryTable = ({ categories, onEdit, onDelete }) => {
       <table className="w-full min-w-max text-left text-sm text-gray-600">
         <thead className="bg-gray-50 text-gray-700 uppercase text-xs border-b border-norte-stone/60">
           <tr>
-            <th className="px-6 py-3">ID</th>
             <th className="px-6 py-3">Nombre</th>
             <th className="px-6 py-3">Slug</th>
             <th className="px-6 py-3">Estado</th>
@@ -17,16 +16,13 @@ export const CategoryTable = ({ categories, onEdit, onDelete }) => {
         <tbody className="divide-y divide-norte-stone/50">
           {categories.length === 0 ? (
             <tr>
-              <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
+              <td colSpan="4" className="px-6 py-4 text-center text-gray-500">
                 No hay categorías disponibles.
               </td>
             </tr>
           ) : (
             categories.map((category) => (
               <tr key={category.id} className="hover:bg-norte-bg/50">
-                <td className="px-6 py-4 font-medium text-gray-900">
-                  {category.id}
-                </td>
                 <td className="px-6 py-4 font-semibold text-norte-dark">
                   {category.name}
                 </td>
@@ -49,17 +45,23 @@ export const CategoryTable = ({ categories, onEdit, onDelete }) => {
                     onClick={() => onEdit(category)}
                     title="Editar"
                     aria-label={`Editar ${category.name}`}
-                    className="p-2 rounded-md text-norte-forest hover:bg-norte-forest/10"
+                    className="inline-flex items-center gap-1.5 px-2 py-2 rounded-md text-norte-forest hover:bg-norte-forest/10"
                   >
                     <LuPencil size={18} />
+                    <span className="hidden sm:inline text-sm font-medium">
+                      Editar
+                    </span>
                   </button>
                   <button
                     onClick={() => onDelete(category.id)}
                     title="Eliminar"
                     aria-label={`Eliminar ${category.name}`}
-                    className="p-2 rounded-md text-red-600 hover:bg-red-50"
+                    className="inline-flex items-center gap-1.5 px-2 py-2 rounded-md text-red-600 hover:bg-red-50"
                   >
                     <LuTrash2 size={18} />
+                    <span className="hidden sm:inline text-sm font-medium">
+                      Eliminar
+                    </span>
                   </button>
                 </td>
               </tr>
