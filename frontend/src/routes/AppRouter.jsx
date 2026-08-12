@@ -15,10 +15,10 @@ import Confirmacion from "../pages/public/Confirmacion";
 
 // CRUD de Categorías
 import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
+import { AdminProductsPage } from "../pages/admin/AdminProductsPage";
 
 // Vistas de Admin (placeholders pendientes de implementar)
 const Dashboard = () => <div>Dashboard de Métricas</div>;
-const Products = () => <div>Gestión de Productos (CRUD)</div>;
 const Orders = () => <div>Gestión de Pedidos</div>;
 
 // Carrito (placeholder: la tienda aún no tiene la página de carrito)
@@ -43,9 +43,9 @@ export default function AppRouter() {
         {/* TODO(auth): envolver con <PrivateRoute> cuando exista login.
             Por ahora las rutas admin quedan abiertas. */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/categorias" replace />} />
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="productos" element={<Products />} />
+          <Route path="productos" element={<AdminProductsPage />} />
           <Route path="categorias" element={<AdminCategoriesPage />} />
           <Route path="pedidos" element={<Orders />} />
         </Route>
