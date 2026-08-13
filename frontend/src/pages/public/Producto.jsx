@@ -2,8 +2,8 @@ import { Link, useParams } from "react-router-dom";
 
 import products from "../../data/products";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../components/public/Navbar";
+import Footer from "../../components/public/Footer";
 
 import "./Producto.css";
 

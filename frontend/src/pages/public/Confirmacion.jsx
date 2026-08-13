@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../components/public/Navbar";
+import Footer from "../../components/public/Footer";
 
 const Confirmacion = () => {
   return (
