@@ -13,13 +13,13 @@ import Login from "../pages/public/Login";
 import Pago from "../pages/public/Pago";
 import Confirmacion from "../pages/public/Confirmacion";
 
-// CRUD de Categorías
+// Vistas de Admin
 import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
 import { AdminProductsPage } from "../pages/admin/AdminProductsPage";
+import { AdminOrdersPage } from "../pages/admin/AdminOrdersPage";
 
 // Vistas de Admin (placeholders pendientes de implementar)
 const Dashboard = () => <div>Dashboard de Métricas</div>;
-const Orders = () => <div>Gestión de Pedidos</div>;
 
 // Carrito (placeholder: la tienda aún no tiene la página de carrito)
 const Cart = () => <div>Carrito de Compras (En construcción)</div>;
@@ -47,7 +47,7 @@ export default function AppRouter() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="productos" element={<AdminProductsPage />} />
           <Route path="categorias" element={<AdminCategoriesPage />} />
-          <Route path="pedidos" element={<Orders />} />
+          <Route path="pedidos" element={<AdminOrdersPage />} />
         </Route>
 
         {/* Redirección para rutas no encontradas */}
