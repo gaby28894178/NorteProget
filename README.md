@@ -26,14 +26,15 @@ Contiene toda la aplicación cliente que se ejecuta en el navegador del usuario.
 
 | Elemento | Descripción |
 |----------|-------------|
-| `src/components/` | Componentes reutilizables de React (Navbar, Footer, Buttons, Cards) |
-| `src/pages/` | Páginas de la aplicación (Home, Login, Register, Dashboard, Profile) |
+| `src/components/` | Componentes reutilizables de React (Navbar, Footer, Buttons, Cards) y del panel admin (OrderTable, OrderStatusSelect, OrderDetail, OrderStatusTimeline) |
+| `src/pages/` | Páginas de la aplicación (Home, Login, Register, Dashboard, Profile) y del panel admin (AdminOrdersPage, AdminProductsPage, AdminCategoriesPage) |
 | `src/router/` | Configuración de rutas públicas y privadas (React Router DOM) |
-| `src/api/` | Configuración de Axios y funciones para consumir la API |
+| `src/api/` | Configuración de Axios y funciones para consumir la API (productApi, categoryApi, ordersApi) |
 | `src/context/` | Contextos de React para manejo de estado global (Auth) |
-| `src/hooks/` | Custom hooks (useAuth, useFetch) |
+| `src/hooks/` | Custom hooks (useAuth, useFetch, useCategories, useProducts, useOrders) |
 | `src/styles/` | Estilos globales y variables CSS / Tailwind |
-| `src/utils/` | Constantes y funciones auxiliares |
+| `src/utils/` | Constantes y funciones auxiliares (skuGenerator, orderStatus) |
+| `src/data/` | Datos de ejemplo / seed para desarrollo (products.json, categories.json, orders.json) |
 | `.env` | Variables de entorno (URL del backend, nombre de la app) |
 | `vite.config.js` | Configuración del bundler Vite |
 | `tailwind.config.js` | Configuración de Tailwind CSS |
