@@ -1,167 +1,34 @@
 @import "tailwindcss";
 @import "./variables.css";
-@import './buttons.css';
 
-/* =================================
-   TAILWIND THEME
-   ================================= */
-
-@theme {
-  /* ---------------------------------
-     COLORES EXISTENTES
-     --------------------------------- */
-
-  --color-primary: var(--color-primary);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
-
-  --color-white: var(--color-white);
-  --color-black: var(--color-black);
-
-  /* ---------------------------------
-     TEXTOS
-     --------------------------------- */
-
-  --color-text: var(--color-text);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-light: var(--color-text-light);
-
-  /* ---------------------------------
-     MARCA
-     --------------------------------- */
-
-  --color-brand-secondary: var(--color-brand-secondary);
-  --color-brand-border: var(--color-brand-border);
-
-  /* ---------------------------------
-     ESTADOS
-     --------------------------------- */
-
-  --color-success: var(--color-success);
-  --color-error: var(--color-error);
-  --color-warning: var(--color-warning);
-  --color-info: var(--color-info);
-
-  /* ---------------------------------
-     TIPOGRAFÍA
-     --------------------------------- */
-
-  --font-primary: var(--font-primary);
-  --font-heading: var(--font-heading);
-
-  /* ---------------------------------
-     RADIOS
-     --------------------------------- */
-
-  --radius-norte-sm: var(--radius-sm);
-  --radius-norte-md: var(--radius-md);
-  --radius-norte-lg: var(--radius-lg);
-  --radius-norte-xl: var(--radius-xl);
-
-  /* ---------------------------------
-     SOMBRAS
-     --------------------------------- */
-
-  --shadow-norte-sm: var(--shadow-sm);
-  --shadow-norte-md: var(--shadow-md);
-  --shadow-norte-lg: var(--shadow-lg);
+html {
+  scroll-behavior: smooth;
 }
 
-/* =================================
-   RESET Y ESTILOS BASE
-   ================================= */
-
-@layer base {
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    min-height: 100vh;
-
-    font-family: var(--font-primary);
-    background-color: var(--color-secondary);
-    color: var(--color-text);
-
-    line-height: 1.6;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  button {
-    font-family: inherit;
-    cursor: pointer;
-  }
-
-  input,
-  select,
-  textarea {
-    font-family: inherit;
-  }
-
-  img,
-  svg,
-  video {
-    display: block;
-    max-width: 100%;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-heading);
-    line-height: 1.2;
-  }
-
-  ul,
-  ol {
-    list-style: none;
-  }
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
-/* =================================
-   CONTENEDOR GENERAL
-   ================================= */
-
-@layer components {
-  .container {
-    width: min(var(--container-width), 90%);
-    margin-inline: auto;
-  }
-
-  .container-norte {
-    width: min(
-      var(--container-width),
-      calc(100% - (var(--container-padding) * 2))
-    );
-
-    margin-inline: auto;
-  }
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
-/* =================================
-   UTILIDADES
-   ================================= */
+img {
+  max-width: 100%;
+  display: block;
+}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
 }
