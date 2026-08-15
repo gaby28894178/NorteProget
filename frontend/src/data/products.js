@@ -5,7 +5,9 @@ const products = [
     category: "Remeras",
     price: 25000,
     description: "Remera de algodón de excelente calidad.",
-    image: "https://placehold.co/600x600?text=Remera"
+    image: "https://placehold.co/600x600?text=Remera",
+    colors: ["Negro", "Blanco", "Nude"],
+    sizes: ["XS", "S", "M", "L", "XL"],
   },
   {
     id: 2,
@@ -13,7 +15,9 @@ const products = [
     category: "Camperas",
     price: 65000,
     description: "Campera cómoda y moderna para todos los días.",
-    image: "https://placehold.co/600x600?text=Campera"
+    image: "https://placehold.co/600x600?text=Campera",
+    colors: ["Negro", "Camel"],
+    sizes: ["S", "M", "L", "XL"],
   },
   {
     id: 3,
@@ -21,7 +25,9 @@ const products = [
     category: "Pantalones",
     price: 48000,
     description: "Pantalón cargo de estilo urbano.",
-    image: "https://placehold.co/600x600?text=Pantalon"
+    image: "https://placehold.co/600x600?text=Pantalon",
+    colors: ["Negro", "Camel", "Verde"],
+    sizes: ["S", "M", "L", "XL"],
   },
   {
     id: 4,
@@ -29,7 +35,9 @@ const products = [
     category: "Remeras",
     price: 22000,
     description: "Remera básica para uso diario.",
-    image: "https://placehold.co/600x600?text=Remera"
+    image: "https://placehold.co/600x600?text=Remera",
+    colors: ["Blanco", "Negro", "Rojo"],
+    sizes: ["XS", "S", "M", "L", "XL"],
   },
   {
     id: 5,
@@ -37,7 +45,9 @@ const products = [
     category: "Camperas",
     price: 72000,
     description: "Campera de diseño moderno.",
-    image: "https://placehold.co/600x600?text=Campera"
+    image: "https://placehold.co/600x600?text=Campera",
+    colors: ["Azul", "Negro", "Camel"],
+    sizes: ["S", "M", "L", "XL"],
   },
   {
     id: 6,
@@ -45,8 +55,10 @@ const products = [
     category: "Pantalones",
     price: 42000,
     description: "Pantalón clásico y versátil.",
-    image: "https://placehold.co/600x600?text=Pantalon"
-  }
+    image: "https://placehold.co/600x600?text=Pantalon",
+    colors: ["Negro", "Azul"],
+    sizes: ["S", "M", "L", "XL"],
+  },
 ];
 
 export default products;
