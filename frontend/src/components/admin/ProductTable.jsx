@@ -38,7 +38,7 @@ export const ProductTable = ({
             <th className="px-6 py-3">Stock</th>
             <th className="px-6 py-3">Variantes</th>
             <th className="px-6 py-3">Estado</th>
-            <th className="px-6 py-3 text-right">Acciones</th>
+            <th className="px-6 py-3 text-center">Acciones</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-norte-stone/50">
@@ -79,13 +79,17 @@ export const ProductTable = ({
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">{categoryName(product.category_id)}</td>
+                <td className="px-6 py-4">
+                  {categoryName(product.category_id)}
+                </td>
                 <td className="px-6 py-4 font-medium text-norte-dark">
                   {currencyFormatter.format(product.current_price)}
                 </td>
                 <td className="px-6 py-4">{totalStock(product)}</td>
                 <td className="px-6 py-4">
-                  {Array.isArray(product.variants) ? product.variants.length : 0}
+                  {Array.isArray(product.variants)
+                    ? product.variants.length
+                    : 0}
                 </td>
                 <td className="px-6 py-4">
                   <span

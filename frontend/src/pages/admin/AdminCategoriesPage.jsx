@@ -30,7 +30,7 @@ export const AdminCategoriesPage = () => {
         </div>
         <button
           onClick={handleOpenCreate}
-          className="w-full sm:w-auto px-4 py-2 bg-norte-mustard text-white font-medium rounded-md hover:opacity-90 transition-opacity"
+          className="w-full sm:w-auto px-4 py-2 bg-norte-mustard text-white font-medium rounded-btn hover:bg-mostaza-4 transition-colors"
         >
           + Nueva Categoría
         </button>

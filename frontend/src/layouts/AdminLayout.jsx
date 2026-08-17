@@ -9,8 +9,6 @@ import {
   LuX,
 } from "react-icons/lu";
 
-import "./admin.css";
-
 export default function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

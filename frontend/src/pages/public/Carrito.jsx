@@ -24,7 +24,7 @@ const Carrito = () => {
           ========================== */}
 
           <div className="mb-10">
-            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-[#a86620]">
+            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-norte-mustard">
               NORTE
             </p>
 
@@ -54,7 +54,7 @@ const Carrito = () => {
 
               <Link
                 to="/catalogo"
-                className="inline-flex rounded-md bg-[#a86620] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8e571b]"
+                className="inline-flex rounded-btn bg-norte-mustard px-6 py-3 text-sm font-semibold text-white transition hover:bg-mostaza-4"
               >
                 Ver catálogo
               </Link>
@@ -241,7 +241,7 @@ const Carrito = () => {
 
                 <Link
                   to="/catalogo"
-                  className="mt-6 inline-block text-sm text-gray-500 transition hover:text-[#a86620]"
+                  className="mt-6 inline-block text-sm text-gray-500 transition hover:text-norte-mustard"
                 >
                   ← Seguir comprando
                 </Link>
@@ -305,7 +305,7 @@ const Carrito = () => {
 
                 <Link
                   to="/checkout"
-                  className="flex w-full items-center justify-center rounded-md bg-[#a86620] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#8e571b]"
+                  className="flex w-full items-center justify-center rounded-btn bg-norte-mustard px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-mostaza-4"
                 >
                   Continuar con la compra
                 </Link>

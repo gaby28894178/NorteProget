@@ -7,7 +7,7 @@ const PreguntasFrecuentes = () => {
 
         <section className="mx-auto max-w-3xl">
 
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#a86620]">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
             NORTE
           </p>
 

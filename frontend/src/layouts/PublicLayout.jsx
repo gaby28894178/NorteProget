@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
 
 import Navbar from "../components/public/Navbar";
-import Footer from "../components/public/Footer";
+import Footer from "../components/public/Footer.jsx";
 
 export default function PublicLayout() {
   return (
     <div className="flex min-h-screen flex-col">
-
       <Navbar />
 
       <main className="flex-1">
@@ -14,7 +13,6 @@ export default function PublicLayout() {
       </main>
 
       <Footer />
-
     </div>
   );
 }

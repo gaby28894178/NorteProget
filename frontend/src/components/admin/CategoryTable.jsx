@@ -10,7 +10,7 @@ export const CategoryTable = ({ categories, onEdit, onDelete }) => {
             <th className="px-6 py-3">Nombre</th>
             <th className="px-6 py-3">Slug</th>
             <th className="px-6 py-3">Estado</th>
-            <th className="px-6 py-3 text-right">Acciones</th>
+            <th className="px-6 py-3 text-center">Acciones</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-norte-stone/50">
@@ -40,7 +40,7 @@ export const CategoryTable = ({ categories, onEdit, onDelete }) => {
                     {category.is_active ? "Activa" : "Inactiva"}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-right whitespace-nowrap">
+                <td className="px-6 py-4 text-center whitespace-nowrap">
                   <button
                     onClick={() => onEdit(category)}
                     title="Editar"

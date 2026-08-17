@@ -74,7 +74,7 @@ const Checkout = () => {
 
             <Link
               to="/catalogo"
-              className="rounded-md bg-[#a86620] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8e571b]"
+              className="rounded-btn bg-norte-mustard px-6 py-3 text-sm font-semibold text-white transition hover:bg-mostaza-4"
             >
               Volver al catálogo
             </Link>
@@ -115,7 +115,7 @@ const Checkout = () => {
 
           <div className="mb-10">
 
-            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-[#a86620]">
+            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-norte-mustard">
               FINALIZAR COMPRA
             </p>
 
@@ -265,7 +265,7 @@ const Checkout = () => {
                     value={formData.nombre}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -286,7 +286,7 @@ const Checkout = () => {
                     value={formData.apellido}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -307,7 +307,7 @@ const Checkout = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -328,7 +328,7 @@ const Checkout = () => {
                     value={formData.telefono}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -349,7 +349,7 @@ const Checkout = () => {
                     value={formData.direccion}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -370,7 +370,7 @@ const Checkout = () => {
                     value={formData.ciudad}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -391,7 +391,7 @@ const Checkout = () => {
                     value={formData.codigoPostal}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#a86620] focus:ring-1 focus:ring-[#a86620]"
+                    className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-norte-mustard focus:ring-1 focus:ring-norte-mustard"
                   />
                 </div>
 
@@ -401,7 +401,7 @@ const Checkout = () => {
 
                   <button
                     type="submit"
-                    className="w-full rounded-md bg-[#a86620] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8e571b] hover:-translate-y-0.5"
+                    className="w-full rounded-btn bg-norte-mustard px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-mostaza-4 hover:-translate-y-0.5"
                   >
                     Continuar con la compra
                   </button>
@@ -412,7 +412,7 @@ const Checkout = () => {
 
               <Link
                 to="/carrito"
-                className="mt-5 block text-center text-sm text-gray-500 transition hover:text-[#a86620]"
+                className="mt-5 block text-center text-sm text-gray-500 transition hover:text-norte-mustard"
               >
                 ← Volver al carrito
               </Link>

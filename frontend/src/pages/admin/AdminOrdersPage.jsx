@@ -94,7 +94,7 @@ export const AdminOrdersPage = () => {
               </button>
               <button
                 onClick={handleConfirmChange}
-                className={`px-4 py-2 text-sm font-medium text-white rounded-md hover:opacity-90 transition-opacity ${
+                className={`px-4 py-2 text-sm font-medium text-white rounded-btn hover:opacity-90 transition-opacity ${
                   pendingChange.status === "CANCELLED"
                     ? "bg-red-600 hover:bg-red-700"
                     : "bg-norte-forest"
