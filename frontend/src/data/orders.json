@@ -1,0 +1,402 @@
+[
+  {
+    "id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "user_id": "usr-8812-a1",
+    "status": "PENDING",
+    "total_amount": 43000.00,
+    "created_at": "2026-08-10T14:30:00.000Z",
+    "updated_at": "2026-08-10T14:30:00.000Z",
+    "user": {
+      "id": "usr-8812-a1",
+      "full_name": "María López",
+      "email": "maria.lopez@example.com"
+    },
+    "items": [
+      {
+        "id": "5a1c01aa-1d9f-4f2b-8a3e-9b1c2d3e4f5a",
+        "order_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+        "product_variant_id": "7fcbf8cb-a302-4187-8557-85b5cc1ed218",
+        "quantity": 1,
+        "purchase_price": 25000.00,
+        "variant": {
+          "id": "7fcbf8cb-a302-4187-8557-85b5cc1ed218",
+          "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+          "sku": "REM-NOR-NEG-M",
+          "size": "M",
+          "color": "Negro",
+          "is_default": true
+        },
+        "product": {
+          "id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+          "name": "Remera Norte",
+          "slug": "remera-norte",
+          "current_price": 25000,
+          "image_url": "https://placehold.co/600x600?text=Remera"
+        }
+      },
+      {
+        "id": "5a1c01aa-1d9f-4f2b-8a3e-9b1c2d3e4f5b",
+        "order_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+        "product_variant_id": "5899f76f-35a2-44de-bb1d-27be5ad1f995",
+        "quantity": 1,
+        "purchase_price": 18000.00,
+        "variant": {
+          "id": "5899f76f-35a2-44de-bb1d-27be5ad1f995",
+          "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+          "sku": "ACC-GOR-NEG-UNI",
+          "size": "Única",
+          "color": "Negro",
+          "is_default": true
+        },
+        "product": {
+          "id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+          "name": "Gorra Norte",
+          "slug": "gorra-norte",
+          "current_price": 18000,
+          "image_url": "https://placehold.co/600x600?text=Gorra"
+        }
+      }
+    ],
+    "payment": {
+      "id": "3b7f8d2e-9c4a-4f1b-8d5e-6a2b3c4d5e6f",
+      "order_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      "external_payment_id": null,
+      "status": "PENDING",
+      "created_at": "2026-08-10T14:31:00.000Z"
+    },
+    "status_history": [
+      {
+        "from": null,
+        "to": "PENDING",
+        "changed_at": "2026-08-10T14:30:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "b1ffcd88-8b0a-3ef7-aa5c-5aa8ac270b22",
+    "user_id": "usr-9943-b2",
+    "status": "PAID",
+    "total_amount": 113000.00,
+    "created_at": "2026-08-12T09:15:00.000Z",
+    "updated_at": "2026-08-12T09:17:00.000Z",
+    "user": {
+      "id": "usr-9943-b2",
+      "full_name": "Juan Pérez",
+      "email": "juan.perez@example.com"
+    },
+    "items": [
+      {
+        "id": "6b2d12bb-2e1a-5a3c-9b4f-0c2d3e4f5a6b",
+        "order_id": "b1ffcd88-8b0a-3ef7-aa5c-5aa8ac270b22",
+        "product_variant_id": "4d3b636d-eb59-4a52-ad56-05beb6954474",
+        "quantity": 1,
+        "purchase_price": 65000.00,
+        "variant": {
+          "id": "4d3b636d-eb59-4a52-ad56-05beb6954474",
+          "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+          "sku": "CAM-URB-GRI-M",
+          "size": "M",
+          "color": "Gris",
+          "is_default": true
+        },
+        "product": {
+          "id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+          "name": "Campera Urbana",
+          "slug": "campera-urbana",
+          "current_price": 65000,
+          "image_url": "https://placehold.co/600x600?text=Campera"
+        }
+      },
+      {
+        "id": "6b2d12bb-2e1a-5a3c-9b4f-0c2d3e4f5a6c",
+        "order_id": "b1ffcd88-8b0a-3ef7-aa5c-5aa8ac270b22",
+        "product_variant_id": "cc9944f6-af91-4d6a-8f02-483ef62377e0",
+        "quantity": 1,
+        "purchase_price": 48000.00,
+        "variant": {
+          "id": "cc9944f6-af91-4d6a-8f02-483ef62377e0",
+          "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+          "sku": "PAN-CAR-VER-38",
+          "size": "38",
+          "color": "Verde Militar",
+          "is_default": true
+        },
+        "product": {
+          "id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+          "name": "Pantalón Cargo",
+          "slug": "pantalon-cargo",
+          "current_price": 48000,
+          "image_url": "https://placehold.co/600x600?text=Pantalon"
+        }
+      }
+    ],
+    "payment": {
+      "id": "4c8a9e3f-0d5b-6a2d-0c6f-7b3c4d5e6f70",
+      "order_id": "b1ffcd88-8b0a-3ef7-aa5c-5aa8ac270b22",
+      "external_payment_id": "mp-pay-20260812091501",
+      "status": "APPROVED",
+      "created_at": "2026-08-12T09:15:00.000Z"
+    },
+    "status_history": [
+      {
+        "from": null,
+        "to": "PENDING",
+        "changed_at": "2026-08-12T09:15:00.000Z"
+      },
+      {
+        "from": "PENDING",
+        "to": "PAID",
+        "changed_at": "2026-08-12T09:17:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "c2aade77-7a0a-2ef6-994d-4bb7ab160c33",
+    "user_id": "usr-3311-c3",
+    "status": "PROCESSING",
+    "total_amount": 138000.00,
+    "created_at": "2026-08-13T11:00:00.000Z",
+    "updated_at": "2026-08-13T11:05:00.000Z",
+    "user": {
+      "id": "usr-3311-c3",
+      "full_name": "Ana García",
+      "email": "ana.garcia@example.com"
+    },
+    "items": [
+      {
+        "id": "7c3e23cc-3f2b-6b4d-0c5a-1d3e4f5a6b7c",
+        "order_id": "c2aade77-7a0a-2ef6-994d-4bb7ab160c33",
+        "product_variant_id": "f1d50f6f-3524-4118-9e23-234554b29f94",
+        "quantity": 2,
+        "purchase_price": 58000.00,
+        "variant": {
+          "id": "f1d50f6f-3524-4118-9e23-234554b29f94",
+          "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+          "sku": "BUZ-NOR-GRI-M",
+          "size": "M",
+          "color": "Gris Oxford",
+          "is_default": true
+        },
+        "product": {
+          "id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+          "name": "Buzo Norte",
+          "slug": "buzo-norte",
+          "current_price": 58000,
+          "image_url": "https://placehold.co/600x600?text=Buzo"
+        }
+      },
+      {
+        "id": "7c3e23cc-3f2b-6b4d-0c5a-1d3e4f5a6b7d",
+        "order_id": "c2aade77-7a0a-2ef6-994d-4bb7ab160c33",
+        "product_variant_id": "14a44db8-05eb-4007-a204-ff5c6e679cf3",
+        "quantity": 1,
+        "purchase_price": 22000.00,
+        "variant": {
+          "id": "14a44db8-05eb-4007-a204-ff5c6e679cf3",
+          "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+          "sku": "REM-BAS-BLA-M",
+          "size": "M",
+          "color": "Blanco",
+          "is_default": true
+        },
+        "product": {
+          "id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+          "name": "Remera Básica",
+          "slug": "remera-basica",
+          "current_price": 22000,
+          "image_url": "https://placehold.co/600x600?text=Remera+B"
+        }
+      }
+    ],
+    "payment": {
+      "id": "8d4f34dd-4a3c-7c5e-1d6b-2e4f5a6b7c8d",
+      "order_id": "c2aade77-7a0a-2ef6-994d-4bb7ab160c33",
+      "external_payment_id": "mp-pay-20260813110002",
+      "status": "APPROVED",
+      "created_at": "2026-08-13T11:00:00.000Z"
+    },
+    "status_history": [
+      {
+        "from": null,
+        "to": "PENDING",
+        "changed_at": "2026-08-13T11:00:00.000Z"
+      },
+      {
+        "from": "PENDING",
+        "to": "PAID",
+        "changed_at": "2026-08-13T11:02:00.000Z"
+      },
+      {
+        "from": "PAID",
+        "to": "PROCESSING",
+        "changed_at": "2026-08-13T11:05:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "d3bbef66-6b0a-1ef5-883c-3aa6ba050d44",
+    "user_id": "usr-4422-d4",
+    "status": "COMPLETED",
+    "total_amount": 132000.00,
+    "created_at": "2026-08-01T10:00:00.000Z",
+    "updated_at": "2026-08-05T16:20:00.000Z",
+    "user": {
+      "id": "usr-4422-d4",
+      "full_name": "Carlos Sánchez",
+      "email": "carlos.sanchez@example.com"
+    },
+    "items": [
+      {
+        "id": "9e5f45ee-5b4d-8d6f-2e7c-3f5a6b7c8d9e",
+        "order_id": "d3bbef66-6b0a-1ef5-883c-3aa6ba050d44",
+        "product_variant_id": "7e5cae41-f482-4233-966f-fc2aa929f073",
+        "quantity": 1,
+        "purchase_price": 72000.00,
+        "variant": {
+          "id": "7e5cae41-f482-4233-966f-fc2aa929f073",
+          "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+          "sku": "CAM-NOR-AZU-M",
+          "size": "M",
+          "color": "Azul Marino",
+          "is_default": true
+        },
+        "product": {
+          "id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+          "name": "Campera Norte",
+          "slug": "campera-norte",
+          "current_price": 72000,
+          "image_url": "https://placehold.co/600x600?text=Campera+N"
+        }
+      },
+      {
+        "id": "9e5f45ee-5b4d-8d6f-2e7c-3f5a6b7c8d9f",
+        "order_id": "d3bbef66-6b0a-1ef5-883c-3aa6ba050d44",
+        "product_variant_id": "7e0f4634-9c06-420b-81db-7ddd9e99c8ee",
+        "quantity": 1,
+        "purchase_price": 42000.00,
+        "variant": {
+          "id": "7e0f4634-9c06-420b-81db-7ddd9e99c8ee",
+          "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+          "sku": "PAN-CLA-NEG-38",
+          "size": "38",
+          "color": "Negro",
+          "is_default": true
+        },
+        "product": {
+          "id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+          "name": "Pantalón Clásico",
+          "slug": "pantalon-clasico",
+          "current_price": 42000,
+          "image_url": "https://placehold.co/600x600?text=Pantalon+C"
+        }
+      },
+      {
+        "id": "9e5f45ee-5b4d-8d6f-2e7c-3f5a6b7c8da0",
+        "order_id": "d3bbef66-6b0a-1ef5-883c-3aa6ba050d44",
+        "product_variant_id": "2729b6d6-4fa5-4ac0-8daf-b038d31547b3",
+        "quantity": 1,
+        "purchase_price": 18000.00,
+        "variant": {
+          "id": "2729b6d6-4fa5-4ac0-8daf-b038d31547b3",
+          "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+          "sku": "ACC-GOR-BEI-UNI",
+          "size": "Única",
+          "color": "Beige",
+          "is_default": false
+        },
+        "product": {
+          "id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+          "name": "Gorra Norte",
+          "slug": "gorra-norte",
+          "current_price": 18000,
+          "image_url": "https://placehold.co/600x600?text=Gorra"
+        }
+      }
+    ],
+    "payment": {
+      "id": "0a6b56ff-6c5e-9e7a-3f8d-4a6b7c8d9ea1",
+      "order_id": "d3bbef66-6b0a-1ef5-883c-3aa6ba050d44",
+      "external_payment_id": "mp-pay-20260801100003",
+      "status": "APPROVED",
+      "created_at": "2026-08-01T10:05:00.000Z"
+    },
+    "status_history": [
+      {
+        "from": null,
+        "to": "PENDING",
+        "changed_at": "2026-08-01T10:00:00.000Z"
+      },
+      {
+        "from": "PENDING",
+        "to": "PAID",
+        "changed_at": "2026-08-01T10:05:00.000Z"
+      },
+      {
+        "from": "PAID",
+        "to": "PROCESSING",
+        "changed_at": "2026-08-02T09:00:00.000Z"
+      },
+      {
+        "from": "PROCESSING",
+        "to": "COMPLETED",
+        "changed_at": "2026-08-05T16:20:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "e4ccfa55-5a0a-0ef4-772b-2aa5ba040e55",
+    "user_id": "usr-1100-e5",
+    "status": "CANCELLED",
+    "total_amount": 48000.00,
+    "created_at": "2026-08-02T18:45:00.000Z",
+    "updated_at": "2026-08-03T09:10:00.000Z",
+    "user": {
+      "id": "usr-1100-e5",
+      "full_name": "Lucía Fernández",
+      "email": "lucia.fernandez@example.com"
+    },
+    "items": [
+      {
+        "id": "1b7c67aa-7d6f-0f8b-4a9e-5b7c8d9ea1b2",
+        "order_id": "e4ccfa55-5a0a-0ef4-772b-2aa5ba040e55",
+        "product_variant_id": "3f7db66c-f9f2-41cc-8f7d-f01db27d0033",
+        "quantity": 1,
+        "purchase_price": 48000.00,
+        "variant": {
+          "id": "3f7db66c-f9f2-41cc-8f7d-f01db27d0033",
+          "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+          "sku": "PAN-CAR-VER-40",
+          "size": "40",
+          "color": "Verde Militar",
+          "is_default": false
+        },
+        "product": {
+          "id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+          "name": "Pantalón Cargo",
+          "slug": "pantalon-cargo",
+          "current_price": 48000,
+          "image_url": "https://placehold.co/600x600?text=Pantalon"
+        }
+      }
+    ],
+    "payment": {
+      "id": "2c8d78bb-8e7a-1a9c-5b0f-6c8d9ea1b2c3",
+      "order_id": "e4ccfa55-5a0a-0ef4-772b-2aa5ba040e55",
+      "external_payment_id": "mp-pay-20260802184504",
+      "status": "CANCELLED",
+      "created_at": "2026-08-02T18:45:00.000Z"
+    },
+    "status_history": [
+      {
+        "from": null,
+        "to": "PENDING",
+        "changed_at": "2026-08-02T18:45:00.000Z"
+      },
+      {
+        "from": "PENDING",
+        "to": "CANCELLED",
+        "changed_at": "2026-08-03T09:10:00.000Z"
+      }
+    ]
+  }
+]
