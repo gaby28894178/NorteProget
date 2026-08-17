@@ -6,6 +6,7 @@ import { env } from './core/config/env.js';
 import { corsConfig } from './core/config/cors.js';
 import { setupSwagger } from './core/config/swagger.js';
 import { connectDatabase } from './database/database.js';
+import { errorHandler } from './core/middlewares/error-handler.js';
 
 const app = express();
 
@@ -24,9 +25,13 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.use(errorHandler);
+
 await connectDatabase();
 
 // Iniciar servidor
 app.listen(env.port, () => {
-  console.log(`Servidor ejecutándose en el puerto http://localhost:${env.port}`);
+  console.log(
+    `Servidor ejecutándose en el puerto http://localhost:${env.port}`,
+  );
 });
