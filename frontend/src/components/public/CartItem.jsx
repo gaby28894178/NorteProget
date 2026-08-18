@@ -50,7 +50,7 @@ const CartItem = ({ item }) => {
 
               <Link
                 to={`/producto/${item.id}`}
-                className="text-base font-medium hover:text-[#a86620]"
+                className="text-base font-medium hover:text-norte-mustard"
               >
                 {item.name}
               </Link>

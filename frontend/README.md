@@ -1,16 +1,92 @@
-# React + Vite
+# 🚀 NORTE - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📋 Descripción
 
-Currently, two official plugins are available:
+SPA de **NORTE**, un e-commerce de moda y accesorios de diseño local. Es la aplicación cliente que se comunica con la API REST del backend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🛠️ Stack Tecnológico
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Tecnología     | Uso                                    |
+| -------------- | -------------------------------------- |
+| React 19       | Librería UI                            |
+| Vite 8         | Bundler y servidor de desarrollo       |
+| React Router 7 | Navegación SPA                         |
+| Tailwind CSS 4 | Estilos (tokens vía `@theme`)          |
+| Axios          | Cliente HTTP hacia la API              |
+| React Hook Form| Manejo de formularios                  |
+| React Toastify | Notificaciones                         |
+| jwt-decode     | Decodificar tokens JWT                 |
+| React Icons    | Iconos (Lucide en admin, FontAwesome en público) |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Estructura del Proyecto
+
+```
+frontend/
+│
+├── public/               # Assets estáticos (favicon, og-image)
+├── src/
+│   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi)
+│   ├── assets/           # Imágenes y recursos
+│   ├── components/       # Componentes públicos y del panel admin
+│   ├── context/          # Estado global (AuthContext, CartContext)
+│   ├── data/             # Datos mock / seed para desarrollo
+│   ├── hooks/            # Custom hooks
+│   ├── layouts/          # Layouts público y admin
+│   ├── pages/            # Páginas públicas y admin
+│   ├── routes/           # Definición de rutas (AppRouter)
+│   ├── styles/           # Design system (globals.css, components.css)
+│   └── utils/            # Helpers (skuGenerator, orderStatus, slugUtils)
+│
+├── .env.example          # Plantilla de variables de entorno
+└── vite.config.js
+```
+
+---
+
+## ⚙️ Variables de Entorno
+
+Copiar `.env.example` a `.env.local` y ajustar si es necesario:
+
+| Variable          | Descripción                                        | Default                              |
+| ----------------- | -------------------------------------------------- | ------------------------------------ |
+| `VITE_API_URL`    | Base URL de la API REST del backend                | `http://localhost:3001/api`          |
+| `VITE_USE_MOCK`   | Usar datos mock en memoria si no hay backend real  | `true`                               |
+| `VITE_APP_NAME`   | Nombre de la aplicación                            | `NorteProget`                        |
+
+---
+
+## 🚀 Instalación y Uso
+
+```bash
+npm install
+
+# Desarrollo (HMR)
+npm run dev
+
+# Producción (build a dist/)
+npm run build
+
+# Lint
+npm run lint
+```
+
+La app corre en `http://localhost:5173`.
+
+---
+
+## 🎨 Design System
+
+Styles centralizados en `src/styles/`:
+
+- `globals.css` — tokens de color (mostaza/verde/negro cálido/gris piedra), tipografía (Roboto Condensed + Roboto) y estilos de base. En Tailwind v4 los tokens se declaran en `@theme`.
+- `components.css` — clases reutilizables (`.btn-primary`, `.btn-secondary`, `.input-field`, `.tab-item`, etc.).
+
+---
+
+## 📄 Licencia
+
+Proyecto desarrollado con fines educativos como parte de la **Simulación Laboral Tech** de **ID For Ideas**.

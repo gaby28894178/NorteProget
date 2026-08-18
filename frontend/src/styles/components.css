@@ -1,0 +1,56 @@
+/* ============================================
+   Design System NORTE — Componentes
+   Clases reutilizables de botones, inputs y tabs.
+   ============================================ */
+
+@layer components {
+  /* === Botones primarios === */
+  .btn-primary {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-btn bg-mostaza px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-mostaza-4 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary-outline {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-btn border border-mostaza bg-transparent px-6 py-3 text-sm font-medium text-mostaza transition-colors hover:bg-mostaza hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* === Botones secundarios === */
+  .btn-secondary {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-btn border border-verde-5 bg-transparent px-6 py-3 text-sm font-medium text-verde-5 transition-colors hover:bg-verde-5 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary-filled {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-btn bg-verde-5 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-verde-4 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* === Inputs === */
+  .input-field {
+    @apply w-full rounded-md border border-gris-piedra bg-white px-3 py-2 text-sm outline-none transition focus:border-mostaza focus:ring-2 focus:ring-mostaza/30;
+  }
+
+  .input-search {
+    @apply w-full rounded-full border border-gris-piedra bg-off-white px-4 py-2 text-sm outline-none transition placeholder:text-negro-calido/40 focus:border-mostaza focus:ring-2 focus:ring-mostaza/30;
+  }
+
+  /* === Tabs === */
+  .tab-item {
+    @apply cursor-pointer px-4 py-2 text-sm font-medium text-negro-calido/60 transition-colors hover:text-negro-calido;
+  }
+
+  .tab-item-active {
+    @apply border-b-2 border-mostaza px-4 py-2 text-sm font-medium text-mostaza;
+  }
+
+  /* === Admin: aislamiento del panel === */
+  .admin-root {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-negro-calido);
+  }
+
+  /* El admin ocupa todo el ancho, sin el centrado de la plantilla. */
+  #root:has(.admin-root) {
+    width: auto;
+    max-width: none;
+    margin: 0;
+  }
+}

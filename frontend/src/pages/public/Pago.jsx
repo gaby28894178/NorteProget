@@ -75,13 +75,13 @@ const Pago = () => {
     return (
       <>
 
-        <main className="flex min-h-[75vh] items-center justify-center bg-[var(--color-secondary)] px-4 py-12">
+        <main className="flex min-h-[75vh] items-center justify-center bg-norte-bg px-4 py-12">
 
-          <section className="w-full max-w-md rounded-[var(--radius-md)] border border-[var(--color-border)] bg-white p-8 shadow-[var(--shadow-md)]">
+          <section className="w-full max-w-md rounded-card border border-norte-stone bg-white p-8 shadow-md">
 
             <div className="text-center">
 
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
                 FINALIZAR COMPRA
               </p>
 
@@ -89,13 +89,13 @@ const Pago = () => {
                 No hay productos
               </h1>
 
-              <p className="mt-3 text-sm leading-6 text-[var(--color-text-secondary)]">
+              <p className="mt-3 text-sm leading-6 text-gray-600">
                 Tu carrito está vacío.
               </p>
 
               <Link
                 to="/catalogo"
-                className="mt-8 flex w-full items-center justify-center rounded-[var(--radius-sm)] bg-[var(--color-primary)] px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-accent)]"
+                className="mt-8 flex w-full items-center justify-center rounded-btn bg-norte-mustard px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-mostaza-4"
               >
                 Volver al catálogo
               </Link>
@@ -117,15 +117,15 @@ const Pago = () => {
   return (
     <>
 
-      <main className="flex min-h-[75vh] items-center justify-center bg-[var(--color-secondary)] px-4 py-12">
+      <main className="flex min-h-[75vh] items-center justify-center bg-norte-bg px-4 py-12">
 
-        <section className="w-full max-w-2xl rounded-[var(--radius-md)] border border-[var(--color-border)] bg-white p-6 shadow-[var(--shadow-md)] sm:p-10">
+        <section className="w-full max-w-2xl rounded-card border border-norte-stone bg-white p-6 shadow-md sm:p-10">
 
           {/* ENCABEZADO */}
 
           <div className="mb-8 text-center">
 
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-norte-mustard">
               FINALIZAR COMPRA
             </p>
 
@@ -133,7 +133,7 @@ const Pago = () => {
               Realizar pago
             </h1>
 
-            <p className="mt-3 text-sm leading-6 text-[var(--color-text-secondary)]">
+            <p className="mt-3 text-sm leading-6 text-gray-600">
               Seleccioná un método de pago para continuar.
             </p>
 
@@ -143,9 +143,9 @@ const Pago = () => {
               RESUMEN DEL PEDIDO
           ========================= */}
 
-          <div className="mb-8 border-y border-[var(--color-border)]">
+          <div className="mb-8 border-y border-norte-stone">
 
-            <div className="divide-y divide-[var(--color-border)]">
+            <div className="divide-y divide-norte-stone">
 
               {cart.map((item) => {
 
@@ -170,23 +170,23 @@ const Pago = () => {
                         {item.name}
                       </h2>
 
-                      <span className="text-xs text-[var(--color-text-secondary)]">
+                      <span className="text-xs text-gray-600">
                         Precio unitario: $
                         {precio.toLocaleString("es-AR")}
                       </span>
 
-                      <span className="text-xs text-[var(--color-text-secondary)]">
+                      <span className="text-xs text-gray-600">
                         Cantidad: {cantidad}
                       </span>
 
                       {item.selectedColor && (
-                        <span className="text-xs text-[var(--color-text-secondary)]">
+                        <span className="text-xs text-gray-600">
                           Color: {item.selectedColor}
                         </span>
                       )}
 
                       {item.selectedSize && (
-                        <span className="text-xs text-[var(--color-text-secondary)]">
+                        <span className="text-xs text-gray-600">
                           Talle: {item.selectedSize}
                         </span>
                       )}
@@ -210,7 +210,7 @@ const Pago = () => {
                 TOTAL
             ========================== */}
 
-            <div className="flex items-center justify-between border-t border-[var(--color-border)] py-5">
+            <div className="flex items-center justify-between border-t border-norte-stone py-5">
 
               <span className="text-sm font-semibold">
                 Total a pagar
@@ -252,7 +252,7 @@ const Pago = () => {
                   setMetodoPago(event.target.value)
                 }
                 required
-                className="w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-white px-4 py-3 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-black/5"
+                className="w-full rounded-sm border border-norte-stone bg-white px-4 py-3 text-sm text-norte-dark outline-none transition focus:border-norte-mustard focus:ring-2 focus:ring-black/5"
               >
 
                 <option value="">
@@ -276,7 +276,7 @@ const Pago = () => {
             <button
               type="submit"
               disabled={procesando}
-              className="flex w-full items-center justify-center rounded-[var(--radius-sm)] bg-[var(--color-primary)] px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-accent)] hover:shadow-[var(--shadow-md)] disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex w-full items-center justify-center rounded-btn bg-norte-mustard px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-mostaza-4 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {procesando
                 ? "Procesando pago..."
@@ -289,7 +289,7 @@ const Pago = () => {
 
           <Link
             to="/checkout"
-            className="mt-5 block text-center text-sm text-[var(--color-text-secondary)] transition hover:text-[var(--color-accent)]"
+            className="mt-5 block text-center text-sm text-gray-600 transition hover:text-norte-mustard"
           >
             Volver al checkout
           </Link>

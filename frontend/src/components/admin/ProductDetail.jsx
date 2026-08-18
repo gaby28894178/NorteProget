@@ -23,8 +23,8 @@ const COLOR_HEX = {
 };
 
 const colorToHex = (colorName) => {
-  if (!colorName) return "#d8d2c4";
-  return COLOR_HEX[colorName.trim().toLowerCase()] ?? "#d8d2c4";
+  if (!colorName) return "var(--color-norte-stone)";
+  return COLOR_HEX[colorName.trim().toLowerCase()] ?? "var(--color-norte-stone)";
 };
 
 const categoryName = (categories, categoryId) =>
@@ -94,7 +94,7 @@ export const ProductDetail = ({ product, categories = [], onEdit, onBack }) => {
           </button>
           <button
             onClick={onEdit}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-norte-forest rounded-md hover:opacity-90"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-norte-forest rounded-btn hover:opacity-90"
           >
             <LuPencil size={16} /> Editar
           </button>

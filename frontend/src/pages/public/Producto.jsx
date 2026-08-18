@@ -41,7 +41,7 @@ const Producto = () => {
 
             <Link
               to="/catalogo"
-              className="mt-6 inline-flex rounded-md bg-[#a86620] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#8e571b]"
+              className="mt-6 inline-flex rounded-btn bg-norte-mustard px-6 py-3 text-sm font-medium text-white transition hover:bg-mostaza-4"
             >
               Volver al catálogo
             </Link>
@@ -129,7 +129,7 @@ const Producto = () => {
 
             {/* CATEGORÍA */}
 
-            <span className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#a86620]">
+            <span className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
               {product.category}
             </span>
 
@@ -189,8 +189,8 @@ const Producto = () => {
                       }
                       className={`rounded-md border px-4 py-2 text-xs transition ${
                         colorSeleccionado === color
-                          ? "border-[#a86620] bg-[#a86620] text-white"
-                          : "border-gray-300 bg-white text-gray-700 hover:border-[#a86620] hover:text-[#a86620]"
+                          ? "border-norte-mustard bg-norte-mustard text-white"
+                          : "border-gray-300 bg-white text-gray-700 hover:border-norte-mustard hover:text-norte-mustard"
                       }`}
                     >
                       {color}
@@ -226,8 +226,8 @@ const Producto = () => {
                       }
                       className={`flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-xs transition ${
                         talleSeleccionado === talle
-                          ? "border-[#a86620] bg-[#a86620] text-white"
-                          : "border-gray-300 bg-white text-gray-700 hover:border-[#a86620] hover:text-[#a86620]"
+                          ? "border-norte-mustard bg-norte-mustard text-white"
+                          : "border-gray-300 bg-white text-gray-700 hover:border-norte-mustard hover:text-norte-mustard"
                       }`}
                     >
                       {talle}
@@ -289,7 +289,7 @@ const Producto = () => {
               <button
                 type="button"
                 onClick={manejarAgregarAlCarrito}
-                className="flex w-full items-center justify-center rounded-md bg-[#a86620] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#8e571b]"
+                className="flex w-full items-center justify-center rounded-btn bg-norte-mustard px-6 py-3 text-sm font-medium text-white transition hover:bg-mostaza-4"
               >
                 Agregar al carrito
               </button>
@@ -299,7 +299,7 @@ const Producto = () => {
               <button
                 type="button"
                 onClick={manejarComprarAhora}
-                className="flex w-full items-center justify-center rounded-md border border-[#a86620] bg-white px-6 py-3 text-sm font-medium text-[#a86620] transition hover:bg-[#a86620] hover:text-white"
+                className="flex w-full items-center justify-center rounded-btn border border-norte-mustard bg-white px-6 py-3 text-sm font-medium text-norte-mustard transition hover:bg-norte-mustard hover:text-white"
               >
                 Comprar ahora
               </button>
@@ -308,7 +308,7 @@ const Producto = () => {
 
               <Link
                 to="/catalogo"
-                className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-3 text-sm text-gray-600 transition hover:border-[#a86620] hover:text-[#a86620]"
+                className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-3 text-sm text-gray-600 transition hover:border-norte-mustard hover:text-norte-mustard"
               >
                 Volver al catálogo
               </Link>

@@ -56,9 +56,9 @@ const Login = () => {
   return (
     <>
 
-      <main className="flex min-h-[75vh] items-center justify-center bg-[var(--color-secondary)] px-4 py-12 sm:px-6 sm:py-20">
+      <main className="flex min-h-[75vh] items-center justify-center bg-norte-bg px-4 py-12 sm:px-6 sm:py-20">
 
-        <section className="w-full max-w-[460px] rounded-[var(--radius-md)] border border-[var(--color-border)] bg-white p-6 shadow-[var(--shadow-md)] sm:p-10">
+        <section className="w-full max-w-[460px] rounded-card border border-norte-stone bg-white p-6 shadow-md sm:p-10">
 
           {/* =========================
               ENCABEZADO
@@ -66,7 +66,7 @@ const Login = () => {
 
           <div className="mb-8 text-center">
 
-            <p className="mb-3 text-[0.75rem] font-bold tracking-[0.18em] text-[var(--color-accent)]">
+            <p className="mb-3 text-[0.75rem] font-bold tracking-[0.18em] text-norte-mustard">
               BIENVENIDO A NORTE
             </p>
 
@@ -74,7 +74,7 @@ const Login = () => {
               Iniciar sesión
             </h1>
 
-            <span className="text-sm leading-relaxed text-[var(--color-text-secondary)]">
+            <span className="text-sm leading-relaxed text-gray-600">
               Ingresá para continuar con tu compra.
             </span>
 
@@ -92,7 +92,7 @@ const Login = () => {
             {/* ERROR */}
 
             {error && (
-              <div className="rounded-[var(--radius-sm)] border border-[#e0e0e0] bg-[#f5f5f5] px-4 py-3 text-sm text-[#b00020]">
+              <div className="rounded-sm border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                 {error}
               </div>
             )}
@@ -103,7 +103,7 @@ const Login = () => {
 
               <label
                 htmlFor="email"
-                className="text-sm font-semibold text-[var(--color-text)]"
+                className="text-sm font-semibold text-norte-dark"
               >
                 Email
               </label>
@@ -116,7 +116,7 @@ const Login = () => {
                 onChange={handleChange}
                 placeholder="tu@email.com"
                 required
-                className="w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-white px-4 py-3 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-black/5"
+                className="w-full rounded-sm border border-norte-stone bg-white px-4 py-3 text-sm text-norte-dark outline-none transition focus:border-norte-mustard focus:ring-2 focus:ring-black/5"
               />
 
             </div>
@@ -127,7 +127,7 @@ const Login = () => {
 
               <label
                 htmlFor="password"
-                className="text-sm font-semibold text-[var(--color-text)]"
+                className="text-sm font-semibold text-norte-dark"
               >
                 Contraseña
               </label>
@@ -140,7 +140,7 @@ const Login = () => {
                 onChange={handleChange}
                 placeholder="Ingresá tu contraseña"
                 required
-                className="w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-white px-4 py-3 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-black/5"
+                className="w-full rounded-sm border border-norte-stone bg-white px-4 py-3 text-sm text-norte-dark outline-none transition focus:border-norte-mustard focus:ring-2 focus:ring-black/5"
               />
 
             </div>
@@ -149,7 +149,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="mt-2 w-full rounded-[var(--radius-sm)] bg-[var(--color-primary)] px-4 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-accent)] hover:shadow-[var(--shadow-md)]"
+              className="mt-2 w-full rounded-btn bg-norte-mustard px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-mostaza-4"
             >
               Iniciar sesión
             </button>
@@ -160,7 +160,7 @@ const Login = () => {
 
           <Link
             to="/catalogo"
-            className="mt-6 block text-center text-sm text-[var(--color-text-secondary)] transition hover:text-[var(--color-accent)]"
+            className="mt-6 block text-center text-sm text-gray-600 transition hover:text-norte-mustard"
           >
             Volver al catálogo
           </Link>

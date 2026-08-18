@@ -66,7 +66,7 @@ const Navbar = () => {
           onSubmit={handleBuscar}
           className="hidden w-full max-w-[280px] md:block"
         >
-          <div className="flex h-[38px] items-center rounded-lg border border-gray-200 bg-white px-3 transition focus-within:border-[#a86620]">
+          <div className="flex h-[38px] items-center rounded-lg border border-gray-200 bg-white px-3 transition focus-within:border-norte-mustard">
 
             <input
               type="search"
@@ -80,7 +80,7 @@ const Navbar = () => {
             <button
               type="submit"
               aria-label="Buscar"
-              className="ml-2 flex shrink-0 items-center justify-center text-gray-700 transition hover:text-[#a86620]"
+              className="ml-2 flex shrink-0 items-center justify-center text-gray-700 transition hover:text-norte-mustard"
             >
               <FaSearch className="text-xs" />
             </button>
@@ -115,7 +115,7 @@ const Navbar = () => {
             <FaShoppingCart />
 
             {totalItems > 0 && (
-              <span className="absolute -right-3 -top-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#a86620] px-1 text-[9px] font-semibold text-white">
+              <span className="absolute -right-3 -top-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-norte-mustard px-1 text-[9px] font-semibold text-white">
                 {totalItems > 99 ? "99+" : totalItems}
               </span>
             )}
@@ -140,8 +140,8 @@ const Navbar = () => {
             className={({ isActive }) =>
               `relative py-4 text-xs text-black transition-colors ${
                 isActive
-                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#a86620]"
-                  : "hover:text-[#a86620]"
+                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-norte-mustard"
+                  : "hover:text-norte-mustard"
               }`
             }
           >
@@ -155,8 +155,8 @@ const Navbar = () => {
             className={({ isActive }) =>
               `relative py-4 text-xs text-black transition-colors ${
                 isActive
-                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#a86620]"
-                  : "hover:text-[#a86620]"
+                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-norte-mustard"
+                  : "hover:text-norte-mustard"
               }`
             }
           >
@@ -170,8 +170,8 @@ const Navbar = () => {
             className={({ isActive }) =>
               `relative py-4 text-xs text-black transition-colors ${
                 isActive
-                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#a86620]"
-                  : "hover:text-[#a86620]"
+                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-norte-mustard"
+                  : "hover:text-norte-mustard"
               }`
             }
           >

@@ -101,7 +101,7 @@ export const CategoryForm = ({
         </button>
         <button
           type="submit"
-          className="px-4 py-2 text-sm font-medium text-white bg-norte-mustard rounded-md hover:opacity-90"
+          className="px-4 py-2 text-sm font-medium text-white bg-norte-mustard rounded-btn hover:bg-mostaza-4"
         >
           {initialData ? "Guardar Cambios" : "Crear Categoría"}
         </button>

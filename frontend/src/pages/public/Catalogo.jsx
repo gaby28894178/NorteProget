@@ -294,7 +294,7 @@ const Catalogo = () => {
 
           <div className="mb-10">
 
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#a86620]">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
               NORTE
             </p>
 
@@ -326,7 +326,7 @@ const Catalogo = () => {
                   <button
                     type="button"
                     onClick={limpiarFiltros}
-                    className="text-[10px] text-[#a86620] hover:underline"
+                    className="text-[10px] text-norte-mustard hover:underline"
                   >
                     Limpiar
                   </button>
@@ -359,8 +359,8 @@ const Catalogo = () => {
                         className={`text-left text-xs transition ${
                           categoriaSeleccionada ===
                           categoria
-                            ? "font-semibold text-[#a86620]"
-                            : "text-gray-700 hover:text-[#a86620]"
+                            ? "font-semibold text-norte-mustard"
+                            : "text-gray-700 hover:text-norte-mustard"
                         }`}
                       >
                         {categoria}
@@ -401,7 +401,7 @@ const Catalogo = () => {
                               color
                             )
                           }
-                          className="h-3 w-3 rounded border-gray-400 accent-[#a86620]"
+                          className="h-3 w-3 rounded border-gray-400 accent-norte-mustard"
                         />
 
                         <span>
@@ -445,7 +445,7 @@ const Catalogo = () => {
                               talle
                             )
                           }
-                          className="h-3 w-3 rounded border-gray-400 accent-[#a86620]"
+                          className="h-3 w-3 rounded border-gray-400 accent-norte-mustard"
                         />
 
                         <span>
@@ -573,7 +573,7 @@ const Catalogo = () => {
 
                           <Link
                             to={`/producto/${product.id}`}
-                            className="mt-3 inline-flex rounded-md bg-[#a86620] px-4 py-1.5 text-[10px] font-medium text-white transition hover:bg-[#8e571b]"
+                            className="mt-3 inline-flex rounded-btn bg-norte-mustard px-4 py-1.5 text-[10px] font-medium text-white transition hover:bg-mostaza-4"
                           >
                             Comprar
                           </Link>
@@ -605,7 +605,7 @@ const Catalogo = () => {
                   <button
                     type="button"
                     onClick={limpiarFiltros}
-                    className="mt-4 text-xs font-medium text-[#a86620] hover:underline"
+                    className="mt-4 text-xs font-medium text-norte-mustard hover:underline"
                   >
                     Limpiar filtros
                   </button>

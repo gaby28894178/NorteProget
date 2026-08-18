@@ -1,14 +1,79 @@
 @import "tailwindcss";
-@import "./variables.css";
+@import "./components.css";
 
+/* ============================================
+   Design System NORTE — Tokens
+   Tailwind v4 no lee tailwind.config.js, por eso
+   los tokens se declaran aquí con @theme.
+   Nombres oficiales del design system + alias norte-*.
+   ============================================ */
+@theme {
+  /* Font Families */
+  --font-heading: "Roboto Condensed", sans-serif;
+  --font-body: "Roboto", sans-serif;
+
+  /* Colors base */
+  --color-negro-calido: #1c1b19;
+  --color-off-white: #f3efe7;
+  --color-mostaza: #c77d2e;
+  --color-verde-bosque: #33402f;
+  --color-gris-piedra: #d8d2c4;
+
+  /* Color Scale: Mostaza (#C77D2E) */
+  --color-mostaza-0: #ffffff;
+  --color-mostaza-05: #f9f2ea;
+  --color-mostaza-1: #f4e5d5;
+  --color-mostaza-15: #eed8c0;
+  --color-mostaza-2: #e9cbab;
+  --color-mostaza-3: #ddb182;
+  --color-mostaza-4: #d29758;
+  --color-mostaza-5: #c77d2e;
+  --color-mostaza-6: #9f6425;
+  --color-mostaza-7: #774b1c;
+  --color-mostaza-8: #503212;
+  --color-mostaza-85: #3c260e;
+  --color-mostaza-9: #281909;
+  --color-mostaza-95: #140d05;
+  --color-mostaza-10: #000000;
+
+  /* Color Scale: Verde Bosque (#33402F) */
+  --color-verde-0: #c7d3c3;
+  --color-verde-05: #b8c4b4;
+  --color-verde-1: #a9b6a5;
+  --color-verde-15: #9ba797;
+  --color-verde-2: #8c9888;
+  --color-verde-3: #6e7b6a;
+  --color-verde-4: #515d4d;
+  --color-verde-5: #33402f;
+  --color-verde-6: #293326;
+  --color-verde-7: #1f261c;
+  --color-verde-8: #141a13;
+  --color-verde-85: #0f130e;
+  --color-verde-9: #0a0d09;
+  --color-verde-95: #050605;
+  --color-verde-10: #000000;
+
+  /* Alias NORTE */
+  --color-norte-dark: #1c1b19;
+  --color-norte-bg: #f3efe7;
+  --color-norte-mustard: #c77d2e;
+  --color-norte-forest: #33402f;
+  --color-norte-stone: #d8d2c4;
+
+  /* Radio de border (design system) */
+  --radius-btn: 8px;
+  --radius-card: 8px;
+}
+
+/* ============ Estilos de base ============ */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-primary);
-  background-color: var(--color-white);
-  color: var(--color-text);
+  background-color: var(--color-off-white);
+  color: var(--color-negro-calido);
+  font-family: var(--font-body);
   line-height: 1.6;
 }
 
@@ -24,11 +89,21 @@ img {
   display: block;
 }
 
+/* Forzar trazo geométrico y recto en los iconos SVG (Lucide / react-icons) */
+svg[stroke="currentColor"][fill="none"] {
+  stroke-linecap: square !important;
+  stroke-linejoin: miter !important;
+  stroke-width: 1.75px;
+  /* Un grosor de 1.5px a 1.75px le da ese acabado limpio */
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.font-heading {
+  font-family: var(--font-heading);
   line-height: 1.2;
 }
