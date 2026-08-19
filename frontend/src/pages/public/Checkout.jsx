@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Link,
   Navigate,
@@ -7,6 +7,7 @@ import {
 
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
+import { trackBeginCheckout } from "../../utils/analytics";
 
 
 const Checkout = () => {
@@ -24,6 +25,17 @@ const Checkout = () => {
     ciudad: "",
     codigoPostal: "",
   });
+
+  // =========================
+  // ANALYTICS — INICIO DEL CHECKOUT
+  // =========================
+
+  useEffect(() => {
+    if (isAuthenticated && cart.length > 0) {
+      trackBeginCheckout({ items: cart, value: totalPrice });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // =========================
   // MANEJAR FORMULARIO

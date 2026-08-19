@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 import products from "../../data/products";
 import { useCart } from "../../context/CartContext";
+import { trackViewItem } from "../../utils/analytics";
 
 
 const Producto = () => {
@@ -22,6 +23,15 @@ const Producto = () => {
     useState(product?.sizes?.[0] || "");
 
   const [cantidad, setCantidad] = useState(1);
+
+  // =========================
+  // ANALYTICS — VISTA DE PRODUCTO
+  // =========================
+
+  useEffect(() => {
+    trackViewItem({ product });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   // =========================
   // PRODUCTO NO ENCONTRADO

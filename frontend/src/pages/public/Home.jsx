@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 
 import heroImage from "../../assets/hero.png";
 import products from "../../data/products";
+import { trackCtaClick } from "../../utils/analytics";
 
 const Home = () => {
+  const handleCta = (cta, location) =>
+    trackCtaClick({ cta, location });
   return (
     <>
       <main className="bg-white">
@@ -31,6 +34,7 @@ const Home = () => {
 
               <Link
                 to="/catalogo"
+                onClick={() => handleCta("ver_catalogo", "hero")}
                 className="inline-flex rounded-btn bg-norte-mustard px-6 py-3 text-xs font-medium text-white transition hover:-translate-y-0.5 hover:bg-mostaza-4"
               >
                 Ver catálogo
@@ -74,6 +78,7 @@ const Home = () => {
                 <Link
                   key={categoria}
                   to={`/catalogo?categoria=${encodeURIComponent(categoria)}`}
+                  onClick={() => handleCta("ver_categoria", categoria)}
                   className="group overflow-hidden border border-gray-200 bg-white transition hover:-translate-y-1 hover:shadow-md"
                 >
                   {/* IMAGEN */}
@@ -122,6 +127,7 @@ const Home = () => {
 
             <Link
               to="/catalogo"
+              onClick={() => handleCta("explorar_catalogo", "cta_final")}
               className="mt-7 inline-flex rounded-btn border border-norte-mustard px-6 py-3 text-xs font-medium text-norte-mustard transition hover:bg-norte-mustard hover:text-white"
             >
               Explorar catálogo
