@@ -30,9 +30,7 @@ import PreguntasFrecuentes from "../pages/public/PreguntasFrecuentes";
 import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
 import { AdminProductsPage } from "../pages/admin/AdminProductsPage";
 import { AdminOrdersPage } from "../pages/admin/AdminOrdersPage";
-
-// Placeholders admin
-const Dashboard = () => <div className="p-6">Dashboard de Métricas</div>;
+import { AdminDashboardPage } from "../pages/admin/AdminDashboardPage";
 
 // Componente helper para escuchar los cambios de ruta
 function AnalyticsTracker() {
@@ -103,7 +101,7 @@ export default function AppRouter() {
             Por ahora las rutas admin quedan abiertas. */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<AdminDashboardPage />} />
           <Route path="productos" element={<AdminProductsPage />} />
           <Route path="categorias" element={<AdminCategoriesPage />} />
           <Route path="pedidos" element={<AdminOrdersPage />} />
