@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useCart } from "../../context/CartContext";
+import { trackViewCart } from "../../utils/analytics";
 
 
 const Carrito = () => {
@@ -12,6 +14,17 @@ const Carrito = () => {
     totalItems,
     totalPrice,
   } = useCart();
+
+  // =========================
+  // ANALYTICS — VISTA DEL CARRITO
+  // =========================
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      trackViewCart({ items: cart, value: totalPrice });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

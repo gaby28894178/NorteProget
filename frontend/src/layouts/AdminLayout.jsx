@@ -45,6 +45,7 @@ export default function AdminLayout() {
         <nav className="flex flex-col gap-3">
           <Link
             to="/admin/dashboard"
+            onClick={closeSidebar}
             className="flex items-center gap-3 hover:text-norte-mustard"
           >
             <LuLayoutDashboard size={18} />
@@ -52,6 +53,7 @@ export default function AdminLayout() {
           </Link>
           <Link
             to="/admin/productos"
+            onClick={closeSidebar}
             className="flex items-center gap-3 hover:text-norte-mustard"
           >
             <LuPackage size={18} />
@@ -59,6 +61,7 @@ export default function AdminLayout() {
           </Link>
           <Link
             to="/admin/categorias"
+            onClick={closeSidebar}
             className="flex items-center gap-3 hover:text-norte-mustard"
           >
             <LuTags size={18} />
@@ -66,6 +69,7 @@ export default function AdminLayout() {
           </Link>
           <Link
             to="/admin/pedidos"
+            onClick={closeSidebar}
             className="flex items-center gap-3 hover:text-norte-mustard"
           >
             <LuShoppingCart size={18} />

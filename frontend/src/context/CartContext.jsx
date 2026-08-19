@@ -5,6 +5,11 @@ import {
   useState,
 } from "react";
 
+import {
+  trackAddToCart,
+  trackRemoveFromCart,
+} from "../utils/analytics";
+
 const CartContext = createContext(null);
 
 const CartProvider = ({ children }) => {
@@ -57,6 +62,7 @@ const CartProvider = ({ children }) => {
   // =========================
 
   const addToCart = (product) => {
+    trackAddToCart({ item: product });
     setCart((currentCart) => {
       const cantidadNueva =
         Number(product.quantity) || 1;
@@ -115,6 +121,17 @@ const CartProvider = ({ children }) => {
     selectedColor,
     selectedSize
   ) => {
+    const itemToRemove = cart.find(
+      (item) =>
+        item.id === id &&
+        item.selectedColor === selectedColor &&
+        item.selectedSize === selectedSize
+    );
+
+    if (itemToRemove) {
+      trackRemoveFromCart({ item: itemToRemove });
+    }
+
     setCart((currentCart) =>
       currentCart.filter(
         (item) =>

@@ -6,6 +6,10 @@ import {
 } from "react-router-dom";
 
 import products from "../../data/products";
+import {
+  trackViewItemList,
+  trackViewSearchResults,
+} from "../../utils/analytics";
 
 
 const Catalogo = () => {
@@ -248,6 +252,35 @@ const Catalogo = () => {
     categoriaSeleccionada !== "Todas" ||
     coloresSeleccionados.length > 0 ||
     tallesSeleccionados.length > 0;
+
+  // =========================
+  // ANALYTICS — VISTA DE LISTADO
+  // =========================
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (busqueda) {
+        trackViewSearchResults({
+          search: busqueda,
+          count: productosFiltrados.length,
+        });
+      }
+
+      trackViewItemList({
+        search: busqueda,
+        category: categoriaSeleccionada,
+        count: productosFiltrados.length,
+      });
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [
+    busqueda,
+    categoriaSeleccionada,
+    coloresSeleccionados,
+    tallesSeleccionados,
+    productosFiltrados.length,
+  ]);
 
   // =========================
   // COLOR VISUAL

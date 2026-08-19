@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
+import { trackLogin } from "../../utils/analytics";
 
 
 const Login = () => {
@@ -45,6 +46,8 @@ const Login = () => {
     const userData = {
       email: formData.email,
     };
+
+    trackLogin({ method: "email" });
 
     login(userData);
 

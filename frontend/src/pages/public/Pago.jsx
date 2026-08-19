@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { useCart } from "../../context/CartContext";
+import {
+  trackAddPaymentInfo,
+  trackPurchase,
+} from "../../utils/analytics";
 
 
 const Pago = () => {
@@ -42,6 +46,13 @@ const Pago = () => {
 
     setProcesando(true);
 
+    // Inicio del pago con el método seleccionado
+    trackAddPaymentInfo({
+      items: cart,
+      value: totalPago,
+      paymentType: metodoPago,
+    });
+
     setTimeout(() => {
       // Guardamos solamente la compra actual
       const compra = {
@@ -50,6 +61,14 @@ const Pago = () => {
         metodoPago,
         fecha: new Date().toISOString(),
       };
+
+      // Compra completada
+      trackPurchase({
+        items: cart,
+        value: totalPago,
+        transactionId: `norte-${Date.now()}`,
+        paymentType: metodoPago,
+      });
 
       // Reemplaza cualquier compra anterior
       localStorage.setItem(

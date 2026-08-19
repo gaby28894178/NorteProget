@@ -1,32 +1,59 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+
+import { useEffect } from "react";
+
+import { initGA, logPageView } from "../utils/analytics";
 
 // Layouts
-import PublicLayout from '../layouts/PublicLayout';
-import AdminLayout from '../layouts/AdminLayout';
+import PublicLayout from "../layouts/PublicLayout";
+import AdminLayout from "../layouts/AdminLayout";
 
 // Páginas públicas
-import Home from '../pages/public/Home';
-import Catalogo from '../pages/public/Catalogo';
-import Producto from '../pages/public/Producto';
-import Carrito from '../pages/public/Carrito';
-import Checkout from '../pages/public/Checkout';
-import Login from '../pages/public/Login';
-import Pago from '../pages/public/Pago';
-import Confirmacion from '../pages/public/Confirmacion';
-import CambiosDevoluciones from '../pages/public/CambiosDevoluciones';
-import PreguntasFrecuentes from '../pages/public/PreguntasFrecuentes';
+import Home from "../pages/public/Home";
+import Catalogo from "../pages/public/Catalogo";
+import Producto from "../pages/public/Producto";
+import Carrito from "../pages/public/Carrito";
+import Checkout from "../pages/public/Checkout";
+import Login from "../pages/public/Login";
+import Pago from "../pages/public/Pago";
+import Confirmacion from "../pages/public/Confirmacion";
+import CambiosDevoluciones from "../pages/public/CambiosDevoluciones";
+import PreguntasFrecuentes from "../pages/public/PreguntasFrecuentes";
 
 // Vistas de Admin
-import { AdminCategoriesPage } from '../pages/admin/AdminCategoriesPage';
-import { AdminProductsPage } from '../pages/admin/AdminProductsPage';
-import { AdminOrdersPage } from '../pages/admin/AdminOrdersPage';
+import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
+import { AdminProductsPage } from "../pages/admin/AdminProductsPage";
+import { AdminOrdersPage } from "../pages/admin/AdminOrdersPage";
+import { AdminDashboardPage } from "../pages/admin/AdminDashboardPage";
 
-// Placeholders admin
-const Dashboard = () => <div className="p-6">Dashboard de Métricas</div>;
+// Componente helper para escuchar los cambios de ruta
+function AnalyticsTracker() {
+  const location = useLocation();
+
+  // Initializar GA4 una sola vez
+  useEffect(() => {
+    initGA();
+  }, []);
+
+  // Rastrear cada cambio de vista/URL
+  useEffect(() => {
+    logPageView(location.pathname + location.search);
+  }, [location]);
+
+  return null; // No renderiza nada en la UI
+}
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
+      {/* Tracker dentro de BrowserRouter para poder usar useLocation */}
+      <AnalyticsTracker />
       <Routes>
         {/* =====================================
             RUTAS PÚBLICAS
@@ -74,7 +101,7 @@ export default function AppRouter() {
             Por ahora las rutas admin quedan abiertas. */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<AdminDashboardPage />} />
           <Route path="productos" element={<AdminProductsPage />} />
           <Route path="categorias" element={<AdminCategoriesPage />} />
           <Route path="pedidos" element={<AdminOrdersPage />} />

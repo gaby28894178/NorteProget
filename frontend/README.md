@@ -2,7 +2,7 @@
 
 ## 📋 Descripción
 
-SPA de **NORTE**, un e-commerce de moda y accesorios de diseño local. Es la aplicación cliente que se comunica con la API REST del backend.
+SPA de **NORTE**, un e-commerce de moda y accesorios de diseño local. Es la aplicación cliente que se comunica con la API REST del backend e incluye el **panel de administración** (gestión de productos, categorías y pedidos) junto con un **dashboard de métricas** que lee el embudo de conversión desde Google Analytics 4.
 
 ---
 
@@ -17,6 +17,7 @@ SPA de **NORTE**, un e-commerce de moda y accesorios de diseño local. Es la apl
 | Axios          | Cliente HTTP hacia la API              |
 | React Hook Form| Manejo de formularios                  |
 | React Toastify | Notificaciones                         |
+| react-ga4      | Envío de eventos de analítica a GA4    |
 | jwt-decode     | Decodificar tokens JWT                 |
 | React Icons    | Iconos (Lucide en admin, FontAwesome en público) |
 
@@ -27,19 +28,19 @@ SPA de **NORTE**, un e-commerce de moda y accesorios de diseño local. Es la apl
 ```
 frontend/
 │
-├── public/               # Assets estáticos (favicon, og-image)
+├── public/               # Assets estáticos (favicon, og-image, og-image-square)
 ├── src/
-│   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi)
+│   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi, analyticsApi)
 │   ├── assets/           # Imágenes y recursos
-│   ├── components/       # Componentes públicos y del panel admin
+│   ├── components/       # Componentes públicos y del panel admin (MetricCard, ConversionFunnel, ...)
 │   ├── context/          # Estado global (AuthContext, CartContext)
-│   ├── data/             # Datos mock / seed para desarrollo
-│   ├── hooks/            # Custom hooks
+│   ├── data/             # Datos mock / seed (products, orders, categories, analyticsDemo)
+│   ├── hooks/            # Custom hooks (useProducts, useOrders, useCategories, useAnalytics)
 │   ├── layouts/          # Layouts público y admin
-│   ├── pages/            # Páginas públicas y admin
+│   ├── pages/            # Páginas públicas y admin (incl. AdminDashboardPage)
 │   ├── routes/           # Definición de rutas (AppRouter)
 │   ├── styles/           # Design system (globals.css, components.css)
-│   └── utils/            # Helpers (skuGenerator, orderStatus, slugUtils)
+│   └── utils/            # Helpers (analytics, gaData, googleAuth, orderStatus, skuGenerator, slugUtils)
 │
 ├── .env.example          # Plantilla de variables de entorno
 └── vite.config.js
@@ -56,6 +57,55 @@ Copiar `.env.example` a `.env.local` y ajustar si es necesario:
 | `VITE_API_URL`    | Base URL de la API REST del backend                | `http://localhost:3001/api`          |
 | `VITE_USE_MOCK`   | Usar datos mock en memoria si no hay backend real  | `true`                               |
 | `VITE_APP_NAME`   | Nombre de la aplicación                            | `NorteProget`                        |
+| `VITE_GA_MEASUREMENT_ID` | Measurement ID de GA4 (envío de eventos)     | `G-XXXXXXXXXX`                       |
+| `VITE_GA_CLIENT_ID`      | OAuth Client ID (Web app) para leer métricas | `XXXXX.apps.googleusercontent.com`   |
+| `VITE_GA_PROPERTY_ID`    | Property ID numérico de la propiedad GA4     | `1234567890`                         |
+
+---
+
+## 📈 Métricas y Google Analytics 4 (Dashboard Admin)
+
+El panel `GET /admin/dashboard` muestra el **embudo de conversión** del negocio
+(visita → catálogo → producto → carrito → checkout → pago → compra) y KPIs.
+
+### Envío de eventos (recolección)
+
+Se instrumenta el flujo público con eventos estándar de GA4 (`view_item_list`,
+`view_item`, `add_to_cart`, `remove_from_cart`, `view_cart`, `begin_checkout`,
+`add_payment_info`, `purchase`, `login`, `cta_click`) vía `react-ga4`, sin
+bloquear la experiencia del usuario. Código en `src/utils/analytics.js`.
+
+> Para ver los eventos en tiempo real usá el **DebugView** de GA4.
+
+### Lectura de métricas (dashboard)
+
+El dashboard lee GA4 **directo desde el browser** con la cuenta de Google del
+admin (OAuth client-side, scope `analytics.readonly`). Cuando no hay data o
+falla la API, cae a **datos de demostración** para que la pantalla nunca quede
+vacía. Código: `src/utils/googleAuth.js`, `src/utils/gaData.js`,
+`src/api/analyticsApi.js`.
+
+#### Configuración en Google Cloud (una sola vez)
+
+1. **GA4 Property ID**: GA4 → Administrar → Configuración de la propiedad →
+   anotar el número. Setear `VITE_GA_PROPERTY_ID`.
+2. **Habilitar la API**: Google Cloud Console → APIs y servicios → Biblioteca →
+   *Google Analytics Data API* → **Habilitar**.
+3. **Pantalla de consentimiento**: APIs y servicios → Pantalla de consentimiento
+   de OAuth → tipo **Externo**. Agregá tu cuenta en *Usuarios de prueba*.
+4. **OAuth Client ID**: API y servicios → Credenciales → **+ Crear credenciales →
+   ID de cliente de OAuth** → *Aplicación web* → **Orígenes de JavaScript
+   autorizados**: la URL del deploy (`https://tu-dominio.vercel.app`) y
+   `http://localhost:5173`. Copiá el Client ID en `VITE_GA_CLIENT_ID`.
+5. **Acceso**: GA4 → Administrar → Gestión de accesos → tu cuenta debe tener al
+   menos rol **Viewer**.
+
+> En producción: publicar la pantalla de consentimiento (en modo *Testing* los
+> tokens expiran a los 7 días) y verificar los orígenes autorizados.
+>
+> Nota de seguridad: el acceso por acá vale para demo/MVP. El flujo recomendado
+> en producción es consultar la **Analytics Data API desde un backend** para no
+> exponer datos GA4 en el navegador.
 
 ---
 
