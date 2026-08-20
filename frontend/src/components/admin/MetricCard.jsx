@@ -4,7 +4,7 @@ export const MetricCard = ({ label, value, hint, negative }) => {
       <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
         {label}
       </p>
-      <p className="mt-2 text-2xl font-bold text-norte-dark">{value}</p>
+      <p className="mt-2 text-xl font-bold text-norte-dark">{value}</p>
 
       {hint && (
         <p

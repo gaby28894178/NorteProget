@@ -52,7 +52,7 @@ export const CategoryForm = ({
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Slug (URL amigable)
+          Slug
         </label>
         <input
           type="text"

@@ -1,34 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-
+import { trackPurchase } from "../../utils/analytics";
 
 const Confirmacion = () => {
-  const [compra, setCompra] = useState(null);
-
-  useEffect(() => {
-    const compraGuardada =
-      localStorage.getItem("ultimaCompra");
-
-    if (compraGuardada) {
-      try {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setCompra(JSON.parse(compraGuardada));
-      } catch (error) {
-        console.error(
-          "Error al leer la compra:",
-          error
-        );
-      }
+  // Inicialización diferida del estado desde localStorage
+  const [compra] = useState(() => {
+    const compraGuardada = localStorage.getItem("ultimaCompra");
+    if (!compraGuardada) return null;
+    try {
+      return JSON.parse(compraGuardada);
+    } catch (error) {
+      console.error("Error al leer la compra:", error);
+      return null;
     }
-  }, []);
+  });
+
+  const trackedRef = useRef(false);
+
+  // El efecto solo se encarga de sincronizar con el sistema externo (GA4)
+  useEffect(() => {
+    if (compra && !trackedRef.current) {
+      trackPurchase({
+        transaction_id: compra.id || `ORDER-${Date.now()}`,
+        value: Number(compra.total || 0),
+        currency: "ARS",
+        items: compra.productos || [],
+      });
+      trackedRef.current = true;
+    }
+  }, [compra]);
 
   return (
     <>
-
       <main className="flex min-h-[70vh] items-center justify-center bg-white px-4 py-12 sm:px-6 sm:py-16">
-
         <section className="w-full max-w-xl text-center">
-
           {/* =========================
               ICONO
           ========================== */}
@@ -63,59 +68,42 @@ const Confirmacion = () => {
 
           {compra && (
             <div className="mt-8 border-y border-norte-stone py-6 text-left">
-
               {/* ESTADO */}
 
               <div className="flex items-center justify-between gap-4">
-
-                <span className="text-xs text-gray-600">
-                  Estado
-                </span>
+                <span className="text-xs text-gray-600">Estado</span>
 
                 <span className="text-xs font-semibold text-green-600">
                   Pago aprobado
                 </span>
-
               </div>
 
               {/* MÉTODO DE PAGO */}
 
               <div className="mt-4 flex items-center justify-between gap-4">
-
-                <span className="text-xs text-gray-600">
-                  Método de pago
-                </span>
+                <span className="text-xs text-gray-600">Método de pago</span>
 
                 <span className="text-right text-xs font-semibold">
                   {compra.metodoPago === "tarjeta"
                     ? "Tarjeta de crédito o débito"
                     : "Transferencia bancaria"}
                 </span>
-
               </div>
 
               {/* PRODUCTOS */}
 
               {compra.productos?.length > 0 && (
                 <div className="mt-6 border-t border-norte-stone pt-5">
-
-                  <h2 className="mb-4 text-sm font-bold">
-                    Productos
-                  </h2>
+                  <h2 className="mb-4 text-sm font-bold">Productos</h2>
 
                   <div className="divide-y divide-norte-stone">
-
                     {compra.productos.map((item) => (
                       <div
                         key={`${item.id}-${item.selectedColor}-${item.selectedSize}`}
                         className="flex items-start justify-between gap-4 py-3"
                       >
-
                         <div>
-
-                          <p className="text-sm font-medium">
-                            {item.name}
-                          </p>
+                          <p className="text-sm font-medium">{item.name}</p>
 
                           <p className="mt-1 text-xs text-gray-600">
                             Cantidad: {item.quantity}
@@ -132,41 +120,27 @@ const Confirmacion = () => {
                               Talle: {item.selectedSize}
                             </p>
                           )}
-
                         </div>
 
                         <span className="shrink-0 text-sm font-semibold">
                           $
-                          {(
-                            item.price * item.quantity
-                          ).toLocaleString("es-AR")}
+                          {(item.price * item.quantity).toLocaleString("es-AR")}
                         </span>
-
                       </div>
                     ))}
-
                   </div>
-
                 </div>
               )}
 
               {/* TOTAL */}
 
               <div className="mt-5 flex items-center justify-between border-t border-norte-stone pt-5">
-
-                <span className="text-sm font-semibold">
-                  Total pagado
-                </span>
+                <span className="text-sm font-semibold">Total pagado</span>
 
                 <span className="text-xl font-bold">
-                  $
-                  {compra.total?.toLocaleString(
-                    "es-AR"
-                  )}
+                  ${compra.total?.toLocaleString("es-AR")}
                 </span>
-
               </div>
-
             </div>
           )}
 
@@ -191,11 +165,8 @@ const Confirmacion = () => {
           >
             Seguir comprando
           </Link>
-
         </section>
-
       </main>
-
     </>
   );
 };

@@ -14,7 +14,7 @@ const BAR_COLORS = [
   "bg-mostaza-5",
   "bg-mostaza-6",
   "bg-mostaza-7",
-  "bg-norte-forest",
+  "bg-norte-forest-3",
   "bg-norte-forest",
 ];
 
