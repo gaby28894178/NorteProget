@@ -51,14 +51,18 @@ const toGA4Item = (item) => {
   const price = Number(item.price || 0);
   const quantity = Number(item.quantity || 1);
 
+  // Combina color y talle en una sola variante reconocida por GA4
+  const variant = [item.selectedColor, item.selectedSize]
+    .filter(Boolean)
+    .join(" / ");
+
   return {
     item_id: String(item.id),
     item_name: item.name,
-    item_category: item.category,
+    item_category: item.category || "",
     price,
     quantity,
-    ...(item.selectedColor ? { item_variant: item.selectedColor } : {}),
-    ...(item.selectedSize ? { size: item.selectedSize } : {}),
+    ...(variant ? { item_variant: variant } : {}),
   };
 };
 
