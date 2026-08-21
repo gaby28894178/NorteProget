@@ -1,7 +1,7 @@
 // src/modules/users/user-repository.js
 
 import { Op } from 'sequelize';
-import User from './user.model.js';
+import User from './user-model.js';
 import { USER_ROLES } from '../../core/utils/constants.js';
 import { NotFoundError, ConflictError } from '../../core/errors/index.js';
 
@@ -155,28 +155,11 @@ class UserRepository {
   }
 
   /**
-   * Para actualizar role, método separado:
-   */
-  async updateRole(id, role) {
-    const user = await this.findById(id);
-    await user.update({ role });
-    return user;
-  }
-
-  /**
    * Elimina un usuario (hard delete)
    */
   async delete(id) {
     const user = await this.findById(id);
     await user.destroy();
-  }
-
-  /**
-   * Verifica si existe un usuario con el email dado
-   */
-  async existsByEmail(email) {
-    const count = await User.count({ where: { email } });
-    return count > 0;
   }
 
   /**
