@@ -69,6 +69,10 @@
 /* ============ Estilos de base ============ */
 html {
   scroll-behavior: smooth;
+
+  /* Tope duro al llegar arriba/abajo: evita que el navegador haga
+     "rebote elástico" (rubber band) y deje ver el fondo del body. */
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -76,6 +80,9 @@ body {
   color: var(--color-negro-calido);
   font-family: var(--font-body);
   line-height: 1.6;
+
+  /* Safari requiere la regla también en el elemento que scrollea. */
+  overscroll-behavior-y: none;
 }
 
 button,

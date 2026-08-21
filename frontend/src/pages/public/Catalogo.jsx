@@ -5,11 +5,14 @@ import {
   useSearchParams,
 } from "react-router-dom";
 
+import { FaSlidersH } from "react-icons/fa";
+
 import products from "../../data/products";
 import {
   trackViewItemList,
   trackViewSearchResults,
 } from "../../utils/analytics";
+import { FilterSidebar } from "../../components/public/FilterSidebar";
 
 
 const Catalogo = () => {
@@ -57,6 +60,33 @@ const Catalogo = () => {
   const [tallesSeleccionados, setTallesSeleccionados] =
     useState([]);
 
+  // Drawer de filtros en móvil (solo < lg)
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+
+  const closeFilters = () => setIsFiltersOpen(false);
+
+  // Bloquea el scroll del fondo mientras el drawer esté abierto
+  // y permite cerrarlo con la tecla Escape.
+  useEffect(() => {
+    if (!isFiltersOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsFiltersOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isFiltersOpen]);
+
   // =========================
   // SINCRONIZAR CATEGORÍA
   // CON LA URL
@@ -101,6 +131,14 @@ const Catalogo = () => {
       )
     ),
   ];
+
+  // =========================
+  // CAMBIAR CATEGORÍA
+  // =========================
+
+  const handleCategoriaChange = (categoria) => {
+    setCategoriaSeleccionada(categoria);
+  };
 
   // =========================
   // CAMBIAR COLOR
@@ -253,6 +291,12 @@ const Catalogo = () => {
     coloresSeleccionados.length > 0 ||
     tallesSeleccionados.length > 0;
 
+  // Cantidad de filtros aplicados (para el badge del botón en móvil)
+  const filtrosActivosCount =
+    (categoriaSeleccionada !== "Todas" ? 1 : 0) +
+    coloresSeleccionados.length +
+    tallesSeleccionados.length;
+
   // =========================
   // ANALYTICS — VISTA DE LISTADO
   // =========================
@@ -341,157 +385,28 @@ const Catalogo = () => {
 
           </div>
 
-          <div className="flex flex-col gap-10 lg:flex-row">
+          <div className="flex flex-col gap-6 lg:flex-row lg:gap-10">
 
             {/* =========================
-                SIDEBAR
+                FILTROS — DESKTOP
+                (fijos en el sidebar, >= lg)
             ========================== */}
 
-            <aside className="w-full shrink-0 lg:w-44">
+            <aside className="hidden w-44 shrink-0 lg:block">
 
-              <div className="flex items-center justify-between">
-
-                <h2 className="text-sm font-medium">
-                  Filtrar por
-                </h2>
-
-                {hayFiltrosActivos && (
-                  <button
-                    type="button"
-                    onClick={limpiarFiltros}
-                    className="text-[10px] text-norte-mustard hover:underline"
-                  >
-                    Limpiar
-                  </button>
-                )}
-
-              </div>
-
-              {/* =========================
-                  CATEGORÍAS
-              ========================== */}
-
-              <div className="border-b border-gray-200 py-6">
-
-                <h3 className="mb-5 text-[10px] font-medium uppercase tracking-wide text-gray-500">
-                  Categorías
-                </h3>
-
-                <div className="flex flex-col gap-3">
-
-                  {categorias.map(
-                    (categoria) => (
-                      <button
-                        key={categoria}
-                        type="button"
-                        onClick={() =>
-                          setCategoriaSeleccionada(
-                            categoria
-                          )
-                        }
-                        className={`text-left text-xs transition ${
-                          categoriaSeleccionada ===
-                          categoria
-                            ? "font-semibold text-norte-mustard"
-                            : "text-gray-700 hover:text-norte-mustard"
-                        }`}
-                      >
-                        {categoria}
-                      </button>
-                    )
-                  )}
-
-                </div>
-
-              </div>
-
-              {/* =========================
-                  COLORES
-              ========================== */}
-
-              <div className="border-b border-gray-200 py-6">
-
-                <h3 className="mb-5 text-[10px] font-medium uppercase tracking-wide text-gray-500">
-                  Color
-                </h3>
-
-                <div className="flex flex-col gap-3">
-
-                  {colores.map(
-                    (color) => (
-                      <label
-                        key={color}
-                        className="flex cursor-pointer items-center gap-3 text-xs text-gray-700"
-                      >
-
-                        <input
-                          type="checkbox"
-                          checked={coloresSeleccionados.includes(
-                            color
-                          )}
-                          onChange={() =>
-                            handleColorChange(
-                              color
-                            )
-                          }
-                          className="h-3 w-3 rounded border-gray-400 accent-norte-mustard"
-                        />
-
-                        <span>
-                          {color}
-                        </span>
-
-                      </label>
-                    )
-                  )}
-
-                </div>
-
-              </div>
-
-              {/* =========================
-                  TALLES
-              ========================== */}
-
-              <div className="py-6">
-
-                <h3 className="mb-5 text-[10px] font-medium uppercase tracking-wide text-gray-500">
-                  Talles
-                </h3>
-
-                <div className="flex flex-col gap-3">
-
-                  {talles.map(
-                    (talle) => (
-                      <label
-                        key={talle}
-                        className="flex cursor-pointer items-center gap-3 text-xs text-gray-700"
-                      >
-
-                        <input
-                          type="checkbox"
-                          checked={tallesSeleccionados.includes(
-                            talle
-                          )}
-                          onChange={() =>
-                            handleTalleChange(
-                              talle
-                            )
-                          }
-                          className="h-3 w-3 rounded border-gray-400 accent-norte-mustard"
-                        />
-
-                        <span>
-                          {talle}
-                        </span>
-
-                      </label>
-                    )
-                  )}
-
-                </div>
-
-              </div>
+              <FilterSidebar
+                categorias={categorias}
+                colores={colores}
+                talles={talles}
+                categoriaSeleccionada={categoriaSeleccionada}
+                coloresSeleccionados={coloresSeleccionados}
+                tallesSeleccionados={tallesSeleccionados}
+                handleCategoriaChange={handleCategoriaChange}
+                handleColorChange={handleColorChange}
+                handleTalleChange={handleTalleChange}
+                limpiarFiltros={limpiarFiltros}
+                hayFiltrosActivos={hayFiltrosActivos}
+              />
 
             </aside>
 
@@ -501,7 +416,7 @@ const Catalogo = () => {
 
             <section className="flex-1">
 
-              <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex items-center justify-between gap-4">
 
                 <p className="text-xs text-gray-500">
                   {productosFiltrados.length}{" "}
@@ -509,6 +424,22 @@ const Catalogo = () => {
                     ? "producto"
                     : "productos"}
                 </p>
+
+                {/* Botón que abre el drawer de filtros (solo móvil) */}
+                <button
+                  type="button"
+                  onClick={() => setIsFiltersOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-btn border border-norte-stone bg-white px-4 py-2 text-xs font-medium text-norte-dark transition hover:border-norte-mustard hover:text-norte-mustard lg:hidden"
+                >
+                  <FaSlidersH className="text-xs" />
+                  Filtrar
+
+                  {filtrosActivosCount > 0 && (
+                    <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-norte-mustard px-1 text-[9px] font-semibold text-white">
+                      {filtrosActivosCount}
+                    </span>
+                  )}
+                </button>
 
               </div>
 
@@ -649,6 +580,51 @@ const Catalogo = () => {
 
             </section>
 
+          </div>
+
+          {/* =========================
+              FILTROS — MÓVIL
+              (drawer superpuesto con blur, < lg)
+          ========================== */}
+
+          <div
+            className={`fixed inset-0 z-50 lg:hidden ${
+              isFiltersOpen ? "" : "pointer-events-none"
+            }`}
+          >
+            {/* Backdrop con blur del contenido de atrás */}
+            <div
+              className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
+                isFiltersOpen ? "opacity-100" : "opacity-0"
+              }`}
+              onClick={closeFilters}
+            />
+
+            {/* Panel lateral */}
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Filtros del catálogo"
+              inert={!isFiltersOpen}
+              className={`absolute inset-y-0 left-0 w-72 max-w-[85vw] transform overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300 ${
+                isFiltersOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+            >
+              <FilterSidebar
+                categorias={categorias}
+                colores={colores}
+                talles={talles}
+                categoriaSeleccionada={categoriaSeleccionada}
+                coloresSeleccionados={coloresSeleccionados}
+                tallesSeleccionados={tallesSeleccionados}
+                handleCategoriaChange={handleCategoriaChange}
+                handleColorChange={handleColorChange}
+                handleTalleChange={handleTalleChange}
+                limpiarFiltros={limpiarFiltros}
+                hayFiltrosActivos={hayFiltrosActivos}
+                onClose={closeFilters}
+              />
+            </div>
           </div>
 
         </section>

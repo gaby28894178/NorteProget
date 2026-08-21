@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import {
-  FaShoppingCart,
-  FaSearch,
-  FaUser,
-} from "react-icons/fa";
+import { FaShoppingCart, FaSearch, FaUser } from "react-icons/fa";
 
 import { useCart } from "../../context/CartContext";
 
@@ -42,13 +38,11 @@ const Navbar = () => {
 
   return (
     <header className="w-full border-b border-gray-200 bg-white">
-
       {/* =========================
           HEADER PRINCIPAL
       ========================== */}
 
-      <div className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between gap-6 px-6 lg:px-8">
-
+      <div className="mx-auto flex min-h-19 max-w-7xl items-center justify-between gap-6 px-6 lg:px-8">
         {/* LOGO */}
 
         <Link
@@ -64,10 +58,9 @@ const Navbar = () => {
 
         <form
           onSubmit={handleBuscar}
-          className="hidden w-full max-w-[280px] md:block"
+          className="hidden w-full max-w-70 md:block"
         >
-          <div className="flex h-[38px] items-center rounded-lg border border-gray-200 bg-white px-3 transition focus-within:border-norte-mustard">
-
+          <div className="flex h-9.5 items-center rounded-lg border border-gray-200 bg-white px-3 transition focus-within:border-norte-mustard">
             <input
               type="search"
               value={busqueda}
@@ -84,7 +77,6 @@ const Navbar = () => {
             >
               <FaSearch className="text-xs" />
             </button>
-
           </div>
         </form>
 
@@ -93,7 +85,6 @@ const Navbar = () => {
         ========================== */}
 
         <div className="flex shrink-0 items-center gap-5">
-
           {/* MI CUENTA */}
 
           <Link
@@ -120,9 +111,7 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-
         </div>
-
       </div>
 
       {/* =========================
@@ -130,9 +119,7 @@ const Navbar = () => {
       ========================== */}
 
       <nav className="border-t border-gray-100">
-
-        <div className="mx-auto flex min-h-[58px] max-w-7xl items-center justify-center gap-10 px-6 lg:px-8">
-
+        <div className="mx-auto flex min-h-14.5 max-w-7xl items-center justify-center gap-10 px-6 lg:px-8">
           {/* CATÁLOGO */}
 
           <NavLink
@@ -140,7 +127,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               `relative py-4 text-xs text-black transition-colors ${
                 isActive
-                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-norte-mustard"
+                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-norte-mustard"
                   : "hover:text-norte-mustard"
               }`
             }
@@ -155,7 +142,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               `relative py-4 text-xs text-black transition-colors ${
                 isActive
-                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-norte-mustard"
+                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-norte-mustard"
                   : "hover:text-norte-mustard"
               }`
             }
@@ -170,18 +157,15 @@ const Navbar = () => {
             className={({ isActive }) =>
               `relative py-4 text-xs text-black transition-colors ${
                 isActive
-                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-norte-mustard"
+                  ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-norte-mustard"
                   : "hover:text-norte-mustard"
               }`
             }
           >
             Preguntas frecuentes
           </NavLink>
-
         </div>
-
       </nav>
-
     </header>
   );
 };

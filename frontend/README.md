@@ -30,14 +30,14 @@ frontend/
 │
 ├── public/               # Assets estáticos (favicon, og-image, og-image-square)
 ├── src/
-│   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi, analyticsApi)
+│   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi, analyticsApi, authApi)
 │   ├── assets/           # Imágenes y recursos
-│   ├── components/       # Componentes públicos y del panel admin (MetricCard, ConversionFunnel, ...)
+│   ├── components/       # Componentes públicos y del panel admin (MetricCard, ConversionFunnel, FilterSidebar, RequireAdmin, ...)
 │   ├── context/          # Estado global (AuthContext, CartContext)
 │   ├── data/             # Datos mock / seed (products, orders, categories, analyticsDemo)
 │   ├── hooks/            # Custom hooks (useProducts, useOrders, useCategories, useAnalytics)
 │   ├── layouts/          # Layouts público y admin
-│   ├── pages/            # Páginas públicas y admin (incl. AdminDashboardPage)
+│   ├── pages/            # Páginas públicas y admin (AdminDashboardPage, AdminLoginPage, ...)
 │   ├── routes/           # Definición de rutas (AppRouter)
 │   ├── styles/           # Design system (globals.css, components.css)
 │   └── utils/            # Helpers (analytics, gaData, googleAuth, orderStatus, skuGenerator, slugUtils)
@@ -57,6 +57,8 @@ Copiar `.env.example` a `.env.local` y ajustar si es necesario:
 | `VITE_API_URL`    | Base URL de la API REST del backend                | `http://localhost:3001/api`          |
 | `VITE_USE_MOCK`   | Usar datos mock en memoria si no hay backend real  | `true`                               |
 | `VITE_APP_NAME`   | Nombre de la aplicación                            | `NorteProget`                        |
+| `VITE_ADMIN_EMAIL`    | Email de acceso al panel admin (demo/mock)    | `soporte@norte.com`                  |
+| `VITE_ADMIN_PASSWORD` | Contraseña de acceso al panel admin (demo/mock) | `cambiar-en-produccion`          |
 | `VITE_GA_MEASUREMENT_ID` | Measurement ID de GA4 (envío de eventos)     | `G-XXXXXXXXXX`                       |
 | `VITE_GA_CLIENT_ID`      | OAuth Client ID (Web app) para leer métricas | `XXXXX.apps.googleusercontent.com`   |
 | `VITE_GA_PROPERTY_ID`    | Property ID numérico de la propiedad GA4     | `1234567890`                         |
@@ -106,6 +108,21 @@ vacía. Código: `src/utils/googleAuth.js`, `src/utils/gaData.js`,
 > Nota de seguridad: el acceso por acá vale para demo/MVP. El flujo recomendado
 > en producción es consultar la **Analytics Data API desde un backend** para no
 > exponer datos GA4 en el navegador.
+
+---
+
+## 🔐 Login del Panel Admin
+
+El panel (`/admin/*`) está protegido y requiere sesión. Sin sesión activa, las
+rutas redirigen a `/admin/login`:
+
+- **Credenciales (mock)**: las define `VITE_ADMIN_EMAIL` / `VITE_ADMIN_PASSWORD`.
+  Solo se usan mientras el backend de auth no exista.
+- **Con backend real**: la pantalla consume `POST /auth/login` (misma capa en
+  `src/api/authApi.js`). El token JWT se guarda en `localStorage` bajo `token` y
+  el interceptor de Axios (`src/api/axiosConfig.js`) lo manda como
+  `Authorization: Bearer <token>` automáticamente.
+- **Cerrar sesión**: botón en el sidebar del admin (limpia token y sesión).
 
 ---
 

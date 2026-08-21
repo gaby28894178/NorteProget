@@ -27,10 +27,12 @@ import CambiosDevoluciones from "../pages/public/CambiosDevoluciones";
 import PreguntasFrecuentes from "../pages/public/PreguntasFrecuentes";
 
 // Vistas de Admin
+import { AdminLoginPage } from "../pages/admin/AdminLoginPage";
 import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
 import { AdminProductsPage } from "../pages/admin/AdminProductsPage";
 import { AdminOrdersPage } from "../pages/admin/AdminOrdersPage";
 import { AdminDashboardPage } from "../pages/admin/AdminDashboardPage";
+import RequireAdmin from "../components/admin/RequireAdmin";
 
 // Componente helper para escuchar los cambios de ruta
 function AnalyticsTracker() {
@@ -97,14 +99,17 @@ export default function AppRouter() {
           />
         </Route>
 
-        {/* TODO(auth): envolver con <PrivateRoute> cuando exista login.
-            Por ahora las rutas admin quedan abiertas. */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<AdminDashboardPage />} />
-          <Route path="productos" element={<AdminProductsPage />} />
-          <Route path="categorias" element={<AdminCategoriesPage />} />
-          <Route path="pedidos" element={<AdminOrdersPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+
+        {/* Rutas protegidas del panel admin (RequireAdmin redirige a /admin/login) */}
+        <Route path="/admin" element={<RequireAdmin />}>
+          <Route element={<AdminLayout />}>
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route path="productos" element={<AdminProductsPage />} />
+            <Route path="categorias" element={<AdminCategoriesPage />} />
+            <Route path="pedidos" element={<AdminOrdersPage />} />
+          </Route>
         </Route>
 
         {/* =====================================

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   LuLayoutDashboard,
+  LuLogOut,
   LuMenu,
   LuPackage,
   LuShoppingCart,
@@ -9,10 +10,20 @@ import {
   LuX,
 } from "react-icons/lu";
 
+import { useAuth } from "../context/AuthContext";
+
 export default function AdminLayout() {
+  const { admin, adminLogout } = useAuth();
+
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const handleLogout = () => {
+    adminLogout();
+    navigate("/admin/login", { replace: true });
+  };
 
   return (
     <div className="admin-root flex min-h-screen bg-norte-bg">
@@ -76,6 +87,24 @@ export default function AdminLayout() {
             Pedidos
           </Link>
         </nav>
+
+        {/* Usuario + salir */}
+        <div className="mt-auto flex flex-col gap-3 border-t border-white/10 pt-4">
+          <p
+            className="truncate text-xs font-medium text-white/60"
+            title={admin?.email}
+          >
+            {admin?.email}
+          </p>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="flex cursor-pointer items-center gap-3 text-left text-sm text-white transition hover:text-norte-mustard"
+          >
+            <LuLogOut size={18} />
+            Cerrar sesión
+          </button>
+        </div>
       </aside>
 
       {/* Área de trabajo del Admin */}
