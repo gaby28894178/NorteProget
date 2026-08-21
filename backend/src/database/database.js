@@ -8,7 +8,7 @@ const sequelize = new Sequelize(env.databaseUrl, {
 
 export const connectDatabase = async () => {
   try {
-    await sequelize.authenticate();
+    await sequelize.sync();
 
     console.log('✅ Conexión a PostgreSQL establecida');
   } catch (error) {

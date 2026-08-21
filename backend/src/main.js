@@ -7,6 +7,7 @@ import { corsConfig } from './core/config/cors.js';
 import { setupSwagger } from './core/config/swagger.js';
 import { connectDatabase } from './database/database.js';
 import { errorHandler } from './core/middlewares/error-handler.js';
+import routes from './core/config/routes.js';
 
 const app = express();
 
@@ -24,6 +25,8 @@ app.get('/health', (req, res) => {
     timestamp: new Date(),
   });
 });
+
+app.use('/api', routes);
 
 app.use(errorHandler);
 

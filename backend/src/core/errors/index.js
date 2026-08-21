@@ -1,7 +1,7 @@
-export { AppError } from './AppError.js';
-export { ValidationError } from './ValidationError.js';
-export { AuthenticationError } from './AuthenticationError.js';
-export { AuthorizationError } from './AuthorizationError.js';
-export { NotFoundError } from './NotFoundError.js';
-export { ConflictError } from './ConflictError.js';
-export { PaymentError } from './PaymentError.js';
+export { AppError } from './app-error.js';
+export { ValidationError } from './validation-error.js';
+export { AuthenticationError } from './authentication-error.js';
+export { AuthorizationError } from './authorization-error.js';
+export { NotFoundError } from './not-found-error.js';
+export { ConflictError } from './conflict-error.js';
+export { PaymentError } from './payment-error.js';
