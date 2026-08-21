@@ -31,8 +31,8 @@ export const AdminProductsPage = () => {
   // más reciente (tras los fetchProducts) para que el detalle siempre se
   // actualice si el usuario vuelve después de guardar.
   const activeView = viewingProduct
-    ? products.find((p) => String(p.id) === String(viewingProduct.id)) ??
-      viewingProduct
+    ? (products.find((p) => String(p.id) === String(viewingProduct.id)) ??
+      viewingProduct)
     : null;
 
   // Modo "vista detalle" del producto (vista de página completa).
@@ -141,7 +141,7 @@ export const AdminProductsPage = () => {
 
       {/* ============ CONFIRMACIÓN DE BORRADO ============ */}
       {deleteTarget && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-50 p-4">
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black bg-opacity-50 p-4">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
             <h3 className="text-lg font-semibold text-norte-dark mb-2">
               Eliminar producto

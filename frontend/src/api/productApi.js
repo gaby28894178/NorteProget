@@ -62,6 +62,58 @@ const normalizeProduct = (data) => {
 const extractList = (data) =>
   Array.isArray(data) ? data : (data?.data ?? data?.rows ?? []);
 
+// Detecta si el producto tiene archivos File (carga de imágenes por multipart).
+const hasFiles = (productData) =>
+  (Array.isArray(productData?.images) ?? []).some(
+    (img) => img && img.file instanceof File,
+  );
+
+// Convierte el objeto plano del formulario a FormData (multipart/form-data)
+// para que el backend reciba los archivos de imagen junto con el resto de campos.
+// Los campos escalares se envían como string; los arrays/objetos se serializan
+// con JSON.stringify (convención común en APIs multipart).
+const toFormData = (productData) => {
+  const fd = new FormData();
+  const { images, ...rest } = productData;
+
+  Object.entries(rest).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+    if (typeof value === "object") {
+      fd.append(key, JSON.stringify(value));
+    } else {
+      fd.append(key, String(value));
+    }
+  });
+
+  (Array.isArray(images) ? images : []).forEach((img, index) => {
+    if (!img) return;
+    if (img.file instanceof File) {
+      fd.append(`images`, img.file);
+    }
+    fd.append(
+      `images_meta[${index}]`,
+      JSON.stringify({
+        display_order: Number(img.display_order) || 1,
+        public_id: img.public_id || "",
+      }),
+    );
+  });
+
+  return fd;
+};
+
+// Simulación de subida a Cloudinary para el modo mock (sin backend real).
+// Devuelve el mismo shape que esperaría el modelo product_images:
+// { public_id, secure_url }.
+const mockUploadImage = (file, slug, displayOrder) => {
+  const publicId = `norte/products/${slug}/${displayOrder}`;
+  // URL de placeholder estable para que la previsualización sea visible.
+  const secureUrl = `https://placehold.co/600x600/png?text=${encodeURIComponent(
+    slug || "producto",
+  )}`;
+  return { public_id: publicId, secure_url: secureUrl };
+};
+
 // Inicializamos mockProducts a partir del archivo en /data.
 // Mantiene el estado en memoria para permitir altas/bajas/modificaciones en local.
 const seedFromJson = () =>
@@ -85,26 +137,72 @@ export const getProducts = async () => {
 export const createProduct = async (productData) => {
   if (USE_MOCK) {
     await delay();
-    const newProduct = normalizeProduct(productData);
+    const slug = productData.slug || generateSlug(productData.name);
+    // En mock, "subimos" los archivos a un placeholder y generamos
+    // public_id + secure_url como si vinieran de Cloudinary.
+    const images = (Array.isArray(productData.images) ? productData.images : [])
+      .map((img) => {
+        if (img && img.file instanceof File) {
+          return {
+            ...mockUploadImage(img.file, slug, Number(img.display_order) || 1),
+            display_order: Number(img.display_order) || 1,
+          };
+        }
+        return {
+          public_id: img?.public_id || `norte/products/${slug}/${img?.display_order}`,
+          secure_url: img?.secure_url || "",
+          display_order: Number(img?.display_order) || 1,
+        };
+      });
+    const newProduct = normalizeProduct({ ...productData, images });
     mockProducts = [newProduct, ...mockProducts];
     return newProduct;
   }
-  const { data } = await axiosInstance.post("/products", productData);
+  const payload = hasFiles(productData) ? toFormData(productData) : productData;
+  const { data } = await axiosInstance.post(
+    "/products",
+    payload,
+    hasFiles(productData)
+      ? { headers: { "Content-Type": "multipart/form-data" } }
+      : {},
+  );
   return data;
 };
 
 export const updateProduct = async (id, productData) => {
   if (USE_MOCK) {
     await delay();
+    const slug = productData.slug || generateSlug(productData.name);
+    const images = (Array.isArray(productData.images) ? productData.images : [])
+      .map((img) => {
+        if (img && img.file instanceof File) {
+          return {
+            ...mockUploadImage(img.file, slug, Number(img.display_order) || 1),
+            display_order: Number(img.display_order) || 1,
+          };
+        }
+        return {
+          public_id: img?.public_id || `norte/products/${slug}/${img?.display_order}`,
+          secure_url: img?.secure_url || "",
+          display_order: Number(img?.display_order) || 1,
+        };
+      });
     let updatedProduct = null;
     mockProducts = mockProducts.map((product) => {
       if (String(product.id) !== String(id)) return product;
-      updatedProduct = normalizeProduct({ ...productData, id });
+      updatedProduct = normalizeProduct({ ...productData, id, images });
       return updatedProduct;
     });
     return updatedProduct;
   }
-  const { data } = await axiosInstance.put(`/products/${id}`, productData);
+  const payload = hasFiles(productData) ? toFormData(productData) : productData;
+  const { data } = await axiosInstance.put(
+    `/products/${id}`,
+    payload,
+    hasFiles(productData)
+      ? { headers: { "Content-Type": "multipart/form-data" } }
+      : {},
+  );
   return data;
 };
 
