@@ -1,15 +1,17 @@
 // src/components/admin/ProductForm.jsx
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import { LuPlus, LuTrash2 } from "react-icons/lu";
-import {
-  generateSlug,
-  slugPattern,
-  isSlugTaken,
-} from "../../utils/slugUtils";
+import { generateSlug, slugPattern, isSlugTaken } from "../../utils/slugUtils";
 import { generateSKU } from "../../utils/skuGenerator";
 
-const defaultVariant = { sku: "", size: "", color: "", stock: 0, is_default: false };
+const defaultVariant = {
+  sku: "",
+  size: "",
+  color: "",
+  stock: 0,
+  is_default: false,
+};
 const defaultImage = { secure_url: "", display_order: 1 };
 
 const nextDisplayOrder = (images) =>
@@ -50,10 +52,38 @@ export const ProductForm = ({
     },
   });
 
-  const { fields: variantFields, append: appendVariant, remove: removeVariant } =
-    useFieldArray({ control, name: "variants" });
-  const { fields: imageFields, append: appendImage, remove: removeImage } =
-    useFieldArray({ control, name: "images" });
+  const {
+    fields: variantFields,
+    append: appendVariant,
+    remove: removeVariant,
+  } = useFieldArray({ control, name: "variants" });
+  const {
+    fields: imageFields,
+    append: appendImage,
+    remove: removeImage,
+  } = useFieldArray({ control, name: "images" });
+
+  // URLs de previsualización local para los archivos seleccionados (blob).
+  // Se usan mientras no llegue la respuesta del backend con la URL real.
+  const [previews, setPreviews] = useState({});
+
+  const handleFileChange = (index, file) => {
+    if (!file) {
+      setPreviews((prev) => {
+        const next = { ...prev };
+        delete next[index];
+        return next;
+      });
+      setValue(`images.${index}.secure_url`, "");
+      return;
+    }
+    const objectUrl = URL.createObjectURL(file);
+    setPreviews((prev) => ({ ...prev, [index]: objectUrl }));
+    // El secure_url real lo provee el backend al subir a Cloudinary.
+    // Mientras tanto guardamos el archivo para el envío (FormData).
+    setValue(`images.${index}.file`, file, { shouldValidate: false });
+    setValue(`images.${index}.secure_url`, "", { shouldValidate: false });
+  };
 
   const nameRegister = register("name", {
     required: "El nombre del producto es requerido.",
@@ -86,8 +116,6 @@ export const ProductForm = ({
       display_order: nextDisplayOrder(getValues("images")),
     });
   };
-
-  const urlPattern = /^https?:\/\/[^\s]+$/;
 
   const categoryName = (categoryId) =>
     categories.find((c) => c.id === categoryId)?.name ?? "";
@@ -165,7 +193,7 @@ export const ProductForm = ({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Slug (URL amigable)
+              Slug
             </label>
             <input
               type="text"
@@ -238,7 +266,9 @@ export const ProductForm = ({
               <option value="UNPUBLISHED">Oculto</option>
             </select>
             {errors.status && (
-              <p className="text-xs text-red-600 mt-1">{errors.status.message}</p>
+              <p className="text-xs text-red-600 mt-1">
+                {errors.status.message}
+              </p>
             )}
           </div>
         </div>
@@ -278,7 +308,10 @@ export const ProductForm = ({
                   readOnly
                   {...register(`variants.${index}.sku`, {
                     required: "El SKU es requerido.",
-                    maxLength: { value: 100, message: "Máximo 100 caracteres." },
+                    maxLength: {
+                      value: 100,
+                      message: "Máximo 100 caracteres.",
+                    },
                     validate: (value) => {
                       const ownTaken = getValues("variants").some(
                         (variant, i) => i !== index && variant.sku === value,
@@ -429,23 +462,52 @@ export const ProductForm = ({
           >
             <div className="flex items-start gap-3">
               <div className="flex-1 space-y-2">
-                <div>
+<div>
                   <label className="block text-xs font-medium text-gray-600 mb-1">
-                    URL de la imagen
+                    Imagen (jpg / jpeg / png / webp)
                   </label>
-                  <input
-                    type="url"
-                    {...register(`images.${index}.secure_url`, {
-                      required: "La URL es requerida.",
-                      maxLength: { value: 500, message: "Máximo 500 caracteres." },
-                      pattern: {
-                        value: urlPattern,
-                        message: "Ingresá una URL válida (http/https).",
-                      },
-                    })}
-                    className="w-full px-3 py-2 border border-norte-stone rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard font-mono text-sm"
-                    placeholder="https://placehold.co/600x600?text=..."
-                  />
+                  <div className="flex items-center gap-2">
+                    <label
+                      className={`inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium border border-norte-forest/40 rounded-md cursor-pointer hover:bg-norte-forest/10 ${
+                        errors.images?.[index]?.secure_url
+                          ? "border-red-500"
+                          : "border-norte-stone"
+                      }`}
+                    >
+                      <input
+                        type="file"
+                        accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/jpg,image/png,image/webp"
+                        className="hidden"
+                        {...register(`images.${index}.file`, {
+                          validate: (file) => {
+                            if (!file || !(file instanceof File)) return true;
+                            if (!/\.(jpe?g|png|webp)$/i.test(file.name)) {
+                              return "Solo se permiten jpg, jpeg, png o webp.";
+                            }
+                            if (file.size > 5 * 1024 * 1024) {
+                              return "La imagen pesa máximo 5 MB.";
+                            }
+                            return true;
+                          },
+                        })}
+                        onChange={(e) => handleFileChange(index, e.target.files[0])}
+                      />
+                      {previews[index] ||
+                      getValues(`images.${index}.secure_url`)
+                        ? "Cambiar imagen"
+                        : "Seleccionar archivo"}
+                    </label>
+                    <span className="text-xs text-gray-500 truncate max-w-50">
+                      {getValues(`images.${index}.file`)?.name ??
+                        previews[index] ??
+                        "Sin archivo seleccionado"}
+                    </span>
+                  </div>
+                  {errors.images?.[index]?.file && (
+                    <p className="text-xs text-red-600 mt-1">
+                      {errors.images[index].file.message}
+                    </p>
+                  )}
                   {errors.images?.[index]?.secure_url && (
                     <p className="text-xs text-red-600 mt-1">
                       {errors.images[index].secure_url.message}
@@ -492,15 +554,27 @@ export const ProductForm = ({
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => removeImage(index)}
-                title="Eliminar imagen"
-                aria-label="Eliminar imagen"
-                className="p-2 rounded-md text-red-600 hover:bg-red-50"
-              >
-                <LuTrash2 size={16} />
-              </button>
+              <div className="flex flex-col items-center gap-2">
+                {(previews[index] ||
+                  getValues(`images.${index}.secure_url`)) && (
+                  <img
+                    src={
+                      previews[index] || getValues(`images.${index}.secure_url`)
+                    }
+                    alt={`Vista previa ${index + 1}`}
+                    className="h-16 w-16 shrink-0 rounded-md object-cover border border-norte-stone"
+                  />
+                )}
+                <button
+                  type="button"
+                  onClick={() => removeImage(index)}
+                  title="Eliminar imagen"
+                  aria-label="Eliminar imagen"
+                  className="p-2 rounded-md text-red-600 hover:bg-red-50"
+                >
+                  <LuTrash2 size={16} />
+                </button>
+              </div>
             </div>
           </div>
         ))}
