@@ -49,3 +49,9 @@ export const PAYMENT_STATUS = {
   REJECTED: 'REJECTED',
   CANCELLED: 'CANCELLED',
 };
+
+// CATEGORY STATUS (si lo necesitas)
+export const CATEGORY_STATUS = {
+  ACTIVE: true,
+  INACTIVE: false,
+};
