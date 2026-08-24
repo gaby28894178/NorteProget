@@ -7,6 +7,7 @@ import {
   deleteProduct,
 } from "../api/productApi";
 import { getCategories } from "../api/categoryApi";
+import { getApiErrorMessage } from "../utils/apiErrors";
 
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ export const useProducts = () => {
       setProducts(data);
     } catch (err) {
       console.error("Error al cargar productos:", err);
-      setError("No se pudieron cargar los productos.");
+      setError(getApiErrorMessage(err, "No se pudieron cargar los productos."));
     } finally {
       setLoading(false);
     }
@@ -57,7 +58,7 @@ export const useProducts = () => {
       } catch (err) {
         if (isMounted) {
           console.error("Error al cargar datos:", err);
-          setError("No se pudieron cargar los datos.");
+          setError(getApiErrorMessage(err, "No se pudieron cargar los datos."));
         }
       } finally {
         if (isMounted) {
@@ -168,7 +169,7 @@ export const useProducts = () => {
       await fetchProducts();
     } catch (err) {
       console.error("Error al guardar producto:", err);
-      toast.error("No se pudo guardar el producto.");
+      toast.error(getApiErrorMessage(err, "No se pudo guardar el producto."));
     }
   };
 
@@ -190,7 +191,7 @@ export const useProducts = () => {
       await fetchProducts();
     } catch (err) {
       console.error("Error al eliminar producto:", err);
-      toast.error("No se pudo eliminar el producto.");
+      toast.error(getApiErrorMessage(err, "No se pudo eliminar el producto."));
     } finally {
       setDeleting(false);
     }

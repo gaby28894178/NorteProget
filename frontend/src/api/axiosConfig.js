@@ -23,4 +23,17 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
+// Interceptor de respuesta: maneja 401 (token expirado / inválido)
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("norte-admin-user");
+      window.location.href = "/admin/login";
+    }
+    return Promise.reject(error);
+  },
+);
+
 export default axiosInstance;

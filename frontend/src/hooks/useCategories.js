@@ -6,6 +6,7 @@ import {
   updateCategory,
   deleteCategory,
 } from "../api/categoryApi";
+import { getApiErrorMessage } from "../utils/apiErrors";
 
 export const useCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -25,7 +26,7 @@ export const useCategories = () => {
       setCategories(data);
     } catch (err) {
       console.error("Error al cargar categorías:", err);
-      setError("No se pudieron cargar las categorías.");
+      setError(getApiErrorMessage(err, "No se pudieron cargar las categorías."));
     } finally {
       setLoading(false);
     }
@@ -45,7 +46,7 @@ export const useCategories = () => {
       .catch((err) => {
         if (isMounted) {
           console.error("Error al cargar categorías:", err);
-          setError("No se pudieron cargar las categorías.");
+          setError(getApiErrorMessage(err, "No se pudieron cargar las categorías."));
         }
       })
       .finally(() => {
@@ -87,7 +88,7 @@ export const useCategories = () => {
       await fetchCategories();
     } catch (err) {
       console.error("Error al guardar categoría:", err);
-      toast.error("No se pudo guardar la categoría.");
+      toast.error(getApiErrorMessage(err, "No se pudo guardar la categoría."));
     }
   };
 
@@ -98,7 +99,7 @@ export const useCategories = () => {
       await fetchCategories();
     } catch (err) {
       console.error("Error al eliminar categoría:", err);
-      toast.error("No se pudo eliminar la categoría.");
+      toast.error(getApiErrorMessage(err, "No se pudo eliminar la categoría."));
     }
   };
 
