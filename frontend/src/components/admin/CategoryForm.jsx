@@ -1,36 +1,20 @@
 import { useForm } from "react-hook-form";
-import { generateSlug, slugPattern, isSlugTaken } from "../../utils/slugUtils";
 
 export const CategoryForm = ({
   initialData,
-  existingCategories = [],
   onSubmit,
   onCancel,
 }) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
       name: initialData?.name ?? "",
-      slug: initialData?.slug ?? "",
       is_active: initialData?.is_active ?? true,
     },
   });
-
-  const nameRegister = register("name", {
-    required: "El nombre de la categoría es requerido.",
-    maxLength: { value: 100, message: "Máximo 100 caracteres." },
-  });
-
-  const handleNameChange = (e) => {
-    nameRegister.onChange(e);
-    if (!initialData) {
-      setValue("slug", generateSlug(e.target.value));
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -40,8 +24,10 @@ export const CategoryForm = ({
         </label>
         <input
           type="text"
-          {...nameRegister}
-          onChange={handleNameChange}
+          {...register("name", {
+            required: "El nombre de la categoría es requerido.",
+            maxLength: { value: 100, message: "Máximo 100 caracteres." },
+          })}
           className="w-full px-3 py-2 border border-norte-stone rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard"
           placeholder="Ej: Remeras y Musculosas"
         />
@@ -50,31 +36,22 @@ export const CategoryForm = ({
         )}
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Slug
-        </label>
-        <input
-          type="text"
-          {...register("slug", {
-            required: "El slug es requerido.",
-            maxLength: { value: 120, message: "Máximo 120 caracteres." },
-            pattern: {
-              value: slugPattern,
-              message:
-                "Solo minúsculas, números y guiones (ej: remeras-y-musculosas).",
-            },
-            validate: (value) =>
-              !isSlugTaken(value, existingCategories, initialData?.id) ||
-              "Ya existe una categoría con este slug.",
-          })}
-          className="w-full px-3 py-2 border border-norte-stone bg-gray-50 rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard font-mono text-sm"
-          placeholder="remeras-y-musculosas"
-        />
-        {errors.slug && (
-          <p className="text-xs text-red-600 mt-1">{errors.slug.message}</p>
-        )}
-      </div>
+      {initialData?.slug && (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Slug (código generado)
+          </label>
+          <input
+            type="text"
+            value={initialData.slug}
+            readOnly
+            className="w-full px-3 py-2 border border-norte-stone bg-gray-100 rounded-md font-mono text-sm text-gray-500 cursor-not-allowed"
+          />
+          <p className="text-xs text-gray-400 mt-1">
+            Generado automáticamente por el sistema
+          </p>
+        </div>
+      )}
 
       <div className="flex items-center gap-2 pt-2">
         <input

@@ -63,7 +63,6 @@ export const AdminCategoriesPage = () => {
             <CategoryForm
               key={editingCategory ? editingCategory.id : "new"}
               initialData={editingCategory}
-              existingCategories={categories}
               onSubmit={handleSave}
               onCancel={handleCloseModal}
             />

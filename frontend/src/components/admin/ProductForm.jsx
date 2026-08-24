@@ -1,12 +1,9 @@
 // src/components/admin/ProductForm.jsx
-import { useEffect, useState } from "react";
-import { useForm, useFieldArray, useWatch } from "react-hook-form";
+import { useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
 import { LuPlus, LuTrash2 } from "react-icons/lu";
-import { generateSlug, slugPattern, isSlugTaken } from "../../utils/slugUtils";
-import { generateSKU } from "../../utils/skuGenerator";
 
 const defaultVariant = {
-  sku: "",
   size: "",
   color: "",
   stock: 0,
@@ -22,7 +19,6 @@ const nextDisplayOrder = (images) =>
 export const ProductForm = ({
   initialData = null,
   categories = [],
-  existingProducts = [],
   onSubmit,
   onCancel,
 }) => {
@@ -37,7 +33,6 @@ export const ProductForm = ({
     defaultValues: {
       category_id: initialData?.category_id ?? "",
       name: initialData?.name ?? "",
-      slug: initialData?.slug ?? "",
       description: initialData?.description ?? "",
       current_price: initialData?.current_price ?? "",
       status: initialData?.status ?? "PUBLISHED",
@@ -90,13 +85,6 @@ export const ProductForm = ({
     maxLength: { value: 150, message: "Máximo 150 caracteres." },
   });
 
-  const handleNameChange = (e) => {
-    nameRegister.onChange(e);
-    if (!initialData) {
-      setValue("slug", generateSlug(e.target.value));
-    }
-  };
-
   const handleToggleDefault = (index) => {
     getValues("variants").forEach((_, i) => {
       setValue(`variants.${i}.is_default`, i === index, {
@@ -116,31 +104,6 @@ export const ProductForm = ({
       display_order: nextDisplayOrder(getValues("images")),
     });
   };
-
-  const categoryName = (categoryId) =>
-    categories.find((c) => c.id === categoryId)?.name ?? "";
-
-  const watchedName = useWatch({ control, name: "name" });
-  const watchedCategory = useWatch({ control, name: "category_id" });
-  const watchedVariants = useWatch({ control, name: "variants" });
-
-  useEffect(() => {
-    const productName = watchedName?.trim();
-    const catName = categoryName(watchedCategory);
-
-    watchedVariants?.forEach((variant, index) => {
-      const color = variant.color?.trim();
-      const size = variant.size?.trim();
-
-      if (productName && catName && color && size) {
-        const sku = generateSKU(catName, productName, color, size);
-        if (getValues(`variants.${index}.sku`) !== sku) {
-          setValue(`variants.${index}.sku`, sku);
-        }
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchedName, watchedCategory, watchedVariants]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -182,7 +145,6 @@ export const ProductForm = ({
             <input
               type="text"
               {...nameRegister}
-              onChange={handleNameChange}
               className="w-full px-3 py-2 border border-norte-stone rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard"
               placeholder="Ej: Buzo Norte"
             />
@@ -191,31 +153,22 @@ export const ProductForm = ({
             )}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Slug
-            </label>
-            <input
-              type="text"
-              {...register("slug", {
-                required: "El slug es requerido.",
-                maxLength: { value: 180, message: "Máximo 180 caracteres." },
-                pattern: {
-                  value: slugPattern,
-                  message:
-                    "Solo minúsculas, números y guiones (ej: buzo-norte).",
-                },
-                validate: (value) =>
-                  !isSlugTaken(value, existingProducts, initialData?.id) ||
-                  "Ya existe un producto con este slug.",
-              })}
-              className="w-full px-3 py-2 border border-norte-stone bg-gray-50 rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard font-mono text-sm"
-              placeholder="buzo-norte"
-            />
-            {errors.slug && (
-              <p className="text-xs text-red-600 mt-1">{errors.slug.message}</p>
-            )}
-          </div>
+          {initialData?.slug && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Slug (código generado)
+              </label>
+              <input
+                type="text"
+                value={initialData.slug}
+                readOnly
+                className="w-full px-3 py-2 border border-norte-stone bg-gray-100 rounded-md font-mono text-sm text-gray-500 cursor-not-allowed"
+              />
+              <p className="text-xs text-gray-400 mt-1">
+                Generado automáticamente por el sistema
+              </p>
+            </div>
+          )}
         </div>
 
         <div>
@@ -298,46 +251,23 @@ export const ProductForm = ({
             key={field.id}
             className="border border-norte-stone/70 rounded-md p-3 space-y-3 bg-norte-bg/30"
           >
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              <div className="col-span-2">
+            {initialData?.variants?.[index]?.sku && (
+              <div>
                 <label className="block text-xs font-medium text-gray-600 mb-1">
-                  SKU
+                  SKU (código generado)
                 </label>
                 <input
                   type="text"
+                  value={initialData.variants[index].sku}
                   readOnly
-                  {...register(`variants.${index}.sku`, {
-                    required: "El SKU es requerido.",
-                    maxLength: {
-                      value: 100,
-                      message: "Máximo 100 caracteres.",
-                    },
-                    validate: (value) => {
-                      const ownTaken = getValues("variants").some(
-                        (variant, i) => i !== index && variant.sku === value,
-                      );
-                      const globalTaken = existingProducts.some((product) =>
-                        product.variants?.some(
-                          (variant) =>
-                            variant.sku === value &&
-                            product.id !== initialData?.id,
-                        ),
-                      );
-                      if (ownTaken || globalTaken)
-                        return "Ya existe una variante con este SKU.";
-                      return true;
-                    },
-                  })}
-                  className="w-full px-3 py-2 border border-norte-stone bg-gray-50 rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard font-mono text-sm"
-                  placeholder="Se genera automáticamente"
+                  className="w-full px-3 py-2 border border-norte-stone bg-gray-100 rounded-md font-mono text-xs text-gray-500 cursor-not-allowed"
                 />
-                {errors.variants?.[index]?.sku && (
-                  <p className="text-xs text-red-600 mt-1">
-                    {errors.variants[index].sku.message}
-                  </p>
-                )}
+                <p className="text-xs text-gray-400 mt-1">
+                  Generado automáticamente por el sistema
+                </p>
               </div>
-
+            )}
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-medium text-gray-600 mb-1">
                   Talla
@@ -546,7 +476,7 @@ export const ProductForm = ({
                     </label>
                     <input
                       type="text"
-                      value={`norte/products/${getValues("slug") || generateSlug(getValues("name"))}/${getValues(`images.${index}.display_order`) || "1"}`}
+                      value={initialData?.slug ? `norte/products/${initialData.slug}/${getValues(`images.${index}.display_order`) || "1"}` : "Se genera al crear el producto"}
                       readOnly
                       className="w-full px-3 py-2 border border-norte-stone bg-gray-100 rounded-md font-mono text-xs text-gray-500"
                     />

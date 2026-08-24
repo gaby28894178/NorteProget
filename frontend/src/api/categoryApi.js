@@ -1,5 +1,4 @@
 import axiosInstance from "./axiosConfig";
-import { generateSlug } from "../utils/slugUtils";
 import initialCategories from "../data/categories.json";
 // Usa datos mock en memoria mientras no exista el backend real.
 const USE_MOCK =
@@ -10,7 +9,6 @@ const generateId = () =>
 
 const pickCategoryFields = (data) => ({
   name: data.name,
-  slug: data.slug || generateSlug(data.name),
   is_active: data.is_active ?? true,
 });
 
@@ -23,7 +21,7 @@ let mockCategories = Array.isArray(initialCategories)
   ? initialCategories.map((cat, idx) => ({
       id: cat.id ?? `cat-${idx + 1}`,
       name: cat.name || cat.categoria || cat,
-      slug: cat.slug || generateSlug(cat.name || cat.categoria || cat),
+      slug: cat.slug || "",
       is_active: cat.is_active ?? true,
       created_at: cat.created_at || new Date().toISOString(),
       updated_at: cat.updated_at || new Date().toISOString(),
@@ -44,9 +42,18 @@ export const getCategories = async () => {
 export const createCategory = async (categoryData) => {
   if (USE_MOCK) {
     await delay();
+    const name = categoryData.name;
+    const slug = name
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
     const newCategory = {
       id: generateId(),
-      ...pickCategoryFields(categoryData),
+      name,
+      slug,
+      is_active: categoryData.is_active ?? true,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     };

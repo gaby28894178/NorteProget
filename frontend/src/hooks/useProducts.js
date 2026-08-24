@@ -112,7 +112,6 @@ export const useProducts = () => {
     )
       return true;
     if ((original.name ?? "") !== (formData.name ?? "")) return true;
-    if ((original.slug ?? "") !== (formData.slug ?? "")) return true;
     if ((original.description ?? "") !== (formData.description ?? ""))
       return true;
     if (Number(original.current_price) !== Number(formData.current_price))
@@ -130,7 +129,6 @@ export const useProducts = () => {
     for (let i = 0; i < origVariants.length; i++) {
       const a = origVariants[i];
       const b = formVariants[i];
-      if ((a.sku ?? "") !== (b.sku ?? "")) return true;
       if ((a.size ?? "") !== (b.size ?? "")) return true;
       if ((a.color ?? "") !== (b.color ?? "")) return true;
       if (Number(a.stock ?? 0) !== Number(b.stock ?? 0)) return true;
