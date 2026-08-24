@@ -9,6 +9,13 @@ import {
 import { getCategories } from "../api/categoryApi";
 import { getApiErrorMessage } from "../utils/apiErrors";
 
+// Para el selector de categorías del formulario de productos,
+// necesitamos todas las categorías activas sin paginación.
+const getAllCategories = async () => {
+  const result = await getCategories({ page: 1, limit: 100, search: "" });
+  return result.data;
+};
+
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -48,7 +55,7 @@ export const useProducts = () => {
       try {
         const [productData, categoryData] = await Promise.all([
           getProducts(),
-          getCategories(),
+          getAllCategories(),
         ]);
         if (isMounted) {
           setProducts(productData);

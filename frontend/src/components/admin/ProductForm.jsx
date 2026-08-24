@@ -390,12 +390,12 @@ export const ProductForm = ({
             key={field.id}
             className="border border-norte-stone/70 rounded-md p-3 bg-norte-bg/30"
           >
-            <div className="flex items-start gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-3">
               <div className="flex-1 space-y-2">
-<div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                <div>
+                  <p className="text-xs font-medium text-gray-600 mb-1">
                     Imagen (jpg / jpeg / png / webp)
-                  </label>
+                  </p>
                   <div className="flex items-center gap-2">
                     <label
                       className={`inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium border border-norte-forest/40 rounded-md cursor-pointer hover:bg-norte-forest/10 ${
@@ -444,47 +444,38 @@ export const ProductForm = ({
                     </p>
                   )}
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-medium text-gray-600 mb-1">
-                      Orden
-                    </label>
-                    <input
-                      type="number"
-                      min="1"
-                      {...register(`images.${index}.display_order`, {
-                        required: "El orden es requerido.",
-                        min: { value: 1, message: "Mínimo 1." },
-                        validate: (value) =>
-                          !getValues("images").some(
-                            (image, i) =>
-                              i !== index &&
-                              Number(image.display_order) === Number(value),
-                          ) || "El orden debe ser único por producto.",
-                      })}
-                      className="w-full px-3 py-2 border border-norte-stone rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard"
-                    />
-                    {errors.images?.[index]?.display_order && (
-                      <p className="text-xs text-red-600 mt-1">
-                        {errors.images[index].display_order.message}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-gray-600 mb-1">
-                      Public ID (automático)
-                    </label>
-                    <input
-                      type="text"
-                      value={initialData?.slug ? `norte/products/${initialData.slug}/${getValues(`images.${index}.display_order`) || "1"}` : "Se genera al crear el producto"}
-                      readOnly
-                      className="w-full px-3 py-2 border border-norte-stone bg-gray-100 rounded-md font-mono text-xs text-gray-500"
-                    />
-                  </div>
+                <div className="max-w-24">
+                  <label
+                    htmlFor={`img-order-${index}`}
+                    className="block text-xs font-medium text-gray-600 mb-1"
+                  >
+                    Orden
+                  </label>
+                  <input
+                    id={`img-order-${index}`}
+                    type="number"
+                    min="1"
+                    {...register(`images.${index}.display_order`, {
+                      required: "El orden es requerido.",
+                      min: { value: 1, message: "Mínimo 1." },
+                      validate: (value) =>
+                        !getValues("images").some(
+                          (image, i) =>
+                            i !== index &&
+                            Number(image.display_order) === Number(value),
+                        ) || "El orden debe ser único por producto.",
+                    })}
+                    className="w-full px-3 py-2 border border-norte-stone rounded-md focus:outline-none focus:ring-2 focus:ring-norte-mustard"
+                  />
+                  {errors.images?.[index]?.display_order && (
+                    <p className="text-xs text-red-600 mt-1">
+                      {errors.images[index].display_order.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-row sm:flex-col items-center gap-2">
                 {(previews[index] ||
                   getValues(`images.${index}.secure_url`)) && (
                   <img
@@ -492,7 +483,7 @@ export const ProductForm = ({
                       previews[index] || getValues(`images.${index}.secure_url`)
                     }
                     alt={`Vista previa ${index + 1}`}
-                    className="h-16 w-16 shrink-0 rounded-md object-cover border border-norte-stone"
+                    className="h-20 w-20 sm:h-24 sm:w-24 shrink-0 rounded-md object-cover border border-norte-stone"
                   />
                 )}
                 <button
