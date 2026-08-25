@@ -1,17 +1,32 @@
 // src/pages/admin/AdminOrdersPage.jsx
 import { useOrders } from "../../hooks/useOrders";
 import { OrderTable } from "../../components/admin/OrderTable";
+import { OrderFilters } from "../../components/admin/OrderFilters";
 import { OrderDetail } from "../../components/admin/OrderDetail";
 import { getStatusLabel } from "../../utils/orderStatus";
+import { LuLoader } from "react-icons/lu";
 
 export const AdminOrdersPage = () => {
   const {
     orders,
     loading,
+    initialLoading,
     error,
+    pagination,
     updatingId,
     pendingChange,
     viewingOrder,
+    // Filtros
+    searchInput,
+    setSearchInput,
+    statusFilter,
+    setStatusFilter,
+    sortBy,
+    sortOrder,
+    handleSort,
+    hasActiveFilters,
+    clearFilters,
+    // Acciones
     handleStatusChange,
     handleConfirmChange,
     handleCancelChange,
@@ -52,17 +67,44 @@ export const AdminOrdersPage = () => {
             </div>
           )}
 
-          {loading ? (
-            <div className="text-center py-10 text-gray-500">
+          {/* Carga inicial: solo la primera vez que no hay datos */}
+          {initialLoading ? (
+            <div className="flex items-center justify-center gap-2 py-10 text-gray-500">
+              <LuLoader size={18} className="animate-spin" />
               Cargando pedidos...
             </div>
           ) : (
-            <OrderTable
-              orders={orders}
-              updatingId={updatingId}
-              onStatusChange={handleStatusChange}
-              onView={handleOpenView}
-            />
+            <>
+              <OrderFilters
+                searchInput={searchInput}
+                onSearchChange={setSearchInput}
+                statusFilter={statusFilter}
+                onStatusChange={setStatusFilter}
+                resultCount={pagination?.total ?? orders.length}
+                totalCount={pagination?.total ?? orders.length}
+                hasActiveFilters={hasActiveFilters}
+                onClearFilters={clearFilters}
+              />
+
+              <div className="relative">
+                {/* Loading sutil durante recarga de filtros */}
+                {loading && (
+                  <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 rounded-lg">
+                    <LuLoader size={20} className="animate-spin text-norte-mustard" />
+                  </div>
+                )}
+
+                <OrderTable
+                  orders={orders}
+                  updatingId={updatingId}
+                  onStatusChange={handleStatusChange}
+                  onView={handleOpenView}
+                  sortBy={sortBy}
+                  sortOrder={sortOrder}
+                  onSort={handleSort}
+                />
+              </div>
+            </>
           )}
         </>
       )}

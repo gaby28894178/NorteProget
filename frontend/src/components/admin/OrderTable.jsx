@@ -1,5 +1,5 @@
 // src/components/admin/OrderTable.jsx
-import { LuEye, LuLoader } from "react-icons/lu";
+import { LuEye, LuLoader, LuArrowUp, LuArrowDown } from "react-icons/lu";
 import { getStatusMeta } from "../../utils/orderStatus";
 import { OrderStatusSelect } from "./OrderStatusSelect";
 
@@ -17,7 +17,49 @@ const formatDate = (value) => {
   }).format(new Date(value));
 };
 
-export const OrderTable = ({ orders, updatingId, onStatusChange, onView }) => {
+const SortIcon = ({ field, sortBy, sortOrder, hint }) => {
+  const isActive = sortBy === field;
+  return (
+    <span className="inline-flex items-center ml-2 gap-1">
+      {hint && (
+        <span className={`text-[10px] font-medium ${isActive ? "text-norte-mustard" : "text-gray-400"}`}>
+          {hint}
+        </span>
+      )}
+      {isActive ? (
+        sortOrder === "asc" ? (
+          <LuArrowUp size={16} strokeWidth={2.5} className="text-norte-mustard" />
+        ) : (
+          <LuArrowDown size={16} strokeWidth={2.5} className="text-norte-mustard" />
+        )
+      ) : (
+        <LuArrowUp size={16} strokeWidth={2} className="text-gray-300" />
+      )}
+    </span>
+  );
+};
+
+const SortableHeader = ({ field, label, hint, sortBy, sortOrder, onSort }) => (
+  <th
+    className="px-6 py-3 cursor-pointer select-none hover:bg-gray-100 transition-colors"
+    onClick={() => onSort(field)}
+  >
+    <span className="inline-flex items-center">
+      {label}
+      <SortIcon field={field} sortBy={sortBy} sortOrder={sortOrder} hint={hint} />
+    </span>
+  </th>
+);
+
+export const OrderTable = ({
+  orders,
+  updatingId,
+  onStatusChange,
+  onView,
+  sortBy,
+  sortOrder,
+  onSort,
+}) => {
   const shortId = (id) =>
     typeof id === "string" && id.length > 8 ? id.slice(0, 8) : id;
 
@@ -27,9 +69,40 @@ export const OrderTable = ({ orders, updatingId, onStatusChange, onView }) => {
         <thead className="bg-gray-50 text-gray-700 uppercase text-xs border-b border-norte-stone/60">
           <tr>
             <th className="px-6 py-3">Pedido</th>
-            <th className="px-6 py-3">Cliente</th>
-            <th className="px-6 py-3">Total</th>
-            <th className="px-6 py-3">Fecha</th>
+            {onSort ? (
+              <SortableHeader
+                field="customer"
+                label="Cliente"
+                hint="A-Z"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+              />
+            ) : (
+              <th className="px-6 py-3">Cliente</th>
+            )}
+            {onSort ? (
+              <SortableHeader
+                field="total_amount"
+                label="Total"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+              />
+            ) : (
+              <th className="px-6 py-3">Total</th>
+            )}
+            {onSort ? (
+              <SortableHeader
+                field="created_at"
+                label="Fecha"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+              />
+            ) : (
+              <th className="px-6 py-3">Fecha</th>
+            )}
             <th className="px-6 py-3">Estado</th>
             <th className="px-6 py-3">Cambiar estado</th>
             <th className="px-6 py-3 text-center">Acciones</th>
@@ -38,8 +111,11 @@ export const OrderTable = ({ orders, updatingId, onStatusChange, onView }) => {
         <tbody className="divide-y divide-norte-stone/50">
           {orders.length === 0 ? (
             <tr>
-              <td colSpan="7" className="px-6 py-4 text-center text-gray-500">
-                No hay pedidos disponibles.
+              <td
+                colSpan="7"
+                className="px-6 py-4 text-center text-gray-500"
+              >
+                No hay pedidos que coincidan con los filtros.
               </td>
             </tr>
           ) : (
