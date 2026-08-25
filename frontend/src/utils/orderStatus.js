@@ -1,5 +1,6 @@
-// Presentación compartida de los estados de pedido (labels y badges).
-// Es solo de UI; la matriz de transiciones vive en api/ordersApi.js.
+// Presentación y ciclo de vida de los estados de pedido.
+// Labels/badges para UI + matriz de transiciones permitidas.
+
 export const ORDER_STATUS_META = {
   PENDING: { label: "Pendiente", badge: "bg-norte-stone/40 text-norte-dark" },
   PAID: { label: "Pagado", badge: "bg-norte-forest/10 text-norte-forest" },
@@ -21,3 +22,26 @@ export const getStatusMeta = (status) =>
   };
 
 export const getStatusLabel = (status) => getStatusMeta(status).label;
+
+// ─── Matriz de transiciones del ciclo de vida ──────────────
+// PENDING -> PAID, PROCESSING, COMPLETED, CANCELLED
+// PAID    -> PROCESSING, COMPLETED, CANCELLED
+// PROCESSING -> COMPLETED, CANCELLED
+// COMPLETED  -> (terminal)
+// CANCELLED  -> (terminal)
+
+const ALLOWED_TRANSITIONS = {
+  PENDING: ["PAID", "PROCESSING", "COMPLETED", "CANCELLED"],
+  PAID: ["PROCESSING", "COMPLETED", "CANCELLED"],
+  PROCESSING: ["COMPLETED", "CANCELLED"],
+  COMPLETED: [],
+  CANCELLED: [],
+};
+
+/** Devuelve los estados a los que se puede pasar desde `status`. */
+export const getNextStatuses = (status) =>
+  ALLOWED_TRANSITIONS[status] ?? [];
+
+/** Indica si la transición de `current` a `next` está permitida. */
+export const canTransition = (current, next) =>
+  ALLOWED_TRANSITIONS[current]?.includes(next) ?? false;

@@ -1,6 +1,5 @@
 // src/components/admin/OrderStatusSelect.jsx
-import { getNextStatuses } from "../../api/ordersApi";
-import { getStatusLabel } from "../../utils/orderStatus";
+import { getNextStatuses, getStatusLabel } from "../../utils/orderStatus";
 
 export const OrderStatusSelect = ({ order, disabled = false, onChange }) => {
   const nextStatuses = getNextStatuses(order.status);

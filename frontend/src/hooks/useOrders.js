@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import {
   getOrders,
@@ -10,6 +10,10 @@ export const useOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState(null);
+
+  // True solo en la carga inicial (sin datos aún)
+  const [initialLoading, setInitialLoading] = useState(true);
 
   // Pedido cuyo estado se está actualizando (para deshabilitar su fila)
   const [updatingId, setUpdatingId] = useState(null);
@@ -21,47 +25,62 @@ export const useOrders = () => {
   // Pedido abierto en la vista de detalle.
   const [viewingOrder, setViewingOrder] = useState(null);
 
-  const fetchOrders = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await getOrders();
-      setOrders(data);
-    } catch (err) {
-      console.error("Error al cargar pedidos:", err);
-      setError("No se pudieron cargar los pedidos.");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  // ─── Estados de filtros ─────────────────────────────────
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [sortBy, setSortBy] = useState("created_at");
+  const [sortOrder, setSortOrder] = useState("desc");
 
-  // Carga inicial en el montaje (setState solo en callbacks asíncronos)
+  // Forzar recarga sin cambiar filtros
+  const [refreshKey, setRefreshKey] = useState(0);
+  const refetch = () => setRefreshKey((k) => k + 1);
+
+  // Debounce de búsqueda (400ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearch(searchInput);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchInput]);
+
+  // Carga de datos cuando cambian filtros, paginación o refresh
   useEffect(() => {
     let isMounted = true;
 
-    getOrders()
-      .then((data) => {
+    async function load() {
+      setLoading(true);
+      setError(null);
+      try {
+        const result = await getOrders({
+          search,
+          status: statusFilter,
+          sortBy,
+          sortOrder,
+        });
         if (isMounted) {
-          setOrders(data);
+          setOrders(result.data);
+          setPagination(result.pagination);
           setError(null);
+          setInitialLoading(false);
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         if (isMounted) {
           console.error("Error al cargar pedidos:", err);
           setError("No se pudieron cargar los pedidos.");
         }
-      })
-      .finally(() => {
+      } finally {
         if (isMounted) {
           setLoading(false);
         }
-      });
+      }
+    }
 
+    load();
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [search, statusFilter, sortBy, sortOrder, refreshKey]);
 
   // Ejecuta efectivamente el cambio de estado y refleja el resultado.
   const applyStatus = async (order, status) => {
@@ -73,7 +92,9 @@ export const useOrders = () => {
       const updated = await updateOrderStatus(order.id, status);
       // Reflejar de inmediato usando la orden devuelta por la API/mock.
       setOrders((orders) =>
-        orders.map((o) => String(o.id) === String(order.id) ? updated : o)
+        orders.map((o) =>
+          String(o.id) === String(order.id) ? updated : o,
+        ),
       );
       toast.success("Estado del pedido actualizado correctamente.");
     } catch (err) {
@@ -81,8 +102,8 @@ export const useOrders = () => {
       // Si falla, volvemos al estado anterior para que no quede inconsistencia.
       setOrders((orders) =>
         orders.map((o) =>
-          String(o.id) === String(order.id) ? { ...o, status: previous } : o
-        )
+          String(o.id) === String(order.id) ? { ...o, status: previous } : o,
+        ),
       );
       toast.error(getOrderErrorMessage(err));
     } finally {
@@ -120,14 +141,48 @@ export const useOrders = () => {
     setViewingOrder(null);
   };
 
+  // ─── Sort ───────────────────────────────────────────────
+  const handleSort = (field) => {
+    if (sortBy === field) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortBy(field);
+      setSortOrder(field === "created_at" ? "desc" : "asc");
+    }
+  };
+
+  // ─── Limpiar filtros ───────────────────────────────────
+  const clearFilters = () => {
+    setSearchInput("");
+    setSearch("");
+    setStatusFilter("");
+    setSortBy("created_at");
+    setSortOrder("desc");
+  };
+
+  const hasActiveFilters = search || statusFilter;
+
   return {
     orders,
     loading,
+    initialLoading,
     error,
+    pagination,
     updatingId,
     pendingChange,
     viewingOrder,
-    fetchOrders,
+    // Filtros
+    searchInput,
+    setSearchInput,
+    statusFilter,
+    setStatusFilter,
+    sortBy,
+    sortOrder,
+    handleSort,
+    hasActiveFilters,
+    clearFilters,
+    // Acciones
+    fetchOrders: refetch,
     handleStatusChange,
     handleConfirmChange,
     handleCancelChange,
