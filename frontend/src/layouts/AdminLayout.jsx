@@ -26,7 +26,7 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="admin-root flex min-h-screen bg-norte-bg">
+    <div className="admin-root flex min-h-screen bg-norte-bg min-w-90">
       {/* Overlay para el drawer en móvil */}
       <div
         className={`fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity lg:hidden ${

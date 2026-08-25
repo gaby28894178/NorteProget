@@ -7,6 +7,14 @@ import {
   deleteProduct,
 } from "../api/productApi";
 import { getCategories } from "../api/categoryApi";
+import { getApiErrorMessage } from "../utils/apiErrors";
+
+// Para el selector de categorías del formulario de productos,
+// necesitamos todas las categorías activas sin paginación.
+const getAllCategories = async () => {
+  const result = await getCategories({ page: 1, limit: 100, search: "" });
+  return result.data;
+};
 
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
@@ -33,7 +41,7 @@ export const useProducts = () => {
       setProducts(data);
     } catch (err) {
       console.error("Error al cargar productos:", err);
-      setError("No se pudieron cargar los productos.");
+      setError(getApiErrorMessage(err, "No se pudieron cargar los productos."));
     } finally {
       setLoading(false);
     }
@@ -47,7 +55,7 @@ export const useProducts = () => {
       try {
         const [productData, categoryData] = await Promise.all([
           getProducts(),
-          getCategories(),
+          getAllCategories(),
         ]);
         if (isMounted) {
           setProducts(productData);
@@ -57,7 +65,7 @@ export const useProducts = () => {
       } catch (err) {
         if (isMounted) {
           console.error("Error al cargar datos:", err);
-          setError("No se pudieron cargar los datos.");
+          setError(getApiErrorMessage(err, "No se pudieron cargar los datos."));
         }
       } finally {
         if (isMounted) {
@@ -112,7 +120,6 @@ export const useProducts = () => {
     )
       return true;
     if ((original.name ?? "") !== (formData.name ?? "")) return true;
-    if ((original.slug ?? "") !== (formData.slug ?? "")) return true;
     if ((original.description ?? "") !== (formData.description ?? ""))
       return true;
     if (Number(original.current_price) !== Number(formData.current_price))
@@ -130,7 +137,6 @@ export const useProducts = () => {
     for (let i = 0; i < origVariants.length; i++) {
       const a = origVariants[i];
       const b = formVariants[i];
-      if ((a.sku ?? "") !== (b.sku ?? "")) return true;
       if ((a.size ?? "") !== (b.size ?? "")) return true;
       if ((a.color ?? "") !== (b.color ?? "")) return true;
       if (Number(a.stock ?? 0) !== Number(b.stock ?? 0)) return true;
@@ -170,7 +176,7 @@ export const useProducts = () => {
       await fetchProducts();
     } catch (err) {
       console.error("Error al guardar producto:", err);
-      toast.error("No se pudo guardar el producto.");
+      toast.error(getApiErrorMessage(err, "No se pudo guardar el producto."));
     }
   };
 
@@ -192,7 +198,7 @@ export const useProducts = () => {
       await fetchProducts();
     } catch (err) {
       console.error("Error al eliminar producto:", err);
-      toast.error("No se pudo eliminar el producto.");
+      toast.error(getApiErrorMessage(err, "No se pudo eliminar el producto."));
     } finally {
       setDeleting(false);
     }

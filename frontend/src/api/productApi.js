@@ -1,5 +1,4 @@
 import axiosInstance from "./axiosConfig";
-import { generateSlug } from "../utils/slugUtils";
 import initialProducts from "../data/products.json";
 
 // Usa datos mock en memoria mientras no exista el backend real.
@@ -38,13 +37,12 @@ const normalizeImage = (image, productId, slug, now) => ({
 const normalizeProduct = (data) => {
   const now = new Date().toISOString();
   const id = data.id ?? generateId();
-  const slug = data.slug || generateSlug(data.name);
 
   return {
     id,
     category_id: data.category_id,
     name: data.name,
-    slug,
+    slug: data.slug || "",
     description: data.description || null,
     current_price: Number(data.current_price),
     status: data.status || "PUBLISHED",
@@ -54,7 +52,7 @@ const normalizeProduct = (data) => {
       (v) => normalizeVariant(v, id, now),
     ),
     images: (Array.isArray(data.images) ? data.images : []).map((img) =>
-      normalizeImage(img, id, slug, now),
+      normalizeImage(img, id, data.slug || "", now),
     ),
   };
 };
@@ -137,9 +135,13 @@ export const getProducts = async () => {
 export const createProduct = async (productData) => {
   if (USE_MOCK) {
     await delay();
-    const slug = productData.slug || generateSlug(productData.name);
-    // En mock, "subimos" los archivos a un placeholder y generamos
-    // public_id + secure_url como si vinieran de Cloudinary.
+    const name = productData.name || "";
+    const slug = name
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
     const images = (Array.isArray(productData.images) ? productData.images : [])
       .map((img) => {
         if (img && img.file instanceof File) {
@@ -154,7 +156,12 @@ export const createProduct = async (productData) => {
           display_order: Number(img?.display_order) || 1,
         };
       });
-    const newProduct = normalizeProduct({ ...productData, images });
+    const variants = (Array.isArray(productData.variants) ? productData.variants : [])
+      .map((v, i) => ({
+        ...v,
+        sku: v.sku || `SKU-${slug.toUpperCase().slice(0, 3)}-${String(i + 1).padStart(3, "0")}`,
+      }));
+    const newProduct = normalizeProduct({ ...productData, slug, images, variants });
     mockProducts = [newProduct, ...mockProducts];
     return newProduct;
   }
@@ -172,7 +179,7 @@ export const createProduct = async (productData) => {
 export const updateProduct = async (id, productData) => {
   if (USE_MOCK) {
     await delay();
-    const slug = productData.slug || generateSlug(productData.name);
+    const slug = productData.slug || "";
     const images = (Array.isArray(productData.images) ? productData.images : [])
       .map((img) => {
         if (img && img.file instanceof File) {

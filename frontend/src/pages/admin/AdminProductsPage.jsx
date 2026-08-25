@@ -91,7 +91,6 @@ export const AdminProductsPage = () => {
             key={editingProduct ? editingProduct.id : "new"}
             initialData={editingProduct}
             categories={categories}
-            existingProducts={products}
             onSubmit={handleSave}
             onCancel={handleCloseForm}
           />
