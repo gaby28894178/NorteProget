@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import heroImage from "../../assets/hero.png";
+// TODO(limpiar): Reemplazar este import hardcodeado por una llamada a productApi.getProducts()
 import products from "../../data/products";
 import { trackCtaClick } from "../../utils/analytics";
 

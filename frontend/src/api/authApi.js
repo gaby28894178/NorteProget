@@ -1,18 +1,19 @@
 import axiosInstance from "./axiosConfig";
 
-// Usa credenciales mock en el frontend mientras no exista el backend de auth.
-// El único punto donde se decide entre mock y API real es este flag.
+// TODO(limpiar): Eliminar USE_MOCK, ADMIN_EMAIL, ADMIN_PASSWORD,
+// createMockToken y el bloque if (USE_MOCK) completo.
+// Solo quedará la llamada axios real a POST /auth/login.
 const USE_MOCK =
   import.meta.env.VITE_USE_MOCK === "true" || !import.meta.env.VITE_API_URL;
 
-// Credenciales demo del panel admin (solo válidas en modo mock).
+// TODO(limpiar): Eliminar credenciales demo (solo válidas en mock)
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
+// TODO(limpiar): Eliminar delay
 const delay = (ms = 600) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Token JWT simulado: conserva el mismo formato y almacenamiento que el del
-// backend real, para que al conectar la API solo cambie esta capa (mock → REST).
+// TODO(limpiar): Eliminar createMockToken
 const createMockToken = (email) => {
   const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
   const payload = btoa(
@@ -28,9 +29,15 @@ const createMockToken = (email) => {
 // Normaliza la respuesta del endpoint real (puede llegar como { token, user }
 // o envuelta en { data: { token, user } }).
 const normalizeAuthResponse = (data) => ({
-  token: data?.token,
+  token: data?.token ?? data?.accessToken,
+  refreshToken: data?.refreshToken,
   user: data?.user ?? { email: data?.email },
 });
+
+export const clientLogin = async ({ email, password }) => {
+  const { data } = await axiosInstance.post("/auth/login", { email, password });
+  return normalizeAuthResponse(data?.data ?? data);
+};
 
 /**
  * Login del panel admin.
@@ -38,6 +45,7 @@ const normalizeAuthResponse = (data) => ({
  * Real: POST /auth/login → { token, user }.
  */
 export const adminLogin = async ({ email, password }) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK) completo
   if (USE_MOCK) {
     await delay();
 

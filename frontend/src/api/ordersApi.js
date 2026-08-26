@@ -1,8 +1,11 @@
 import axiosInstance from "./axiosConfig";
+// TODO(limpiar): Eliminar import de datos seed cuando el backend exista
 import initialOrders from "../data/orders.json";
+// TODO(limpiar): Eliminar import de mockFilterAndSort (solo se usa en mock)
 import { normalizeOrder, appendHistory, extractList, mockFilterAndSort } from "../utils/orderHelpers";
 
-// Bandera para conmutar entre mock y API real
+// TODO(limpiar): Eliminar USE_MOCK, seedFromJson, mockOrders y delay.
+// Solo quedan las llamadas axios reales.
 const USE_MOCK =
   import.meta.env.VITE_USE_MOCK === "true" || !import.meta.env.VITE_API_URL;
 
@@ -14,7 +17,7 @@ export const ORDER_STATUSES = [
   "CANCELLED",
 ];
 
-// Inicialización del estado en memoria
+// TODO(limpiar): Eliminar seedFromJson y mockOrders
 const seedFromJson = () =>
   Array.isArray(initialOrders)
     ? initialOrders.map((order) => normalizeOrder(order))
@@ -22,6 +25,7 @@ const seedFromJson = () =>
 
 let mockOrders = seedFromJson();
 
+// TODO(limpiar): Eliminar delay
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
@@ -37,6 +41,7 @@ export const getOrders = async ({
   sortBy = "created_at",
   sortOrder = "desc",
 } = {}) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     return mockFilterAndSort(mockOrders, {
@@ -62,6 +67,7 @@ export const getOrders = async ({
  * Obtener un pedido por ID
  */
 export const getOrderById = async (id) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     const order = mockOrders.find((o) => String(o.id) === String(id));
@@ -87,6 +93,7 @@ export const getOrderErrorMessage = (err) => {
  * Actualizar el estado de un pedido
  */
 export const updateOrderStatus = async (id, status) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
 

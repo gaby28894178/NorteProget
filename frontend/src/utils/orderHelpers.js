@@ -1,6 +1,7 @@
 // Utilidades compartidas para el módulo de pedidos.
 // Normalización, historial, extracción de listas y filtrado mock.
 
+// TODO(limpiar): Eliminar generateId (mock-ord- prefix)
 const generateId = () =>
   globalThis.crypto?.randomUUID?.() ?? `mock-ord-${Date.now()}`;
 
@@ -44,6 +45,7 @@ const normalizeText = (text) =>
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
+// TODO(limpiar): Eliminar mockFilterAndSort (solo se usa en ordersApi.js mock branch)
 /**
  * Filtra y ordena pedidos en modo mock.
  * Simula lo que el backend haría con query params.

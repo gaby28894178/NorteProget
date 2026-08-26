@@ -1,5 +1,8 @@
 import { createContext, useContext, useState } from "react";
-import { adminLogin as adminLoginRequest } from "../api/authApi";
+import {
+  adminLogin as adminLoginRequest,
+  clientLogin as clientLoginRequest,
+} from "../api/authApi";
 
 const AuthContext = createContext();
 
@@ -12,14 +15,25 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => readStorage("norte-user"));
   const [admin, setAdmin] = useState(() => readStorage("norte-admin-user"));
 
-  // Login público (cliente) — demo sin endpoint por ahora.
-  const login = (userData) => {
-    localStorage.setItem("norte-user", JSON.stringify(userData));
-    setUser(userData);
+  const login = async ({ email, password }) => {
+    const { token, refreshToken, user } = await clientLoginRequest({
+      email,
+      password,
+    });
+
+    localStorage.setItem("norte-user", JSON.stringify(user));
+    localStorage.setItem("norte-user-token", token);
+    if (refreshToken) {
+      localStorage.setItem("norte-user-refresh-token", refreshToken);
+    }
+    setUser(user);
+    return user;
   };
 
   const logout = () => {
     localStorage.removeItem("norte-user");
+    localStorage.removeItem("norte-user-token");
+    localStorage.removeItem("norte-user-refresh-token");
     setUser(null);
   };
 

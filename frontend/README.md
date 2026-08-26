@@ -32,15 +32,19 @@ frontend/
 ├── src/
 │   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi, analyticsApi, authApi)
 │   ├── assets/           # Imágenes y recursos
-│   ├── components/       # Componentes públicos y del panel admin (MetricCard, ConversionFunnel, FilterSidebar, RequireAdmin, ...)
+│   ├── components/
+│   │   ├── admin/        # Panel de administración (ProductTable, ProductFilters, OrderTable, OrderFilters, CategoryTable, ...)
+│   │   └── public/       # Componentes de la tienda (Navbar, Footer, FilterSidebar, CartItem, ...)
 │   ├── context/          # Estado global (AuthContext, CartContext)
 │   ├── data/             # Datos mock / seed (products, orders, categories, analyticsDemo)
 │   ├── hooks/            # Custom hooks (useProducts, useOrders, useCategories, useAnalytics)
 │   ├── layouts/          # Layouts público y admin
-│   ├── pages/            # Páginas públicas y admin (AdminDashboardPage, AdminLoginPage, ...)
+│   ├── pages/
+│   │   ├── admin/        # Páginas del panel admin (AdminDashboardPage, AdminLoginPage, AdminProductsPage, ...)
+│   │   └── public/       # Páginas de la tienda (Home, Catalogo, Producto, Carrito, Checkout, ...)
 │   ├── routes/           # Definición de rutas (AppRouter)
 │   ├── styles/           # Design system (globals.css, components.css)
-│   └── utils/            # Helpers (analytics, gaData, googleAuth, orderStatus, skuGenerator, slugUtils)
+│   └── utils/            # Helpers (analytics, apiErrors, gaData, googleAuth, orderHelpers, orderStatus)
 │
 ├── .env.example          # Plantilla de variables de entorno
 └── vite.config.js

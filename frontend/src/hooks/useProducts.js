@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 import {
   getProducts,
@@ -16,6 +16,12 @@ const getAllCategories = async () => {
   return result.data;
 };
 
+const normalizeText = (text) =>
+  (text ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -32,6 +38,21 @@ export const useProducts = () => {
   // Estilos del diálogo de confirmación de borrado
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleting, setDeleting] = useState(false);
+
+  // ─── Estados de filtros ─────────────────────────────────
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [sortBy, setSortBy] = useState("created_at");
+  const [sortOrder, setSortOrder] = useState("desc");
+
+  // Debounce de búsqueda (400ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearch(searchInput);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchInput]);
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
@@ -80,6 +101,78 @@ export const useProducts = () => {
       isMounted = false;
     };
   }, []);
+
+  // ─── Productos filtrados y ordenados ──────────────────────
+  const filteredProducts = useMemo(() => {
+    let result = [...products];
+
+    // Filtro por búsqueda (nombre del producto o nombre de categoría)
+    if (search) {
+      const term = normalizeText(search);
+      result = result.filter((product) => {
+        const nameMatch = normalizeText(product.name).includes(term);
+        const catName = categories.find((c) => c.id === product.category_id)?.name ?? "";
+        const catMatch = normalizeText(catName).includes(term);
+        return nameMatch || catMatch;
+      });
+    }
+
+    // Filtro por estado
+    if (statusFilter) {
+      result = result.filter((product) => product.status === statusFilter);
+    }
+
+    // Ordenamiento
+    const dir = sortOrder === "asc" ? 1 : -1;
+    result.sort((a, b) => {
+      let valA, valB;
+      if (sortBy === "current_price") {
+        valA = Number(a.current_price) || 0;
+        valB = Number(b.current_price) || 0;
+        return (valA - valB) * dir;
+      } else if (sortBy === "stock") {
+        const stockA = Array.isArray(a.variants)
+          ? a.variants.reduce((acc, v) => acc + (v.stock || 0), 0)
+          : 0;
+        const stockB = Array.isArray(b.variants)
+          ? b.variants.reduce((acc, v) => acc + (v.stock || 0), 0)
+          : 0;
+        return (stockA - stockB) * dir;
+      } else if (sortBy === "variants") {
+        const countA = Array.isArray(a.variants) ? a.variants.length : 0;
+        const countB = Array.isArray(b.variants) ? b.variants.length : 0;
+        return (countA - countB) * dir;
+      } else if (sortBy === "created_at") {
+        valA = new Date(a.created_at).getTime();
+        valB = new Date(b.created_at).getTime();
+        return (valA - valB) * dir;
+      }
+      return 0;
+    });
+
+    return result;
+  }, [products, categories, search, statusFilter, sortBy, sortOrder]);
+
+  // ─── Sort ───────────────────────────────────────────────
+  const handleSort = (field) => {
+    if (sortBy === field) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortBy(field);
+      setSortOrder("asc");
+    }
+  };
+
+  // ─── Limpiar filtros ───────────────────────────────────
+  const clearFilters = () => {
+    setSearchInput("");
+    setSearch("");
+    setStatusFilter("");
+    setSortBy("created_at");
+    setSortOrder("desc");
+  };
+
+  const hasActiveFilters = search || statusFilter;
 
   const handleOpenCreate = () => {
     setViewingProduct(null);
@@ -205,7 +298,8 @@ export const useProducts = () => {
   };
 
   return {
-    products,
+    products: filteredProducts,
+    allProductsCount: products.length,
     categories,
     loading,
     error,
@@ -223,5 +317,15 @@ export const useProducts = () => {
     handleDeleteRequest,
     handleDeleteCancel,
     handleDeleteConfirm,
+    // Filtros
+    searchInput,
+    setSearchInput,
+    statusFilter,
+    setStatusFilter,
+    sortBy,
+    sortOrder,
+    handleSort,
+    hasActiveFilters,
+    clearFilters,
   };
 };

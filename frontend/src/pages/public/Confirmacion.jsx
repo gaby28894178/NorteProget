@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { trackPurchase } from "../../utils/analytics";
 
+// TODO(limpiar): Reemplazar lectura de localStorage por una llamada a la API
+// para obtener el pedido creado en el backend (cuando exista POST /orders).
 const Confirmacion = () => {
   // Inicialización diferida del estado desde localStorage
   const [compra] = useState(() => {

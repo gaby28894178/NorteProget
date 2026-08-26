@@ -33,7 +33,7 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     setError("");
@@ -43,17 +43,18 @@ const Login = () => {
       return;
     }
 
-    const userData = {
-      email: formData.email,
-    };
-
-    trackLogin({ method: "email" });
-
-    login(userData);
-
-    navigate(from, {
-      replace: true,
-    });
+    try {
+      await login(formData);
+      trackLogin({ method: "email" });
+      navigate(from, {
+        replace: true,
+      });
+    } catch (loginError) {
+      setError(
+        loginError.response?.data?.message ||
+          "No pudimos iniciar sesión. Revisá tus credenciales.",
+      );
+    }
   };
 
   return (
@@ -61,7 +62,7 @@ const Login = () => {
 
       <main className="flex min-h-[75vh] items-center justify-center bg-norte-bg px-4 py-12 sm:px-6 sm:py-20">
 
-        <section className="w-full max-w-[460px] rounded-card border border-norte-stone bg-white p-6 shadow-md sm:p-10">
+        <section className="w-full max-w-115 rounded-card border border-norte-stone bg-white p-6 shadow-md sm:p-10">
 
           {/* =========================
               ENCABEZADO

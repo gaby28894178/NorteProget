@@ -1,8 +1,10 @@
 import axiosInstance from "./axiosConfig";
+// TODO(limpiar): Eliminar import de datos seed cuando el backend exista
 import initialProducts from "../data/products.json";
 
-// Usa datos mock en memoria mientras no exista el backend real.
-// El único punto donde se decide entre mock y API real es este flag.
+// TODO(limpiar): Eliminar USE_MOCK, generateId, seedFromJson, delay,
+// mockUploadImage y todos los bloques if (USE_MOCK). Solo quedan las
+// llamadas axios reales (POST/GET/PUT/DELETE).
 const USE_MOCK =
   import.meta.env.VITE_USE_MOCK === "true" || !import.meta.env.VITE_API_URL;
 
@@ -100,9 +102,7 @@ const toFormData = (productData) => {
   return fd;
 };
 
-// Simulación de subida a Cloudinary para el modo mock (sin backend real).
-// Devuelve el mismo shape que esperaría el modelo product_images:
-// { public_id, secure_url }.
+// TODO(limpiar): Eliminar esta función (solo sirve para simular subida a Cloudinary en mock)
 const mockUploadImage = (file, slug, displayOrder) => {
   const publicId = `norte/products/${slug}/${displayOrder}`;
   // URL de placeholder estable para que la previsualización sea visible.
@@ -112,8 +112,7 @@ const mockUploadImage = (file, slug, displayOrder) => {
   return { public_id: publicId, secure_url: secureUrl };
 };
 
-// Inicializamos mockProducts a partir del archivo en /data.
-// Mantiene el estado en memoria para permitir altas/bajas/modificaciones en local.
+// TODO(limpiar): Eliminar seedFromJson y mockProducts
 const seedFromJson = () =>
   Array.isArray(initialProducts)
     ? initialProducts.map((product) => normalizeProduct(product))
@@ -121,9 +120,11 @@ const seedFromJson = () =>
 
 let mockProducts = seedFromJson();
 
+// TODO(limpiar): Eliminar delay
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const getProducts = async () => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     return [...mockProducts];
@@ -133,6 +134,7 @@ export const getProducts = async () => {
 };
 
 export const createProduct = async (productData) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     const name = productData.name || "";
@@ -177,6 +179,7 @@ export const createProduct = async (productData) => {
 };
 
 export const updateProduct = async (id, productData) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     const slug = productData.slug || "";
@@ -214,6 +217,7 @@ export const updateProduct = async (id, productData) => {
 };
 
 export const deleteProduct = async (id) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     mockProducts = mockProducts.filter(

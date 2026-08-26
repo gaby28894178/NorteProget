@@ -1,13 +1,15 @@
 // src/pages/admin/AdminProductsPage.jsx
-import { LuArrowLeft } from "react-icons/lu";
+import { LuArrowLeft, LuLoader } from "react-icons/lu";
 import { useProducts } from "../../hooks/useProducts";
 import { ProductTable } from "../../components/admin/ProductTable";
+import { ProductFilters } from "../../components/admin/ProductFilters";
 import { ProductForm } from "../../components/admin/ProductForm";
 import { ProductDetail } from "../../components/admin/ProductDetail";
 
 export const AdminProductsPage = () => {
   const {
     products,
+    allProductsCount,
     categories,
     loading,
     error,
@@ -25,6 +27,16 @@ export const AdminProductsPage = () => {
     handleDeleteRequest,
     handleDeleteCancel,
     handleDeleteConfirm,
+    // Filtros
+    searchInput,
+    setSearchInput,
+    statusFilter,
+    setStatusFilter,
+    sortBy,
+    sortOrder,
+    handleSort,
+    hasActiveFilters,
+    clearFilters,
   } = useProducts();
 
   // Al editar desde la vista de detalle, resolvemos el producto con su versión
@@ -125,17 +137,36 @@ export const AdminProductsPage = () => {
       )}
 
       {loading ? (
-        <div className="text-center py-10 text-gray-500">
+        <div className="flex items-center justify-center gap-2 py-10 text-gray-500">
+          <LuLoader size={18} className="animate-spin" />
           Cargando productos...
         </div>
       ) : (
-        <ProductTable
-          products={products}
-          categories={categories}
-          onView={handleOpenView}
-          onEdit={handleOpenEdit}
-          onDelete={handleDeleteRequest}
-        />
+        <>
+          <ProductFilters
+            searchInput={searchInput}
+            onSearchChange={setSearchInput}
+            statusFilter={statusFilter}
+            onStatusChange={setStatusFilter}
+            resultCount={products.length}
+            totalCount={allProductsCount}
+            hasActiveFilters={hasActiveFilters}
+            onClearFilters={clearFilters}
+          />
+
+          <div className="relative">
+            <ProductTable
+              products={products}
+              categories={categories}
+              onView={handleOpenView}
+              onEdit={handleOpenEdit}
+              onDelete={handleDeleteRequest}
+              sortBy={sortBy}
+              sortOrder={sortOrder}
+              onSort={handleSort}
+            />
+          </div>
+        </>
       )}
 
       {/* ============ CONFIRMACIÓN DE BORRADO ============ */}

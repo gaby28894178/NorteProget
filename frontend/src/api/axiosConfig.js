@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// TODO(limpiar): Eliminar el fallback a localhost. Exigir VITE_API_URL explícita.
 const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:3001/api";
 
@@ -27,7 +28,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 && localStorage.getItem("token")) {
       localStorage.removeItem("token");
       localStorage.removeItem("norte-admin-user");
       window.location.href = "/admin/login";

@@ -1,7 +1,9 @@
 import axiosInstance from "./axiosConfig";
+// TODO(limpiar): Eliminar import de datos seed cuando el backend exista
 import initialCategories from "../data/categories.json";
 
-// Usa datos mock en memoria mientras no exista el backend real.
+// TODO(limpiar): Eliminar USE_MOCK, generateId, mockPaginate, seed y delay.
+// Solo quedan las llamadas axios reales.
 const USE_MOCK =
   import.meta.env.VITE_USE_MOCK === "true" || !import.meta.env.VITE_API_URL;
 
@@ -27,7 +29,7 @@ const extractPagination = (response) => {
   return payload.pagination ?? null;
 };
 
-// Simula paginación en modo mock
+// TODO(limpiar): Eliminar mockPaginate (solo se usa en modo mock)
 const mockPaginate = (list, { page = 1, limit = 10, search = "", is_active } = {}) => {
   let filtered = [...list];
 
@@ -55,7 +57,7 @@ const mockPaginate = (list, { page = 1, limit = 10, search = "", is_active } = {
   };
 };
 
-// Inicializamos mockCategories a partir del archivo en /data
+// TODO(limpiar): Eliminar mockCategories (seed en memoria)
 let mockCategories = Array.isArray(initialCategories)
   ? initialCategories.map((cat, idx) => ({
       id: cat.id ?? `cat-${idx + 1}`,
@@ -67,12 +69,14 @@ let mockCategories = Array.isArray(initialCategories)
     }))
   : [];
 
+// TODO(limpiar): Eliminar delay
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // ─── GET /categories ───────────────────────────────────────
 // Acepta: { page, limit, search, is_active }
 // Retorna: { data: [...], pagination: { page, limit, total, totalPages } }
 export const getCategories = async ({ page = 1, limit = 10, search = "", is_active } = {}) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     return mockPaginate(mockCategories, { page, limit, search, is_active });
@@ -92,6 +96,7 @@ export const getCategories = async ({ page = 1, limit = 10, search = "", is_acti
 // ─── GET /categories/active ────────────────────────────────
 // Retorna solo categorías activas (para catálogo público)
 export const getActiveCategories = async () => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     return mockCategories.filter((cat) => cat.is_active);
@@ -102,6 +107,7 @@ export const getActiveCategories = async () => {
 
 // ─── GET /categories/:id ───────────────────────────────────
 export const getCategoryById = async (id) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     return mockCategories.find((cat) => String(cat.id) === String(id)) ?? null;
@@ -112,6 +118,7 @@ export const getCategoryById = async (id) => {
 
 // ─── POST /categories ──────────────────────────────────────
 export const createCategory = async (categoryData) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     const name = categoryData.name;
@@ -138,6 +145,7 @@ export const createCategory = async (categoryData) => {
 
 // ─── PUT /categories/:id ───────────────────────────────────
 export const updateCategory = async (id, categoryData) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     const updatedAt = new Date().toISOString();
@@ -160,6 +168,7 @@ export const updateCategory = async (id, categoryData) => {
 // ─── PATCH /categories/:id/status ──────────────────────────
 // Activa/desactiva una categoría sin enviar todos los campos
 export const updateCategoryStatus = async (id, is_active) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     let updatedCategory = null;
@@ -176,6 +185,7 @@ export const updateCategoryStatus = async (id, is_active) => {
 
 // ─── DELETE /categories/:id ────────────────────────────────
 export const deleteCategory = async (id) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
     await delay();
     mockCategories = mockCategories.filter(
