@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
+// TODO(limpiar): Reemplazar este import hardcodeado por una llamada a productApi.getProducts() o getProductById()
 import products from "../../data/products";
 import { useCart } from "../../context/CartContext";
 import { trackViewItem } from "../../utils/analytics";

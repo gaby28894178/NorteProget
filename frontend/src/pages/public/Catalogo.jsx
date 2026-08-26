@@ -7,6 +7,7 @@ import {
 
 import { FaSlidersH } from "react-icons/fa";
 
+// TODO(limpiar): Reemplazar este import hardcodeado por una llamada a productApi.getProducts()
 import products from "../../data/products";
 import {
   trackViewItemList,

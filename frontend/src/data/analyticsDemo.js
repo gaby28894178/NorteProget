@@ -1,8 +1,5 @@
 // ============================================
-// Datos de demostración para el dashboard de métricas.
-// Se usan cuando no hay token de GA4 (o la API falla).
-// Deterministas por día: los números son estables durante el
-// día pero cambian de un día a otro.
+// Analytics demo data generator (Limpiar)
 // ============================================
 
 const scaleByDays = (base, days) => base * (days / 30);

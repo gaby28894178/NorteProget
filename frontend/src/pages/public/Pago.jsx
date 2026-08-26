@@ -43,7 +43,10 @@ const Pago = () => {
       payment_type: metodoPago,
     });
 
-    setTimeout(() => {
+  // TODO(limpiar): Reemplazar este setTimeout con integración real de pago
+  // (MercadoPago u otro gateway). Actualmente simula 1.5s de procesamiento
+  // y guarda la orden en localStorage.
+  setTimeout(() => {
       // Guardamos solamente la compra actual
       const compra = {
         productos: [...cart],

@@ -2,6 +2,7 @@
 // API de métricas — único punto de acceso del dashboard.
 // Intenta GA4 real (token del admin).
 // Muestra datos demo si no se ha logueado o si GA4 no está disponible.
+// TODO(limpiar): Considerar eliminar el fallback a demo si no se necesita.
 // ============================================
 
 import { getAccessToken } from "../utils/googleAuth";
