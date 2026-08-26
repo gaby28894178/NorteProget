@@ -1,5 +1,5 @@
 // src/components/admin/ProductTable.jsx
-import { LuEye, LuPencil, LuTrash2 } from "react-icons/lu";
+import { LuEye, LuPencil, LuTrash2, LuArrowUp, LuArrowDown } from "react-icons/lu";
 
 const currencyFormatter = new Intl.NumberFormat("es-AR", {
   style: "currency",
@@ -7,12 +7,44 @@ const currencyFormatter = new Intl.NumberFormat("es-AR", {
   maximumFractionDigits: 0,
 });
 
+const SortIcon = ({ field, sortBy, sortOrder }) => {
+  const isActive = sortBy === field;
+  return (
+    <span className="inline-flex items-center ml-2 gap-1">
+      {isActive ? (
+        sortOrder === "asc" ? (
+          <LuArrowUp size={16} strokeWidth={2.5} className="text-norte-mustard" />
+        ) : (
+          <LuArrowDown size={16} strokeWidth={2.5} className="text-norte-mustard" />
+        )
+      ) : (
+        <LuArrowUp size={16} strokeWidth={2} className="text-gray-300" />
+      )}
+    </span>
+  );
+};
+
+const SortableHeader = ({ field, label, sortBy, sortOrder, onSort }) => (
+  <th
+    className="px-6 py-3 cursor-pointer select-none hover:bg-gray-100 transition-colors"
+    onClick={() => onSort(field)}
+  >
+    <span className="inline-flex items-center">
+      {label}
+      <SortIcon field={field} sortBy={sortBy} sortOrder={sortOrder} />
+    </span>
+  </th>
+);
+
 export const ProductTable = ({
   products,
   categories = [],
   onEdit,
   onDelete,
   onView,
+  sortBy,
+  sortOrder,
+  onSort,
 }) => {
   const categoryName = (categoryId) =>
     categories.find((cat) => cat.id === categoryId)?.name ?? "—";
@@ -27,6 +59,9 @@ export const ProductTable = ({
       ? product.variants.reduce((acc, variant) => acc + (variant.stock || 0), 0)
       : 0;
 
+  const variantCount = (product) =>
+    Array.isArray(product.variants) ? product.variants.length : 0;
+
   return (
     <div className="overflow-x-auto bg-white rounded-lg shadow">
       <table className="w-full min-w-max text-left text-sm text-gray-600">
@@ -34,9 +69,39 @@ export const ProductTable = ({
           <tr>
             <th className="px-6 py-3">Producto</th>
             <th className="px-6 py-3">Categoría</th>
-            <th className="px-6 py-3">Precio</th>
-            <th className="px-6 py-3">Stock</th>
-            <th className="px-6 py-3">Variantes</th>
+            {onSort ? (
+              <SortableHeader
+                field="current_price"
+                label="Precio"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+              />
+            ) : (
+              <th className="px-6 py-3">Precio</th>
+            )}
+            {onSort ? (
+              <SortableHeader
+                field="stock"
+                label="Stock"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+              />
+            ) : (
+              <th className="px-6 py-3">Stock</th>
+            )}
+            {onSort ? (
+              <SortableHeader
+                field="variants"
+                label="Variantes"
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={onSort}
+              />
+            ) : (
+              <th className="px-6 py-3">Variantes</th>
+            )}
             <th className="px-6 py-3">Estado</th>
             <th className="px-6 py-3 text-center">Acciones</th>
           </tr>
@@ -45,7 +110,7 @@ export const ProductTable = ({
           {products.length === 0 ? (
             <tr>
               <td colSpan="7" className="px-6 py-4 text-center text-gray-500">
-                No hay productos disponibles.
+                No hay productos que coincidan con los filtros.
               </td>
             </tr>
           ) : (
@@ -86,11 +151,7 @@ export const ProductTable = ({
                   {currencyFormatter.format(product.current_price)}
                 </td>
                 <td className="px-6 py-4">{totalStock(product)}</td>
-                <td className="px-6 py-4">
-                  {Array.isArray(product.variants)
-                    ? product.variants.length
-                    : 0}
-                </td>
+                <td className="px-6 py-4">{variantCount(product)}</td>
                 <td className="px-6 py-4">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
