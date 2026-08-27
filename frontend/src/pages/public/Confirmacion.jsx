@@ -48,11 +48,11 @@ const Confirmacion = () => {
               ENCABEZADO
           ========================== */}
 
-          <p className="mt-8 text-xs font-bold uppercase tracking-[0.18em] text-norte-mustard">
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
             COMPRA COMPLETADA
           </p>
 
-          <h1 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
+          <h1 className="mt-3 text-[28px] font-bold leading-tight sm:text-[36px] lg:text-[48px]">
             ¡Compra realizada!
           </h1>
 

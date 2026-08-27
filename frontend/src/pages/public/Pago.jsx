@@ -90,7 +90,7 @@ const Pago = () => {
                 FINALIZAR COMPRA
               </p>
 
-              <h1 className="text-3xl font-bold leading-tight">
+              <h1 className="text-[28px] font-bold leading-tight sm:text-[36px]">
                 No hay productos
               </h1>
 
@@ -122,11 +122,11 @@ const Pago = () => {
           {/* ENCABEZADO */}
 
           <div className="mb-8 text-center">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-norte-mustard">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
               FINALIZAR COMPRA
             </p>
 
-            <h1 className="text-3xl font-bold leading-tight sm:text-4xl">
+            <h1 className="text-[28px] font-bold leading-tight sm:text-[36px] lg:text-[48px]">
               Realizar pago
             </h1>
 

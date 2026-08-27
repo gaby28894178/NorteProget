@@ -70,11 +70,11 @@ const Login = () => {
 
           <div className="mb-8 text-center">
 
-            <p className="mb-3 text-[0.75rem] font-bold tracking-[0.18em] text-norte-mustard">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
               BIENVENIDO A NORTE
             </p>
 
-            <h1 className="mb-3 text-3xl font-bold leading-tight sm:text-[2.3rem]">
+            <h1 className="mb-3 text-[28px] font-bold leading-tight sm:text-[36px] lg:text-[48px]">
               Iniciar sesión
             </h1>
 

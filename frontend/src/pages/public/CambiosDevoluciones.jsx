@@ -11,14 +11,14 @@ const CambiosDevoluciones = () => {
             NORTE
           </p>
 
-          <h1 className="text-3xl font-normal">
+          <h1 className="text-[28px] font-bold sm:text-[36px] lg:text-[48px]">
             Cambios y devoluciones
           </h1>
 
           <div className="mt-10 space-y-8 text-sm leading-7 text-gray-600">
 
             <div>
-              <h2 className="mb-2 text-base font-semibold text-black">
+              <h2 className="mb-2 text-lg font-semibold text-black">
                 Cambios
               </h2>
 
@@ -31,7 +31,7 @@ const CambiosDevoluciones = () => {
             </div>
 
             <div>
-              <h2 className="mb-2 text-base font-semibold text-black">
+              <h2 className="mb-2 text-lg font-semibold text-black">
                 Devoluciones
               </h2>
 
@@ -43,7 +43,7 @@ const CambiosDevoluciones = () => {
             </div>
 
             <div>
-              <h2 className="mb-2 text-base font-semibold text-black">
+              <h2 className="mb-2 text-lg font-semibold text-black">
                 Condiciones
               </h2>
 
@@ -54,7 +54,7 @@ const CambiosDevoluciones = () => {
             </div>
 
             <div>
-              <h2 className="mb-2 text-base font-semibold text-black">
+              <h2 className="mb-2 text-lg font-semibold text-black">
                 Consultas
               </h2>
 

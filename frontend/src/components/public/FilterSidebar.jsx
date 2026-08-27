@@ -20,14 +20,14 @@ export const FilterSidebar = ({
   return (
     <>
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-medium">Filtrar por</h2>
+        <h2 className="text-[28px] font-semibold">Filtrar por</h2>
 
         <div className="flex items-center gap-1">
           {hayFiltrosActivos && (
             <button
               type="button"
               onClick={limpiarFiltros}
-              className="text-[10px] text-norte-mustard hover:underline"
+              className="text-xs text-norte-mustard hover:underline"
             >
               Limpiar
             </button>
@@ -51,7 +51,7 @@ export const FilterSidebar = ({
       ========================== */}
 
       <div className="border-b border-gray-200 py-6">
-        <h3 className="mb-5 text-[10px] font-medium uppercase tracking-wide text-gray-500">
+        <h3 className="mb-5 text-lg font-medium uppercase tracking-wide text-gray-500">
           Categorías
         </h3>
 
@@ -61,7 +61,7 @@ export const FilterSidebar = ({
               key={categoria}
               type="button"
               onClick={() => handleCategoriaChange(categoria)}
-              className={`text-left text-xs transition ${
+              className={`text-left text-base transition ${
                 categoriaSeleccionada === categoria
                   ? "font-semibold text-norte-mustard"
                   : "text-gray-700 hover:text-norte-mustard"
@@ -78,7 +78,7 @@ export const FilterSidebar = ({
       ========================== */}
 
       <div className="border-b border-gray-200 py-6">
-        <h3 className="mb-5 text-[10px] font-medium uppercase tracking-wide text-gray-500">
+        <h3 className="mb-5 text-lg font-medium uppercase tracking-wide text-gray-500">
           Color
         </h3>
 
@@ -86,7 +86,7 @@ export const FilterSidebar = ({
           {colores.map((color) => (
             <label
               key={color}
-              className="flex cursor-pointer items-center gap-3 text-xs text-gray-700"
+              className="flex cursor-pointer items-center gap-3 text-base text-gray-700"
             >
               <input
                 type="checkbox"
@@ -106,7 +106,7 @@ export const FilterSidebar = ({
       ========================== */}
 
       <div className="py-6">
-        <h3 className="mb-5 text-[10px] font-medium uppercase tracking-wide text-gray-500">
+        <h3 className="mb-5 text-lg font-medium uppercase tracking-wide text-gray-500">
           Talles
         </h3>
 
@@ -114,7 +114,7 @@ export const FilterSidebar = ({
           {talles.map((talle) => (
             <label
               key={talle}
-              className="flex cursor-pointer items-center gap-3 text-xs text-gray-700"
+              className="flex cursor-pointer items-center gap-3 text-base text-gray-700"
             >
               <input
                 type="checkbox"
