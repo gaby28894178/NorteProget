@@ -75,7 +75,7 @@ const Checkout = () => {
         <main className="min-h-[70vh] bg-white px-6 py-20">
           <section className="mx-auto flex max-w-xl flex-col items-center justify-center text-center">
 
-            <h1 className="mb-4 text-3xl font-bold">
+            <h1 className="mb-4 text-[28px] font-bold sm:text-[36px]">
               Tu carrito está vacío
             </h1>
 
@@ -127,11 +127,11 @@ const Checkout = () => {
 
           <div className="mb-10">
 
-            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-norte-mustard">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
               FINALIZAR COMPRA
             </p>
 
-            <h1 className="mb-2 text-3xl font-bold md:text-4xl">
+            <h1 className="mb-2 text-[28px] font-bold sm:text-[36px] lg:text-[48px]">
               Datos de compra
             </h1>
 
@@ -149,7 +149,7 @@ const Checkout = () => {
 
             <aside className="h-fit rounded-xl border border-gray-200 bg-white p-6">
 
-              <h2 className="mb-6 text-lg font-semibold">
+              <h2 className="mb-6 text-2xl font-semibold">
                 Resumen del pedido
               </h2>
 
@@ -251,7 +251,7 @@ const Checkout = () => {
 
             <section className="rounded-xl border border-gray-200 bg-white p-6 md:p-8">
 
-              <h2 className="mb-6 text-lg font-semibold">
+              <h2 className="mb-6 text-2xl font-semibold">
                 Información del comprador
               </h2>
 
@@ -265,7 +265,7 @@ const Checkout = () => {
                 <div>
                   <label
                     htmlFor="nombre"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Nombre
                   </label>
@@ -286,7 +286,7 @@ const Checkout = () => {
                 <div>
                   <label
                     htmlFor="apellido"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Apellido
                   </label>
@@ -307,7 +307,7 @@ const Checkout = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Email
                   </label>
@@ -328,7 +328,7 @@ const Checkout = () => {
                 <div>
                   <label
                     htmlFor="telefono"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Teléfono
                   </label>
@@ -349,7 +349,7 @@ const Checkout = () => {
                 <div className="md:col-span-2">
                   <label
                     htmlFor="direccion"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Dirección
                   </label>
@@ -370,7 +370,7 @@ const Checkout = () => {
                 <div>
                   <label
                     htmlFor="ciudad"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Ciudad
                   </label>
@@ -391,7 +391,7 @@ const Checkout = () => {
                 <div>
                   <label
                     htmlFor="codigoPostal"
-                    className="mb-2 block text-xs font-semibold"
+                    className="mb-2 block text-sm font-semibold"
                   >
                     Código postal
                   </label>
