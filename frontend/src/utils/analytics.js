@@ -48,7 +48,7 @@ const sendEvent = (name, params = {}) => {
  * Normaliza un ítem del carrito al formato `items` de GA4.
  */
 const toGA4Item = (item) => {
-  const price = Number(item.price || 0);
+  const price = Number(item.current_price || item.price || 0);
   const quantity = Number(item.quantity || 1);
 
   // Combina color y talle en una sola variante reconocida por GA4
@@ -59,7 +59,7 @@ const toGA4Item = (item) => {
   return {
     item_id: String(item.id),
     item_name: item.name,
-    item_category: item.category || "",
+    item_category: item.categoryName || item.category || "",
     price,
     quantity,
     ...(variant ? { item_variant: variant } : {}),
@@ -69,7 +69,7 @@ const toGA4Item = (item) => {
 const itemsValue = (items = []) =>
   items.reduce(
     (total, item) =>
-      total + Number(item.price || 0) * Number(item.quantity || 1),
+      total + Number(item.current_price || item.price || 0) * Number(item.quantity || 1),
     0,
   );
 
@@ -103,7 +103,7 @@ export const trackViewItem = ({ product }) => {
 
   sendEvent("view_item", {
     currency: CURRENCY,
-    value: Number(product.price || 0),
+    value: Number(product.current_price || product.price || 0),
     items: [toGA4Item(product)],
   });
 };

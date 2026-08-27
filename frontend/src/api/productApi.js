@@ -133,6 +133,37 @@ export const getProducts = async () => {
   return extractList(data);
 };
 
+// ─── Públicos (catálogo) ─────────────────────────────────────
+
+/**
+ * GET /products/public
+ * Devuelve solo productos publicados (PUBLISHED) para el catálogo público.
+ * En el backend real, filtra por status y excluye campos de admin (stock, sku, etc.).
+ */
+export const getPublishedProducts = async () => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
+  if (USE_MOCK) {
+    await delay();
+    return mockProducts.filter((p) => p.status === "PUBLISHED");
+  }
+  const { data } = await axiosInstance.get("/products/public");
+  return extractList(data);
+};
+
+/**
+ * GET /products/public/:id
+ * Devuelve un producto publicado por ID para la página de detalle.
+ */
+export const getProductById = async (id) => {
+  // TODO(limpiar): Eliminar bloque if (USE_MOCK)
+  if (USE_MOCK) {
+    await delay();
+    return mockProducts.find((p) => String(p.id) === String(id)) ?? null;
+  }
+  const { data } = await axiosInstance.get(`/products/public/${id}`);
+  return data?.data ?? data ?? null;
+};
+
 export const createProduct = async (productData) => {
   // TODO(limpiar): Eliminar bloque if (USE_MOCK)
   if (USE_MOCK) {
