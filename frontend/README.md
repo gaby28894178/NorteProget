@@ -28,26 +28,86 @@ SPA de **NORTE**, un e-commerce de moda y accesorios de diseño local. Es la apl
 ```
 frontend/
 │
-├── public/               # Assets estáticos (favicon, og-image, og-image-square)
+├── public/                    # Assets estáticos (favicon, og-image, og-image-square)
 ├── src/
-│   ├── api/              # Axios y endpoints (productApi, categoryApi, ordersApi, analyticsApi, authApi)
-│   ├── assets/           # Imágenes y recursos
+│   ├── api/                   # Axios y endpoints
+│   │   ├── axiosConfig.js     #   Configuración de Axios (base URL, interceptores JWT)
+│   │   ├── productApi.js      #   Productos (admin + público)
+│   │   ├── categoryApi.js     #   Categorías (admin + público)
+│   │   ├── ordersApi.js       #   Pedidos (admin)
+│   │   ├── analyticsApi.js    #   Métricas GA4 (dashboard admin)
+│   │   └── authApi.js         #   Autenticación (login admin)
+│   ├── assets/                # Imágenes y recursos
 │   ├── components/
-│   │   ├── admin/        # Panel de administración (ProductTable, ProductFilters, OrderTable, OrderFilters, CategoryTable, ...)
-│   │   └── public/       # Componentes de la tienda (Navbar, Footer, FilterSidebar, CartItem, ...)
-│   ├── context/          # Estado global (AuthContext, CartContext)
-│   ├── data/             # Datos mock / seed (products, orders, categories, analyticsDemo)
-│   ├── hooks/            # Custom hooks (useProducts, useOrders, useCategories, useAnalytics)
-│   ├── layouts/          # Layouts público y admin
+│   │   ├── admin/             # Panel de administración
+│   │   │   ├── CategoryForm.jsx
+│   │   │   ├── CategoryTable.jsx
+│   │   │   ├── ConversionFunnel.jsx
+│   │   │   ├── MetricCard.jsx
+│   │   │   ├── OrderDetail.jsx
+│   │   │   ├── OrderFilters.jsx
+│   │   │   ├── OrderStatusSelect.jsx
+│   │   │   ├── OrderStatusTimeline.jsx
+│   │   │   ├── OrderTable.jsx
+│   │   │   ├── ProductDetail.jsx
+│   │   │   ├── ProductFilters.jsx
+│   │   │   ├── ProductForm.jsx
+│   │   │   ├── ProductTable.jsx
+│   │   │   └── RequireAdmin.jsx
+│   │   └── public/            # Componentes de la tienda
+│   │       ├── Buttons/       #   Botones reutilizables
+│   │       │   └── Primary/
+│   │       │       └── Button.jsx
+│   │       ├── CartItem.jsx
+│   │       ├── FilterSidebar.jsx
+│   │       ├── Footer.jsx
+│   │       ├── Navbar.jsx
+│   │       └── ProductCard.jsx
+│   ├── context/               # Estado global (AuthContext, CartContext)
+│   ├── data/                  # Datos seed / demo
+│   │   ├── analyticsDemo.js
+│   │   ├── categories.json
+│   │   ├── orders.json
+│   │   └── products.json
+│   ├── hooks/                 # Custom hooks
+│   │   ├── useAnalytics.js
+│   │   ├── useCategories.js
+│   │   ├── useOrders.js
+│   │   └── useProducts.js
+│   ├── layouts/               # Layouts (PublicLayout, AdminLayout)
 │   ├── pages/
-│   │   ├── admin/        # Páginas del panel admin (AdminDashboardPage, AdminLoginPage, AdminProductsPage, ...)
-│   │   └── public/       # Páginas de la tienda (Home, Catalogo, Producto, Carrito, Checkout, ...)
-│   ├── routes/           # Definición de rutas (AppRouter)
-│   ├── styles/           # Design system (globals.css, components.css)
-│   └── utils/            # Helpers (analytics, apiErrors, gaData, googleAuth, orderHelpers, orderStatus)
+│   │   ├── admin/             # Páginas del panel admin
+│   │   │   ├── AdminCategoriesPage.jsx
+│   │   │   ├── AdminDashboardPage.jsx
+│   │   │   ├── AdminLoginPage.jsx
+│   │   │   ├── AdminOrdersPage.jsx
+│   │   │   └── AdminProductsPage.jsx
+│   │   └── public/            # Páginas de la tienda
+│   │       ├── Carrito.jsx
+│   │       ├── CambiosDevoluciones.jsx
+│   │       ├── Catalogo.jsx
+│   │       ├── Checkout.jsx
+│   │       ├── Confirmacion.jsx
+│   │       ├── Home.jsx
+│   │       ├── Login.jsx
+│   │       ├── Pago.jsx
+│   │       ├── PreguntasFrecuentes.jsx
+│   │       └── Producto.jsx
+│   ├── routes/                # Definición de rutas (AppRouter)
+│   ├── styles/                # Design system
+│   │   ├── globals.css        #   Tokens (@theme), tipografía, colores base
+│   │   └── components.css     #   Clases reutilizables (btn-primary, input-field, tabs)
+│   └── utils/                 # Helpers
+│       ├── analytics.js       #   Eventos GA4 (view_item, add_to_cart, purchase, ...)
+│       ├── apiErrors.js
+│       ├── gaData.js          #   Lectura de métricas GA4
+│       ├── googleAuth.js      #   OAuth client-side para GA4
+│       ├── orderHelpers.js
+│       └── orderStatus.js
 │
-├── .env.example          # Plantilla de variables de entorno
-└── vite.config.js
+├── .env.example               # Plantilla de variables de entorno
+├── vite.config.js             # Configuración de Vite + plugin Tailwind v4
+└── tailwind.config.js         # Legacy (Tailwind v4 no lo usa, tokens están en globals.css)
 ```
 
 ---
