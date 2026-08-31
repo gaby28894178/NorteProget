@@ -1,13 +1,62 @@
+import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import heroImage from "../../assets/hero.png";
-// TODO(limpiar): Reemplazar este import hardcodeado por una llamada a productApi.getProducts()
-import products from "../../data/products";
+import { getPublishedProducts } from "../../api/productApi";
+import { getActiveCategories } from "../../api/categoryApi";
 import { trackCtaClick } from "../../utils/analytics";
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadData = async () => {
+      try {
+        const [productData, categoryData] = await Promise.all([
+          getPublishedProducts(),
+          getActiveCategories(),
+        ]);
+        if (isMounted) {
+          setProducts(productData);
+          setCategories(categoryData);
+        }
+      } catch (err) {
+        console.error("Error al cargar datos del home:", err);
+      }
+    };
+
+    loadData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const enrichedProducts = useMemo(() => {
+    return products.map((product) => {
+      const category = categories.find(
+        (c) => c.id === product.category_id
+      );
+
+      const sortedImages = [...(product.images || [])].sort(
+        (a, b) => a.display_order - b.display_order
+      );
+      const imageUrl = sortedImages[0]?.secure_url || "";
+
+      return {
+        ...product,
+        categoryName: category?.name || "",
+        imageUrl,
+      };
+    });
+  }, [products, categories]);
+
   const handleCta = (cta, location) =>
     trackCtaClick({ cta, location });
+
   return (
     <>
       <main className="bg-white">
@@ -20,11 +69,11 @@ const Home = () => {
             {/* TEXTO */}
 
             <div className="text-center md:text-left">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-norte-mustard">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
                 Nueva colección
               </p>
 
-              <h1 className="mb-5 text-4xl font-normal leading-tight tracking-tight md:text-5xl lg:text-6xl">
+              <h1 className="mb-5 text-[28px] font-bold leading-tight tracking-tight sm:text-[36px] md:text-[40px] lg:text-[48px]">
                 Vestí tu actitud
               </h1>
 
@@ -64,15 +113,15 @@ const Home = () => {
               Descubrí
             </p>
 
-            <h2 className="text-3xl font-normal tracking-tight md:text-4xl">
+            <h2 className="text-[24px] font-semibold tracking-tight sm:text-[32px] lg:text-[40px]">
               Explorá NORTE
             </h2>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3">
             {["Remeras", "Camperas", "Pantalones"].map((categoria) => {
-              const producto = products.find(
-                (product) => product.category === categoria,
+              const producto = enrichedProducts.find(
+                (product) => product.categoryName === categoria,
               );
 
               return (
@@ -86,7 +135,7 @@ const Home = () => {
 
                   <div className="h-55 overflow-hidden bg-gray-100">
                     <img
-                      src={producto?.image}
+                      src={producto?.imageUrl}
                       alt={categoria}
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     />
@@ -117,7 +166,7 @@ const Home = () => {
               NORTE
             </p>
 
-            <h2 className="text-2xl font-normal md:text-3xl">
+            <h2 className="text-[20px] font-semibold sm:text-[24px]">
               Encontrá tu próximo look
             </h2>
 

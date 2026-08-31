@@ -33,7 +33,8 @@ const CartProvider = ({ children }) => {
 
       return parsedCart.map((item) => ({
         ...item,
-        price: Number(item.price) || 0,
+        price: Number(item.price || item.current_price) || 0,
+        current_price: Number(item.current_price || item.price) || 0,
         quantity: Number(item.quantity) || 1,
       }));
     } catch (error) {
@@ -67,6 +68,9 @@ const CartProvider = ({ children }) => {
       const cantidadNueva =
         Number(product.quantity) || 1;
 
+      const precio =
+        Number(product.current_price || product.price) || 0;
+
       const existingProduct = currentCart.find(
         (item) =>
           item.id === product.id &&
@@ -89,7 +93,8 @@ const CartProvider = ({ children }) => {
           ) {
             return {
               ...item,
-              price: Number(item.price) || 0,
+              price: precio,
+              current_price: precio,
               quantity:
                 (Number(item.quantity) || 0) +
                 cantidadNueva,
@@ -105,7 +110,8 @@ const CartProvider = ({ children }) => {
         ...currentCart,
         {
           ...product,
-          price: Number(product.price) || 0,
+          price: precio,
+          current_price: precio,
           quantity: cantidadNueva,
         },
       ];
@@ -160,9 +166,12 @@ const CartProvider = ({ children }) => {
           item.selectedColor === selectedColor &&
           item.selectedSize === selectedSize
         ) {
+          const precio =
+            Number(item.current_price || item.price) || 0;
           return {
             ...item,
-            price: Number(item.price) || 0,
+            price: precio,
+            current_price: precio,
             quantity:
               (Number(item.quantity) || 0) + 1,
           };
@@ -190,9 +199,12 @@ const CartProvider = ({ children }) => {
             item.selectedColor === selectedColor &&
             item.selectedSize === selectedSize
           ) {
+            const precio =
+              Number(item.current_price || item.price) || 0;
             return {
               ...item,
-              price: Number(item.price) || 0,
+              price: precio,
+              current_price: precio,
               quantity:
                 (Number(item.quantity) || 0) - 1,
             };
@@ -233,7 +245,7 @@ const CartProvider = ({ children }) => {
   const totalPrice = cart.reduce(
     (total, item) => {
       const precio =
-        Number(item.price) || 0;
+        Number(item.current_price || item.price) || 0;
 
       const cantidad =
         Number(item.quantity) || 0;

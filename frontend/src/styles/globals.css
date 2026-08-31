@@ -57,12 +57,13 @@
   --color-norte-dark: #1c1b19;
   --color-norte-bg: #f3efe7;
   --color-norte-mustard: #c77d2e;
+  --color-norte-militar: #535329;
   --color-norte-forest: #33402f;
   --color-norte-forest-3: #6e7b6a;
   --color-norte-stone: #d8d2c4;
 
   /* Radio de border (design system) */
-  --radius-btn: 8px;
+  --radius-btn: 12px;
   --radius-card: 8px;
 }
 
@@ -70,8 +71,7 @@
 html {
   scroll-behavior: smooth;
 
-  /* Tope duro al llegar arriba/abajo: evita que el navegador haga
-     "rebote elástico" (rubber band) y deje ver el fondo del body. */
+  /* evita que el navegador haga "rebote elástico" (rubber band) y deje ver el fondo del body. */
   overscroll-behavior-y: none;
 }
 
@@ -105,13 +105,19 @@ svg[stroke="currentColor"][fill="none"] {
   /* Un grosor de 1.5px a 1.75px le da ese acabado limpio */
 }
 
+/* Heading 1: Roboto Condensed (Figma token) */
 h1,
+.font-heading {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* Heading 2+: Roboto (body font, Figma token) */
 h2,
 h3,
 h4,
 h5,
-h6,
-.font-heading {
-  font-family: var(--font-heading);
+h6 {
+  font-family: var(--font-body);
   line-height: 1.2;
 }

@@ -125,7 +125,7 @@ const Navbar = () => {
           <NavLink
             to="/catalogo"
             className={({ isActive }) =>
-              `relative py-4 text-xs text-black transition-colors ${
+              `relative py-4 text-sm text-black transition-colors ${
                 isActive
                   ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-norte-mustard"
                   : "hover:text-norte-mustard"
@@ -140,7 +140,7 @@ const Navbar = () => {
           <NavLink
             to="/cambios-devoluciones"
             className={({ isActive }) =>
-              `relative py-4 text-xs text-black transition-colors ${
+              `relative py-4 text-sm text-black transition-colors ${
                 isActive
                   ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-norte-mustard"
                   : "hover:text-norte-mustard"
@@ -155,7 +155,7 @@ const Navbar = () => {
           <NavLink
             to="/preguntas-frecuentes"
             className={({ isActive }) =>
-              `relative py-4 text-xs text-black transition-colors ${
+              `relative py-4 text-sm text-black transition-colors ${
                 isActive
                   ? "font-semibold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-norte-mustard"
                   : "hover:text-norte-mustard"

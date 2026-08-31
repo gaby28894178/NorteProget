@@ -11,14 +11,14 @@ const PreguntasFrecuentes = () => {
             NORTE
           </p>
 
-          <h1 className="text-3xl font-normal">
+          <h1 className="text-[28px] font-bold sm:text-[36px] lg:text-[48px]">
             Preguntas frecuentes
           </h1>
 
           <div className="mt-10 space-y-8">
 
             <div>
-              <h2 className="mb-2 text-base font-semibold">
+              <h2 className="mb-2 text-lg font-semibold">
                 ¿Cómo puedo comprar?
               </h2>
 
@@ -30,7 +30,7 @@ const PreguntasFrecuentes = () => {
             </div>
 
             <div>
-              <h2 className="mb-2 text-base font-semibold">
+              <h2 className="mb-2 text-lg font-semibold">
                 ¿Cómo puedo pagar?
               </h2>
 
@@ -41,7 +41,7 @@ const PreguntasFrecuentes = () => {
             </div>
 
             <div>
-              <h2 className="mb-2 text-base font-semibold">
+              <h2 className="mb-2 text-lg font-semibold">
                 ¿Puedo cambiar un producto?
               </h2>
 
@@ -53,7 +53,7 @@ const PreguntasFrecuentes = () => {
             </div>
 
             <div>
-              <h2 className="mb-2 text-base font-semibold">
+              <h2 className="mb-2 text-lg font-semibold">
                 ¿Cómo consulto mi pedido?
               </h2>
 

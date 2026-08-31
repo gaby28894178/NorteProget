@@ -37,11 +37,11 @@ const Carrito = () => {
           ========================== */}
 
           <div className="mb-10">
-            <p className="mb-2 text-xs font-bold tracking-[0.18em] text-norte-mustard">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-norte-mustard">
               NORTE
             </p>
 
-            <h1 className="text-3xl font-bold md:text-4xl">
+            <h1 className="text-[28px] font-bold sm:text-[36px] lg:text-[48px]">
               Mi carrito
             </h1>
           </div>
@@ -57,7 +57,7 @@ const Carrito = () => {
                 🛒
               </div>
 
-              <h2 className="mb-3 text-2xl font-semibold">
+              <h2 className="mb-3 text-[28px] font-semibold sm:text-[36px]">
                 Tu carrito está vacío
               </h2>
 
@@ -89,7 +89,7 @@ const Carrito = () => {
 
                 <div className="mb-6 flex items-center justify-between border-b border-gray-200 pb-5">
 
-                  <h2 className="text-lg font-semibold">
+                  <h2 className="text-2xl font-semibold">
                     Productos
                   </h2>
 
@@ -125,7 +125,7 @@ const Carrito = () => {
                           className="h-32 w-full shrink-0 overflow-hidden rounded-lg bg-gray-100 sm:h-32 sm:w-32"
                         >
                           <img
-                            src={item.image}
+                            src={item.imageUrl || item.image}
                             alt={item.name}
                             className="h-full w-full object-cover transition duration-300 hover:scale-105"
                           />
@@ -140,7 +140,7 @@ const Carrito = () => {
                             <div>
 
                               <p className="mb-1 text-[10px] uppercase tracking-wide text-gray-400">
-                                {item.category}
+                                {item.categoryName || item.category}
                               </p>
 
                               <h3 className="text-base font-semibold">
@@ -186,7 +186,7 @@ const Carrito = () => {
 
                             {/* CANTIDAD */}
 
-                            <div className="flex items-center overflow-hidden rounded-md border border-gray-300">
+                              <div className="flex items-center overflow-hidden rounded-md border border-gray-300">
 
                               <button
                                 type="button"
@@ -197,13 +197,13 @@ const Carrito = () => {
                                     item.selectedSize
                                   )
                                 }
-                                className="flex h-9 w-9 items-center justify-center text-lg transition hover:bg-gray-100"
+                                className="flex h-10 w-10 items-center justify-center text-lg transition hover:bg-gray-100"
                                 aria-label="Disminuir cantidad"
                               >
                                 −
                               </button>
 
-                              <span className="flex h-9 min-w-10 items-center justify-center border-x border-gray-300 text-sm">
+                              <span className="flex h-10 min-w-10 items-center justify-center border-x border-gray-300 text-sm">
                                 {item.quantity}
                               </span>
 
@@ -216,7 +216,7 @@ const Carrito = () => {
                                     item.selectedSize
                                   )
                                 }
-                                className="flex h-9 w-9 items-center justify-center text-lg transition hover:bg-gray-100"
+                                className="flex h-10 w-10 items-center justify-center text-lg transition hover:bg-gray-100"
                                 aria-label="Aumentar cantidad"
                               >
                                 +
@@ -267,7 +267,7 @@ const Carrito = () => {
 
               <aside className="h-fit rounded-xl border border-gray-200 bg-white p-6">
 
-                <h2 className="mb-6 text-lg font-semibold">
+                <h2 className="mb-6 text-2xl font-semibold">
                   Resumen
                 </h2>
 
@@ -307,7 +307,7 @@ const Carrito = () => {
                     Total
                   </span>
 
-                  <strong className="text-xl">
+                  <strong className="text-2xl">
                     $
                     {totalPrice.toLocaleString(
                       "es-AR"
