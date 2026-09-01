@@ -42,6 +42,61 @@
         "is_default": false,
         "created_at": "2026-08-01T10:30:00.000Z",
         "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-BLA-S",
+        "size": "S",
+        "color": "Blanco",
+        "stock": 20,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-BLA-M",
+        "size": "M",
+        "color": "Blanco",
+        "stock": 30,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-BLA-L",
+        "size": "L",
+        "color": "Blanco",
+        "stock": 18,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-GRIS-S",
+        "size": "S",
+        "color": "Gris",
+        "stock": 15,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "e5f6a7b8-c9d0-1234-efab-345678901234",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "sku": "REM-NOR-GRIS-M",
+        "size": "M",
+        "color": "Gris",
+        "stock": 22,
+        "is_default": false,
+        "created_at": "2026-08-01T10:30:00.000Z",
+        "updated_at": "2026-08-01T10:30:00.000Z"
       }
     ],
     "images": [
@@ -49,7 +104,7 @@
         "id": "13fb4d44-b05e-4e3d-9c9d-3e81d2ca7155",
         "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
         "public_id": "norte/products/remera-norte/1",
-        "secure_url": "https://placehold.co/600x600?text=Remera",
+        "secure_url": "https://placehold.co/600x600?text=Remera+Frontal",
         "display_order": 1,
         "created_at": "2026-08-01T10:30:00.000Z"
       },
@@ -57,9 +112,25 @@
         "id": "805b8b5e-c2a9-4641-9baa-bd22afa00ca4",
         "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
         "public_id": "norte/products/remera-norte/2",
-        "secure_url": "https://placehold.co/600x600?text=Remera+2",
+        "secure_url": "https://placehold.co/600x600?text=Remera+Detalle",
         "display_order": 2,
         "created_at": "2026-08-01T10:30:00.000Z"
+      },
+      {
+        "id": "805b8b5e-c2a9-4641-9baa-bd22afa00c44",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "public_id": "norte/products/remera-norte/3",
+        "secure_url": "https://placehold.co/600x600?text=Remera+Trasera",
+        "display_order": 3,
+        "created_at": "2026-08-01T10:31:00.000Z"
+      },
+      {
+        "id": "f6a7b8c9-d0e1-2345-fabc-456789012345",
+        "product_id": "0baf6c44-1239-424a-9b07-ebb6bfe1c580",
+        "public_id": "norte/products/remera-norte/4",
+        "secure_url": "https://placehold.co/600x600?text=Remera+Lado",
+        "display_order": 4,
+        "created_at": "2026-08-01T10:32:00.000Z"
       }
     ]
   },
@@ -106,6 +177,28 @@
         "is_default": false,
         "created_at": "2026-08-01T11:00:00.000Z",
         "updated_at": "2026-08-01T11:00:00.000Z"
+      },
+      {
+        "id": "f6a7b8c9-d0e1-2345-fabc-567890123456",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "sku": "CAM-URB-NEG-M",
+        "size": "M",
+        "color": "Negro",
+        "stock": 10,
+        "is_default": false,
+        "created_at": "2026-08-01T11:00:00.000Z",
+        "updated_at": "2026-08-01T11:00:00.000Z"
+      },
+      {
+        "id": "a7b8c9d0-e1f2-3456-abcd-678901234567",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "sku": "CAM-URB-NEG-L",
+        "size": "L",
+        "color": "Negro",
+        "stock": 7,
+        "is_default": false,
+        "created_at": "2026-08-01T11:00:00.000Z",
+        "updated_at": "2026-08-01T11:00:00.000Z"
       }
     ],
     "images": [
@@ -113,7 +206,7 @@
         "id": "2296b952-0945-4e7e-92a1-2d2743ad2cf4",
         "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
         "public_id": "norte/products/campera-urbana/1",
-        "secure_url": "https://placehold.co/600x600?text=Campera",
+        "secure_url": "https://placehold.co/600x600?text=Campera+Frontal",
         "display_order": 1,
         "created_at": "2026-08-01T11:00:00.000Z"
       },
@@ -121,9 +214,17 @@
         "id": "682654b4-f11e-4c39-b0de-00d82120dca9",
         "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
         "public_id": "norte/products/campera-urbana/2",
-        "secure_url": "https://placehold.co/600x600?text=Campera+2",
+        "secure_url": "https://placehold.co/600x600?text=Campera+Detalle",
         "display_order": 2,
         "created_at": "2026-08-01T11:00:00.000Z"
+      },
+      {
+        "id": "b8c9d0e1-f2a3-4567-bcde-789012345678",
+        "product_id": "bbb065a3-52fb-452d-9e6d-f528519fc624",
+        "public_id": "norte/products/campera-urbana/3",
+        "secure_url": "https://placehold.co/600x600?text=Campera+Trasera",
+        "display_order": 3,
+        "created_at": "2026-08-01T11:01:00.000Z"
       }
     ]
   },
@@ -170,6 +271,28 @@
         "is_default": false,
         "created_at": "2026-08-01T11:30:00.000Z",
         "updated_at": "2026-08-01T11:30:00.000Z"
+      },
+      {
+        "id": "b1c2d3e4-f5a6-7890-cdef-890123456789",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "sku": "PAN-CAR-NEG-38",
+        "size": "38",
+        "color": "Negro",
+        "stock": 15,
+        "is_default": false,
+        "created_at": "2026-08-01T11:30:00.000Z",
+        "updated_at": "2026-08-01T11:30:00.000Z"
+      },
+      {
+        "id": "c2d3e4f5-a6b7-8901-defa-901234567890",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "sku": "PAN-CAR-NEG-40",
+        "size": "40",
+        "color": "Negro",
+        "stock": 22,
+        "is_default": false,
+        "created_at": "2026-08-01T11:30:00.000Z",
+        "updated_at": "2026-08-01T11:30:00.000Z"
       }
     ],
     "images": [
@@ -177,7 +300,7 @@
         "id": "7d83e0f6-a331-45ef-8edf-c9b821cf05cd",
         "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
         "public_id": "norte/products/pantalon-cargo/1",
-        "secure_url": "https://placehold.co/600x600?text=Pantalon",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+Frontal",
         "display_order": 1,
         "created_at": "2026-08-01T11:30:00.000Z"
       },
@@ -185,9 +308,17 @@
         "id": "80ec1e18-00e4-4f8b-9d2e-a46b48107a3c",
         "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
         "public_id": "norte/products/pantalon-cargo/2",
-        "secure_url": "https://placehold.co/600x600?text=Pantalon+2",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+Bolsillos",
         "display_order": 2,
         "created_at": "2026-08-01T11:30:00.000Z"
+      },
+      {
+        "id": "d3e4f5a6-b7c8-9012-efab-012345678901",
+        "product_id": "52ede215-f0cb-424a-b143-935ae7264fb8",
+        "public_id": "norte/products/pantalon-cargo/3",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+Lateral",
+        "display_order": 3,
+        "created_at": "2026-08-01T11:31:00.000Z"
       }
     ]
   },
@@ -234,6 +365,28 @@
         "is_default": false,
         "created_at": "2026-08-02T09:00:00.000Z",
         "updated_at": "2026-08-02T09:00:00.000Z"
+      },
+      {
+        "id": "e4f5a6b7-c8d9-0123-fabc-123456789012",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "sku": "REM-BAS-NEG-S",
+        "size": "S",
+        "color": "Negro",
+        "stock": 25,
+        "is_default": false,
+        "created_at": "2026-08-02T09:00:00.000Z",
+        "updated_at": "2026-08-02T09:00:00.000Z"
+      },
+      {
+        "id": "f5a6b7c8-d9e0-1234-abcd-234567890123",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "sku": "REM-BAS-NEG-M",
+        "size": "M",
+        "color": "Negro",
+        "stock": 28,
+        "is_default": false,
+        "created_at": "2026-08-02T09:00:00.000Z",
+        "updated_at": "2026-08-02T09:00:00.000Z"
       }
     ],
     "images": [
@@ -241,9 +394,25 @@
         "id": "d1c0c942-0752-4841-93b5-37d2462ef939",
         "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
         "public_id": "norte/products/remera-basica/1",
-        "secure_url": "https://placehold.co/600x600?text=Remera+B",
+        "secure_url": "https://placehold.co/600x600?text=Remera+B+Frontal",
         "display_order": 1,
         "created_at": "2026-08-02T09:00:00.000Z"
+      },
+      {
+        "id": "a6b7c8d9-e0f1-2345-bcde-345678901234",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "public_id": "norte/products/remera-basica/2",
+        "secure_url": "https://placehold.co/600x600?text=Remera+B+Detalle",
+        "display_order": 2,
+        "created_at": "2026-08-02T09:01:00.000Z"
+      },
+      {
+        "id": "b7c8d9e0-f1a2-3456-cdef-456789012345",
+        "product_id": "7f3aabad-dd6f-47eb-b298-362b42a60011",
+        "public_id": "norte/products/remera-basica/3",
+        "secure_url": "https://placehold.co/600x600?text=Remera+B+Trasera",
+        "display_order": 3,
+        "created_at": "2026-08-02T09:02:00.000Z"
       }
     ]
   },
@@ -279,6 +448,17 @@
         "is_default": false,
         "created_at": "2026-08-02T10:00:00.000Z",
         "updated_at": "2026-08-02T10:00:00.000Z"
+      },
+      {
+        "id": "c8d9e0f1-a2b3-4567-defa-567890123456",
+        "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+        "sku": "CAM-NOR-NEG-M",
+        "size": "M",
+        "color": "Negro",
+        "stock": 8,
+        "is_default": false,
+        "created_at": "2026-08-02T10:00:00.000Z",
+        "updated_at": "2026-08-02T10:00:00.000Z"
       }
     ],
     "images": [
@@ -286,7 +466,7 @@
         "id": "9df31d06-871e-4617-9ffa-6b6370f2fa3b",
         "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
         "public_id": "norte/products/campera-norte/1",
-        "secure_url": "https://placehold.co/600x600?text=Campera+N",
+        "secure_url": "https://placehold.co/600x600?text=Campera+N+Frontal",
         "display_order": 1,
         "created_at": "2026-08-02T10:00:00.000Z"
       },
@@ -294,9 +474,17 @@
         "id": "a76b10d0-11d1-4332-a2be-90cb85153026",
         "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
         "public_id": "norte/products/campera-norte/2",
-        "secure_url": "https://placehold.co/600x600?text=Campera+N+2",
+        "secure_url": "https://placehold.co/600x600?text=Campera+N+Detalle",
         "display_order": 2,
         "created_at": "2026-08-02T10:00:00.000Z"
+      },
+      {
+        "id": "d9e0f1a2-b3c4-5678-efab-678901234567",
+        "product_id": "e38650dc-68d2-427b-8658-32529e79c2ee",
+        "public_id": "norte/products/campera-norte/3",
+        "secure_url": "https://placehold.co/600x600?text=Campera+N+Trasera",
+        "display_order": 3,
+        "created_at": "2026-08-02T10:01:00.000Z"
       }
     ]
   },
@@ -343,6 +531,17 @@
         "is_default": false,
         "created_at": "2026-08-02T10:30:00.000Z",
         "updated_at": "2026-08-02T10:30:00.000Z"
+      },
+      {
+        "id": "e0f1a2b3-c4d5-6789-fabc-789012345678",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "sku": "PAN-CLA-GRIS-38",
+        "size": "38",
+        "color": "Gris",
+        "stock": 18,
+        "is_default": false,
+        "created_at": "2026-08-02T10:30:00.000Z",
+        "updated_at": "2026-08-02T10:30:00.000Z"
       }
     ],
     "images": [
@@ -350,7 +549,7 @@
         "id": "8f5e778a-acb4-4b64-a225-b013f3e9876b",
         "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
         "public_id": "norte/products/pantalon-clasico/1",
-        "secure_url": "https://placehold.co/600x600?text=Pantalon+C",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+C+Frontal",
         "display_order": 1,
         "created_at": "2026-08-02T10:30:00.000Z"
       },
@@ -358,9 +557,17 @@
         "id": "609fe7d2-57a7-4c10-95ce-889016527d81",
         "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
         "public_id": "norte/products/pantalon-clasico/2",
-        "secure_url": "https://placehold.co/600x600?text=Pantalon+C+2",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+C+Detalle",
         "display_order": 2,
         "created_at": "2026-08-02T10:30:00.000Z"
+      },
+      {
+        "id": "f1a2b3c4-d5e6-7890-abcd-890123456789",
+        "product_id": "0ba7ccd7-7f9c-412d-b2d9-836c0b947524",
+        "public_id": "norte/products/pantalon-clasico/3",
+        "secure_url": "https://placehold.co/600x600?text=Pantalon+C+Lateral",
+        "display_order": 3,
+        "created_at": "2026-08-02T10:31:00.000Z"
       }
     ]
   },
@@ -407,6 +614,28 @@
         "is_default": false,
         "created_at": "2026-08-03T09:00:00.000Z",
         "updated_at": "2026-08-03T09:00:00.000Z"
+      },
+      {
+        "id": "a2b3c4d5-e6f7-8901-bcde-901234567890",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "sku": "BUZ-NOR-NEG-S",
+        "size": "S",
+        "color": "Negro",
+        "stock": 15,
+        "is_default": false,
+        "created_at": "2026-08-03T09:00:00.000Z",
+        "updated_at": "2026-08-03T09:00:00.000Z"
+      },
+      {
+        "id": "b3c4d5e6-f7a8-9012-cdef-012345678901",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "sku": "BUZ-NOR-NEG-M",
+        "size": "M",
+        "color": "Negro",
+        "stock": 20,
+        "is_default": false,
+        "created_at": "2026-08-03T09:00:00.000Z",
+        "updated_at": "2026-08-03T09:00:00.000Z"
       }
     ],
     "images": [
@@ -414,7 +643,7 @@
         "id": "e36fbc3a-1158-4820-9e6c-7c49639ece0c",
         "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
         "public_id": "norte/products/buzo-norte/1",
-        "secure_url": "https://placehold.co/600x600?text=Buzo",
+        "secure_url": "https://placehold.co/600x600?text=Buzo+Frontal",
         "display_order": 1,
         "created_at": "2026-08-03T09:00:00.000Z"
       },
@@ -422,9 +651,17 @@
         "id": "cd39b93a-6d4f-4273-92b4-62fe1160e948",
         "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
         "public_id": "norte/products/buzo-norte/2",
-        "secure_url": "https://placehold.co/600x600?text=Buzo+2",
+        "secure_url": "https://placehold.co/600x600?text=Buzo+Detalle",
         "display_order": 2,
         "created_at": "2026-08-03T09:00:00.000Z"
+      },
+      {
+        "id": "c4d5e6f7-a8b9-0123-defa-123456789012",
+        "product_id": "7c8c3e28-8d23-4cc4-8f58-5dcd2c46eb9d",
+        "public_id": "norte/products/buzo-norte/3",
+        "secure_url": "https://placehold.co/600x600?text=Buzo+Trasera",
+        "display_order": 3,
+        "created_at": "2026-08-03T09:01:00.000Z"
       }
     ]
   },
@@ -460,6 +697,17 @@
         "is_default": false,
         "created_at": "2026-08-03T09:30:00.000Z",
         "updated_at": "2026-08-03T09:30:00.000Z"
+      },
+      {
+        "id": "d5e6f7a8-b9c0-1234-efab-234567890123",
+        "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+        "sku": "ACC-GOR-GRIS-UNI",
+        "size": "Única",
+        "color": "Gris",
+        "stock": 12,
+        "is_default": false,
+        "created_at": "2026-08-03T09:30:00.000Z",
+        "updated_at": "2026-08-03T09:30:00.000Z"
       }
     ],
     "images": [
@@ -467,7 +715,7 @@
         "id": "7408f959-2d48-4107-ad49-9ad2b2966a05",
         "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
         "public_id": "norte/products/gorra-norte/1",
-        "secure_url": "https://placehold.co/600x600?text=Gorra",
+        "secure_url": "https://placehold.co/600x600?text=Gorra+Frontal",
         "display_order": 1,
         "created_at": "2026-08-03T09:30:00.000Z"
       },
@@ -475,9 +723,17 @@
         "id": "41be619a-d314-473b-896b-956644e3585d",
         "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
         "public_id": "norte/products/gorra-norte/2",
-        "secure_url": "https://placehold.co/600x600?text=Gorra+2",
+        "secure_url": "https://placehold.co/600x600?text=Gorra+Lateral",
         "display_order": 2,
         "created_at": "2026-08-03T09:30:00.000Z"
+      },
+      {
+        "id": "e6f7a8b9-c0d1-2345-fabc-345678901234",
+        "product_id": "dcac9c77-0e4f-4b9c-b66a-398f6d7aa880",
+        "public_id": "norte/products/gorra-norte/3",
+        "secure_url": "https://placehold.co/600x600?text=Gorra+Trasera",
+        "display_order": 3,
+        "created_at": "2026-08-03T09:31:00.000Z"
       }
     ]
   }
