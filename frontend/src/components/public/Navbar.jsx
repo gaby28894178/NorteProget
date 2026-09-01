@@ -62,7 +62,9 @@ const Navbar = () => {
         >
           <div className="flex h-9.5 items-center rounded-lg border border-gray-200 bg-white px-3 transition focus-within:border-norte-mustard">
             <input
+              id="busqueda"
               type="search"
+              name="busqueda"
               value={busqueda}
               onChange={handleBusquedaChange}
               placeholder="Buscar productos"

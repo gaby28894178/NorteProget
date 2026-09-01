@@ -2,6 +2,7 @@
 import { useCategories } from "../../hooks/useCategories";
 import { CategoryTable } from "../../components/admin/CategoryTable";
 import { CategoryForm } from "../../components/admin/CategoryForm";
+import { LuPlus } from "react-icons/lu";
 
 export const AdminCategoriesPage = () => {
   const {
@@ -43,16 +44,18 @@ export const AdminCategoriesPage = () => {
         </div>
         <button
           onClick={handleOpenCreate}
-          className="w-full sm:w-auto px-4 py-2 bg-norte-mustard text-white font-medium rounded-btn hover:bg-mostaza-4 transition-colors"
+          className="w-full sm:w-auto px-4 py-2 bg-norte-mustard text-white font-medium rounded-btn hover:bg-mostaza-4 transition-colors inline-flex items-center gap-2"
         >
-          + Nueva Categoría
+          <LuPlus size={16} /> Nueva Categoría
         </button>
       </div>
 
       {/* Barra de búsqueda */}
       <div className="relative">
         <input
+          id="admin-category-search"
           type="text"
+          name="search"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Buscar categoría por nombre..."

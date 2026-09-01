@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { LuCheck } from "react-icons/lu";
 import { trackPurchase } from "../../utils/analytics";
 
 // TODO(limpiar): Reemplazar lectura de localStorage por una llamada a la API
@@ -40,8 +41,8 @@ const Confirmacion = () => {
               ICONO
           ========================== */}
 
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-norte-mustard text-3xl font-medium text-white">
-            ✓
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-norte-mustard text-white">
+            <LuCheck size={32} />
           </div>
 
           {/* =========================

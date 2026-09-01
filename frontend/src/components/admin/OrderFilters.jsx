@@ -30,7 +30,9 @@ export const OrderFilters = ({
             className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
           />
           <input
+            id="admin-order-search"
             type="text"
+            name="search"
             value={searchInput}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Buscar por nombre o email..."

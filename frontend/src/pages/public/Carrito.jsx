@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { LuMinus, LuPlus } from "react-icons/lu";
 
 import { useCart } from "../../context/CartContext";
 import { trackViewCart } from "../../utils/analytics";
@@ -200,7 +201,7 @@ const Carrito = () => {
                                 className="flex h-10 w-10 items-center justify-center text-lg transition hover:bg-gray-100"
                                 aria-label="Disminuir cantidad"
                               >
-                                −
+                                <LuMinus size={16} />
                               </button>
 
                               <span className="flex h-10 min-w-10 items-center justify-center border-x border-gray-300 text-sm">
@@ -219,7 +220,7 @@ const Carrito = () => {
                                 className="flex h-10 w-10 items-center justify-center text-lg transition hover:bg-gray-100"
                                 aria-label="Aumentar cantidad"
                               >
-                                +
+                                <LuPlus size={16} />
                               </button>
 
                             </div>
