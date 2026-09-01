@@ -89,6 +89,7 @@ export const FilterSidebar = ({
               className="flex cursor-pointer items-center gap-3 text-base text-gray-700"
             >
               <input
+                id={`color-${color}`}
                 type="checkbox"
                 checked={coloresSeleccionados.includes(color)}
                 onChange={() => handleColorChange(color)}
@@ -117,6 +118,7 @@ export const FilterSidebar = ({
               className="flex cursor-pointer items-center gap-3 text-base text-gray-700"
             >
               <input
+                id={`talle-${talle}`}
                 type="checkbox"
                 checked={tallesSeleccionados.includes(talle)}
                 onChange={() => handleTalleChange(talle)}
