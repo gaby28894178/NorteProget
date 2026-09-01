@@ -1,14 +1,13 @@
 import { env } from './env.js';
 
 const allowedOrigins = [
-  env.frontendUrl,
+  ...env.frontendUrls,
   'http://localhost:3002',
   'http://127.0.0.1:3002',
 ];
 
 export const corsConfig = {
   origin: (origin, callback) => {
-    // Permitir requests sin Origin (curl, Postman, etc.)
     if (!origin) {
       return callback(null, true);
     }
