@@ -158,7 +158,13 @@ class ProductVariantRepository {
   /**
    * Valida combinación única producto + talla + color.
    */
-  async validateUniqueCombination(productId, size, color, excludeId = null) {
+  async validateUniqueCombination(
+    productId,
+    size,
+    color,
+    excludeId = null,
+    { transaction } = {},
+  ) {
     const where = {
       product_id: productId,
       size: size ?? null,
@@ -171,7 +177,10 @@ class ProductVariantRepository {
       };
     }
 
-    const existing = await ProductVariant.findOne({ where });
+    const existing = await ProductVariant.findOne({
+      where,
+      transaction,
+    });
 
     if (existing) {
       throw new ConflictError(
@@ -183,8 +192,10 @@ class ProductVariantRepository {
   /**
    * Crea una variante.
    */
-  async create(variantData) {
-    const product = await Product.findByPk(variantData.product_id);
+  async create(variantData, { transaction } = {}) {
+    const product = await Product.findByPk(variantData.product_id, {
+      transaction,
+    });
 
     if (!product) {
       throw new NotFoundError(
@@ -202,6 +213,7 @@ class ProductVariantRepository {
 
     const existingSku = await ProductVariant.findOne({
       where: { sku },
+      transaction,
     });
 
     if (existingSku) {
@@ -212,14 +224,19 @@ class ProductVariantRepository {
       variantData.product_id,
       variantData.size,
       variantData.color,
+      null,
+      { transaction },
     );
 
-    const variant = await ProductVariant.create({
-      ...variantData,
-      sku,
-      stock: variantData.stock ?? 0,
-      is_default: variantData.is_default ?? false,
-    });
+    const variant = await ProductVariant.create(
+      {
+        ...variantData,
+        sku,
+        stock: variantData.stock ?? 0,
+        is_default: variantData.is_default ?? false,
+      },
+      { transaction },
+    );
 
     if (variant.is_default) {
       await ProductVariant.update(
@@ -231,41 +248,12 @@ class ProductVariantRepository {
               [Op.ne]: variant.id,
             },
           },
+          transaction,
         },
       );
     }
 
     return variant;
-  }
-
-  /**
-   * Crea múltiples variantes.
-   */
-  async createMany(productId, variantsData) {
-    const product = await Product.findByPk(productId);
-
-    if (!product) {
-      throw new NotFoundError(`Producto con ID ${productId} no encontrado`);
-    }
-
-    const createdVariants = [];
-
-    for (const variantData of variantsData) {
-      const variant = await this.create({
-        ...variantData,
-        product_id: productId,
-      });
-
-      createdVariants.push(variant);
-    }
-
-    const hasDefault = createdVariants.some((variant) => variant.is_default);
-
-    if (!hasDefault && createdVariants.length > 0) {
-      await this.setDefaultVariant(productId, createdVariants[0].id);
-    }
-
-    return createdVariants;
   }
 
   /**
@@ -332,12 +320,13 @@ class ProductVariantRepository {
   /**
    * Establece una variante como predeterminada.
    */
-  async setDefaultVariant(productId, variantId) {
+  async setDefaultVariant(productId, variantId, { transaction } = {}) {
     const variant = await ProductVariant.findOne({
       where: {
         id: variantId,
         product_id: productId,
       },
+      transaction,
     });
 
     if (!variant) {
@@ -352,12 +341,16 @@ class ProductVariantRepository {
         where: {
           product_id: productId,
         },
+        transaction,
       },
     );
 
-    await variant.update({
-      is_default: true,
-    });
+    await variant.update(
+      {
+        is_default: true,
+      },
+      { transaction },
+    );
 
     await variant.reload();
 

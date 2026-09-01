@@ -55,9 +55,6 @@ class ProductRepository {
       include.push({
         model: ProductVariant,
         as: 'variants',
-        where: {
-          is_default: false,
-        },
         required: false,
         separate: true,
         order: [['created_at', 'ASC']],
@@ -107,16 +104,16 @@ class ProductRepository {
   /**
    * Obtiene un producto por ID.
    */
-  async findById(id, { includeVariants = true, includeImages = true } = {}) {
+  async findById(
+    id,
+    { includeVariants = true, includeImages = true, transaction } = {},
+  ) {
     const include = [];
 
     if (includeVariants) {
       include.push({
         model: ProductVariant,
         as: 'variants',
-        where: {
-          is_default: false,
-        },
         required: false,
         separate: true,
         order: [['created_at', 'ASC']],
@@ -135,6 +132,7 @@ class ProductRepository {
 
     const product = await Product.findByPk(id, {
       include,
+      transaction,
     });
 
     if (!product) {
@@ -157,9 +155,6 @@ class ProductRepository {
       include.push({
         model: ProductVariant,
         as: 'variants',
-        where: {
-          is_default: false,
-        },
         required: false,
         separate: true,
         order: [['created_at', 'ASC']],
@@ -265,7 +260,7 @@ class ProductRepository {
    * Las variantes e imágenes son responsabilidad
    * de sus respectivos repositories y services.
    */
-  async create(productData) {
+  async create(productData, { transaction } = {}) {
     const data = { ...productData };
 
     if (!data.slug) {
@@ -282,10 +277,13 @@ class ProductRepository {
       throw new ConflictError(`El slug "${data.slug}" ya está en uso`);
     }
 
-    return Product.create({
-      ...data,
-      status: data.status ?? 'UNPUBLISHED',
-    });
+    return Product.create(
+      {
+        ...data,
+        status: data.status ?? 'UNPUBLISHED',
+      },
+      { transaction },
+    );
   }
 
   /**
@@ -348,52 +346,14 @@ class ProductRepository {
    * La eliminación de variantes e imágenes debe
    * ser coordinada por ProductService.
    */
-  async delete(id) {
+  async delete(id, { transaction } = {}) {
     const product = await this.findById(id, {
       includeVariants: false,
       includeImages: false,
+      transaction,
     });
 
-    await product.destroy();
-  }
-
-  /**
-   * Verifica si existe un producto por ID.
-   */
-  async existsById(id) {
-    const count = await Product.count({
-      where: { id },
-    });
-
-    return count > 0;
-  }
-
-  /**
-   * Verifica si existe un producto por slug.
-   */
-  async existsBySlug(slug) {
-    const count = await Product.count({
-      where: { slug },
-    });
-
-    return count > 0;
-  }
-
-  /**
-   * Obtiene la cantidad de productos.
-   */
-  async count({ status, category_id } = {}) {
-    const where = {};
-
-    if (status) {
-      where.status = status;
-    }
-
-    if (category_id) {
-      where.category_id = category_id;
-    }
-
-    return Product.count({ where });
+    await product.destroy({ transaction });
   }
 
   /**
@@ -404,40 +364,6 @@ class ProductRepository {
       ...options,
       category_id: categoryId,
     });
-  }
-
-  /**
-   * Obtiene productos destacados.
-   *
-   * La consulta devuelve productos; la relación con
-   * variantes solo se utiliza como criterio de consulta.
-   */
-  async findFeatured({ limit = 6 } = {}) {
-    const products = await Product.findAll({
-      where: {
-        status: 'PUBLISHED',
-      },
-      include: [
-        {
-          model: ProductVariant,
-          as: 'variants',
-          where: {
-            stock: {
-              [Op.gt]: 0,
-            },
-          },
-          required: true,
-          separate: true,
-        },
-      ],
-      order: [
-        ['created_at', 'DESC'],
-        ['current_price', 'ASC'],
-      ],
-      limit,
-    });
-
-    return products;
   }
 }
 
