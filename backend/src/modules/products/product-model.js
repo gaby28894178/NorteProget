@@ -6,16 +6,6 @@ import sequelize from '../../database/database.js';
  */
 const ProductStatus = DataTypes.ENUM('PUBLISHED', 'UNPUBLISHED');
 
-/**
- * Modelo de Producto (products)
- * Almacena la información principal de los productos del catálogo,
- * incluyendo su categoría, descripción, precio actual y estado de publicación.
- *
- * Relaciones:
- * - Pertenece a una categoría (categories.id -> products.category_id)
- * - Tiene múltiples variantes (products.id -> product_variants.product_id)
- * - Tiene múltiples imágenes (products.id -> product_images.product_id)
- */
 class Product extends Model {}
 
 Product.init(
@@ -116,7 +106,7 @@ Product.init(
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
-  }
+  },
 );
 
 export default Product;

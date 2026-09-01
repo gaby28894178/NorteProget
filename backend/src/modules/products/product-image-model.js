@@ -1,19 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../database/database.js';
 
-/**
- * Modelo de Imagen de Producto (product_images)
- * Almacena las imágenes asociadas a cada producto, incluyendo sus URLs
- * en el servicio de almacenamiento en la nube (Cloudinary) y el orden
- * de visualización en la galería del producto.
- *
- * Restricciones de integridad:
- * - El orden de visualización de las imágenes debe ser único para cada producto.
- *   Índice único compuesto: (product_id, display_order)
- *
- * Relaciones:
- * - Pertenece a un producto (products.id -> product_images.product_id)
- */
 class ProductImage extends Model {}
 
 ProductImage.init(
@@ -93,7 +80,7 @@ ProductImage.init(
         fields: ['product_id', 'display_order'],
       },
     ],
-  }
+  },
 );
 
 export default ProductImage;

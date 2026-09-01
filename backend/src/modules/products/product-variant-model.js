@@ -1,20 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../database/database.js';
 
-/**
- * Modelo de Variante de Producto (product_variants)
- * Almacena las distintas combinaciones de talla y color de un producto,
- * cada una con su propio SKU, stock y bandera de variante por defecto.
- *
- * Restricciones de integridad:
- * - Un producto no puede tener dos variantes con la misma combinación de talla y color.
- *   Índice único compuesto: (product_id, size, color)
- *
- * Relaciones:
- * - Pertenece a un producto (products.id -> product_variants.product_id)
- * - Es referenciado por ítems del carrito (product_variants.id -> cart_items.product_variant_id)
- * - Es referenciado por ítems del pedido (product_variants.id -> order_items.product_variant_id)
- */
 class ProductVariant extends Model {}
 
 ProductVariant.init(
@@ -123,7 +109,7 @@ ProductVariant.init(
         fields: ['product_id', 'size', 'color'],
       },
     ],
-  }
+  },
 );
 
 export default ProductVariant;
