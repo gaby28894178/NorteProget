@@ -1,5 +1,5 @@
 // src/pages/admin/AdminProductsPage.jsx
-import { LuArrowLeft, LuLoader } from "react-icons/lu";
+import { LuArrowLeft, LuLoader, LuPlus } from "react-icons/lu";
 import { useProducts } from "../../hooks/useProducts";
 import { ProductTable } from "../../components/admin/ProductTable";
 import { ProductFilters } from "../../components/admin/ProductFilters";
@@ -124,9 +124,9 @@ export const AdminProductsPage = () => {
         </div>
         <button
           onClick={handleOpenCreate}
-          className="w-full sm:w-auto px-4 py-2 bg-norte-mustard text-white font-medium rounded-btn hover:bg-mostaza-4 transition-colors"
+          className="w-full sm:w-auto px-4 py-2 bg-norte-mustard text-white font-medium rounded-btn hover:bg-mostaza-4 transition-colors inline-flex items-center gap-2"
         >
-          + Nuevo Producto
+          <LuPlus size={16} /> Nuevo Producto
         </button>
       </div>
 
